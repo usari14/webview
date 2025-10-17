@@ -1,6 +1,5 @@
 'use client';
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -71,15 +70,15 @@ export default function ContactPage() {
             <div className="flex items-center justify-between h-20">
               {/* Left Navigation */}
               <nav className="hidden lg:flex items-center space-x-8">
-                <a href="/" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">HOME</a>
-                <a href="/about" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">ABOUT US</a>
+                <Link href="/" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">HOME</Link>
+                <Link href="/about" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">ABOUT US</Link>
                 <div className="relative group">
-                  <a href="/products" className="text-gray-900 hover:text-red-600 font-bold uppercase flex items-center transition-colors">
+                  <Link href="/products" className="text-gray-900 hover:text-red-600 font-bold uppercase flex items-center transition-colors">
                     PRODUCTS
                     <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </nav>
 

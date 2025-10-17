@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
-  const [quantity, setQuantity] = useState(1);
   const [resolvedParams, setResolvedParams] = useState<{ id: string } | null>(null);
 
   // Handle async params
@@ -94,7 +93,6 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               {/* Left Navigation */}
               <nav className="hidden lg:flex items-center space-x-8">
                 <Link href="/" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">HOME</Link>
-                <Link href="/about" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">ABOUT US</Link>
                 <div className="relative group">
                   <Link href="/products" className="text-red-600 font-bold uppercase flex items-center transition-colors">
                     PRODUCTS
@@ -117,15 +115,6 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               {/* Right Navigation */}
               <nav className="hidden lg:flex items-center space-x-8">
                 <Link href="/products?filter=New Products" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">NEW PRODUCTS</Link>
-                <div className="relative group">
-                  <a href="/news" className="text-gray-900 hover:text-red-600 font-bold uppercase flex items-center transition-colors">
-                    NEWS
-                    <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </a>
-                </div>
-                <Link href="/contact" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">CONTACT US</Link>
               </nav>
 
               {/* Mobile Menu Button */}
@@ -415,10 +404,10 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 Our Orange Carrot Juice Blend offers a unique taste experience that combines the refreshing citrus notes of orange with the subtle sweetness of carrots. The flavor profile is carefully balanced to appeal to both children and adults, making it an excellent choice for family consumption.
               </p>
               <p>
-                The drink has a smooth, velvety texture with a natural orange color that's visually appealing. The taste is neither too sweet nor too tart, providing a perfect balance that keeps customers coming back for more.
+                The drink has a smooth, velvety texture with a natural orange color that&apos;s visually appealing. The taste is neither too sweet nor too tart, providing a perfect balance that keeps customers coming back for more.
               </p>
               <p>
-                From a market perspective, this product caters to the growing demand for healthy, natural beverages. It's perfect for health-conscious consumers, fitness enthusiasts, and anyone looking for a nutritious alternative to sugary soft drinks.
+                From a market perspective, this product caters to the growing demand for healthy, natural beverages. It&apos;s perfect for health-conscious consumers, fitness enthusiasts, and anyone looking for a nutritious alternative to sugary soft drinks.
               </p>
             </div>
             <div className="relative">

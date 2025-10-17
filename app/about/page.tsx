@@ -50,14 +50,14 @@ export default function AboutPage() {
               {/* Left Navigation */}
               <nav className="hidden lg:flex items-center space-x-8">
                 <Link href="/" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">HOME</Link>
-                <a href="/about" className="text-red-600 font-bold uppercase transition-colors">ABOUT US</a>
+                <Link href="/about" className="text-red-600 font-bold uppercase transition-colors">ABOUT US</Link>
                 <div className="relative group">
-                  <a href="/products" className="text-gray-900 hover:text-red-600 font-bold uppercase flex items-center transition-colors">
+                  <Link href="/products" className="text-gray-900 hover:text-red-600 font-bold uppercase flex items-center transition-colors">
                     PRODUCTS
                     <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </nav>
 
@@ -172,7 +172,7 @@ export default function AboutPage() {
                 <p>
                   Our company specializes in the production of various beverage categories including coconut water, 
                   fruit juices, tea drinks, energy drinks, and functional beverages. We are committed to using 
-                  only the finest natural ingredients sourced from Vietnam's rich agricultural landscape.
+                  only the finest natural ingredients sourced from Vietnam&apos;s rich agricultural landscape.
                 </p>
                 <p>
                   With state-of-the-art manufacturing facilities and a team of experienced professionals, 
@@ -202,7 +202,7 @@ export default function AboutPage() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">International B2B Supplier</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              To know well our products, get some samples to try, and it's free.
+              To know well our products, get some samples to try, and it&apos;s free.
             </p>
           </div>
 
@@ -475,7 +475,7 @@ export default function AboutPage() {
               <div className="text-center">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">OUR RAW MATERIALS</h3>
                 <p className="text-gray-600">
-                  We source the finest natural ingredients from Vietnam's rich agricultural regions, 
+                  We source the finest natural ingredients from Vietnam&apos;s rich agricultural regions, 
                   ensuring the highest quality and freshness in every product.
                 </p>
               </div>

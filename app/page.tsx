@@ -81,15 +81,14 @@ export default function Home() {
             <div className="flex items-center justify-between h-20">
               {/* Left Navigation */}
               <nav className="hidden lg:flex items-center space-x-8">
-                <a href="/" className="nav-link text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">HOME</a>
-                <a href="/about" className="nav-link text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">ABOUT US</a>
+                <Link href="/" className="nav-link text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">HOME</Link>
                 <div className="relative group">
-                  <a href="/products" className="nav-link text-red-600 font-bold uppercase flex items-center transition-colors">
+                  <Link href="/products" className="nav-link text-red-600 font-bold uppercase flex items-center transition-colors">
                     PRODUCTS
                     <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </nav>
 
@@ -105,15 +104,6 @@ export default function Home() {
               {/* Right Navigation */}
               <nav className="hidden lg:flex items-center space-x-8">
                 <Link href="/products?filter=New Products" className="nav-link text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">NEW PRODUCTS</Link>
-                <div className="relative group">
-                  <a href="/news" className="nav-link text-gray-900 hover:text-red-600 font-bold uppercase flex items-center transition-colors">
-                    NEWS
-                    <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </a>
-                </div>
-                <a href="/contact" className="nav-link text-red-600 font-bold uppercase transition-colors">CONTACT US</a>
               </nav>
 
               {/* Mobile Menu Button */}

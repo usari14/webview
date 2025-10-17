@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams();
   const [activeFilter, setActiveFilter] = useState("Show All");
   const [currentPage, setCurrentPage] = useState(1);
@@ -114,15 +114,14 @@ export default function ProductsPage() {
             <div className="flex items-center justify-between h-20">
               {/* Left Navigation */}
               <nav className="hidden lg:flex items-center space-x-8">
-                <a href="/" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">HOME</a>
-                <a href="/about" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">ABOUT US</a>
+                <Link href="/" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">HOME</Link>
                 <div className="relative group">
-                  <a href="/products" className="text-red-600 font-bold uppercase flex items-center transition-colors">
+                  <Link href="/products" className="text-red-600 font-bold uppercase flex items-center transition-colors">
                     PRODUCTS
                     <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </nav>
 
@@ -138,15 +137,6 @@ export default function ProductsPage() {
               {/* Right Navigation */}
               <nav className="hidden lg:flex items-center space-x-8">
                 <a href="#" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">NEW PRODUCTS</a>
-                <div className="relative group">
-                  <a href="/news" className="text-gray-900 hover:text-red-600 font-bold uppercase flex items-center transition-colors">
-                    NEWS
-                    <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </a>
-                </div>
-                <a href="/contact" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">CONTACT US</a>
               </nav>
 
               {/* Mobile Menu Button */}
@@ -301,7 +291,7 @@ export default function ProductsPage() {
           <h2 className="text-4xl font-bold text-white mb-6">Interested in Our Products?</h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             Contact us for samples, pricing, or custom manufacturing solutions. 
-            We're here to help you find the perfect beverage for your needs.
+            We&apos;re here to help you find the perfect beverage for your needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
@@ -450,5 +440,13 @@ export default function ProductsPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white flex items-center justify-center"><div className="text-xl">Loading...</div></div>}>
+      <ProductsContent />
+    </Suspense>
   );
 }
