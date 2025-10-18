@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import Navigation from "../components/Navigation";
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState("Show All");
@@ -38,89 +39,10 @@ export default function Home() {
   }, [carouselItems.length]);
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white sticky top-0 z-50 shadow-sm">
-        {/* Utility Bar */}
-        <div className="bg-blue-50 border-b border-gray-200">
-          <div className="container-wide">
-            <div className="flex items-center justify-between h-10 text-sm">
-              <div className="text-red-600 font-medium">Home</div>
-              <div className="flex items-center space-x-4">
-                <a href="#" className="text-gray-700 hover:text-red-600 transition-colors">Exhibition</a>
-                <div className="w-px h-4 bg-gray-300"></div>
-                <a href="#" className="text-gray-700 hover:text-red-600 transition-colors">Video</a>
-                <div className="w-px h-4 bg-gray-300"></div>
-                <div className="relative">
-                  <select className="bg-transparent text-gray-700 hover:text-red-600 transition-colors border-none outline-none cursor-pointer">
-                    <option>Choose</option>
-                    <option>English</option>
-                    <option>Vietnamese</option>
-                  </select>
-                </div>
-                <div className="w-px h-4 bg-gray-300"></div>
-                <div className="flex items-center">
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    className="bg-transparent border-none outline-none text-gray-500 placeholder-gray-400 text-sm"
-                  />
-                  <button className="bg-red-600 text-white p-1 rounded hover:bg-red-700 transition-colors ml-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Navigation */}
-        <div className="bg-white shadow-sm">
-          <div className="container-wide">
-            <div className="flex items-center justify-between h-20">
-              {/* Left Navigation */}
-              <nav className="hidden lg:flex items-center space-x-8">
-                <Link href="/" className="nav-link text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">HOME</Link>
-                <div className="relative group">
-                  <Link href="/products" className="nav-link text-red-600 font-bold uppercase flex items-center transition-colors">
-                    PRODUCTS
-                    <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </Link>
-                </div>
-              </nav>
-
-              {/* Center Logo */}
-              <div className="flex flex-col items-center">
-                <div className="text-4xl font-bold text-red-600 mb-1" style={{ fontFamily: 'cursive' }}>
-                  Rita
-                  <span className="text-xs text-red-600 ml-1">®</span>
-                </div>
-                <div className="text-sm text-red-600 font-medium">Good Taste - Good Health</div>
-              </div>
-
-              {/* Right Navigation */}
-              <nav className="hidden lg:flex items-center space-x-8">
-                <Link href="/products?filter=New Products" className="nav-link text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">NEW PRODUCTS</Link>
-              </nav>
-
-              {/* Mobile Menu Button */}
-              <div className="lg:hidden">
-                <button className="text-gray-600 hover:text-red-600">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Navigation currentPage="Home" />
 
       {/* Hero Section - Large Banner Image */}
-      <section className="relative h-screen w-full overflow-hidden">
+      <section className="relative h-64 md:h-96 lg:h-screen w-full overflow-hidden">
         <Image
           src="https://cdn.pixabay.com/photo/2024/04/19/12/27/ai-generated-8706248_1280.jpg"
           alt="Natural Vietnamese Beverages"
@@ -130,104 +52,49 @@ export default function Home() {
         />
       </section>
 
-
-
-      {/* Exhibitions Section */}
-      {/* <section className="py-16 bg-white">
-        <div className="container-wide">
-          <h2 className="text-5xl text-center font-bold text-rita-red text-center mb-12">
-            UPCOMING EXHIBITIONS
+      {/* Categories Section */}
+      <section className="py-8 md:py-16 bg-gray-100">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-green-600 text-center mb-6 md:mb-12">
+            CATEGORIES
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-     
-            <div className="bg-white border border-gray-200 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">FHC CHINA</h3>
-              <p className="text-lg text-gray-600 mb-2">05 to 09</p>
-              <p className="text-sm text-gray-500">Booth No. 7.1C2-09</p>
-            </div>
-
-      
-            <div className="bg-white border border-gray-200 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">FOOD EXPO VIETNAM</h3>
-              <p className="text-lg text-gray-600 mb-2">12 to 14</p>
-              <p className="text-sm text-gray-500">Booth No. W1H30</p>
-            </div>
-
-      
-            <div className="bg-white border border-gray-200 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">PLMA CHICAGO - USA</h3>
-              <p className="text-lg text-gray-600 mb-2">12 to 15</p>
-              <p className="text-sm text-gray-500">Booth No. 1234</p>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">BEVERAGE EXPO</h3>
-              <p className="text-lg text-gray-600 mb-2">16 to 18</p>
-              <p className="text-sm text-gray-500">Booth No. B2C45</p>
-            </div>
+          <div className="flex justify-center gap-4 md:gap-8 lg:gap-16">
+            {[
+              { name: "FALOODA", image: "https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=300&h=300&fit=crop", bgColor: "bg-yellow-200" },
+              { name: "SEED", image: "https://images.unsplash.com/photo-1515543904379-3d757afe72e4?w=300&h=300&fit=crop", bgColor: "bg-green-200" },
+              { name: "NATA DE COCO", image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=300&h=300&fit=crop", bgColor: "bg-teal-200" },
+            ].map((category, index) => (
+              <Link key={index} href={`/products?filter=${encodeURIComponent(category.name)}`} className="flex flex-col items-center group flex-shrink-0">
+                <div className={`w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 ${category.bgColor} rounded-full flex items-center justify-center mb-2 md:mb-4 group-hover:scale-105 transition-transform overflow-hidden`}>
+                  <Image 
+                    src={category.image} 
+                    alt={category.name} 
+                    width={128} 
+                    height={128} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <span className="text-xs md:text-sm lg:text-lg font-bold text-gray-700 text-center">
+                  {category.name}
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
-      </section> */}
-
-
+      </section>
 
       {/* Beverage Products Section */}
-      <section className="py-16 bg-white">
+      <section className="py-10 bg-white">
         <div className="container-wide">
-          <h2 className="text-4xl font-bold text-green-600 text-center mb-8">
+          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-green-600 text-center mb-4 md:mb-8">
             BEVERAGE PRODUCTS
           </h2>
 
-          {/* Search Bar */}
-          <div className="max-w-4xl mx-auto mb-6">
-            <div className="flex gap-4">
-              <select className="border border-gray-300 rounded px-3 py-2 text-sm text-black">
-                <option>Aluminium</option>
-                <option>Plastic</option>
-                <option>Steel packaging</option>
-              </select>
-              <select className="border border-gray-300 rounded px-3 py-2 text-sm text-black">
-                <option>100ml</option>
-                <option>160ml</option>
-                <option>210ml</option>
-              </select>
-              <div className="flex-1 flex">
-                <input 
-                  type="text" 
-                  placeholder="Search products" 
-                  className="flex-1 border border-gray-300 rounded-l px-3 py-2 text-sm text-black placeholder-gray-500"
-                />
-                <button className="bg-red-600 text-white px-6 py-2 rounded-r hover:bg-red-700">
-                  Search
-                </button>
-              </div>
-            </div>
-          </div>
+
 
           {/* Hot Products */}
-          <div className="max-w-4xl mx-auto mb-6">
+          {/* <div className="max-w-4xl mx-auto mb-6">
             <span className="text-sm font-medium mr-4">Hot products:</span>
             <div className="inline-flex flex-wrap gap-2 text-sm">
               {["coconut water with pulp", "popping boba", "bbt bbt", "juice with pulp", "ice coffee", "nata de coco", "protein milk", "prebiotic"].map((item, i) => (
@@ -235,7 +102,7 @@ export default function Home() {
               ))}
               <span className="text-red-600 hover:underline cursor-pointer">show all »</span>
             </div>
-          </div>
+          </div> */}
 
           {/* Category Filters */}
           <div className="flex flex-wrap justify-center gap-3 mb-10">
@@ -254,7 +121,7 @@ export default function Home() {
           </div>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 lg:gap-6 mb-10">
             {[
               { name: "Rose Falooda", category: "Falooda", image: "https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=300&h=300&fit=crop" },
               { name: "Mango Falooda", category: "Falooda", image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=300&h=300&fit=crop" },
@@ -266,15 +133,15 @@ export default function Home() {
               { name: "Strawberry Nata de Coco", category: "Nata de Coco", image: "https://images.unsplash.com/photo-1488551511020-571c741f122a?w=300&h=300&fit=crop" },
             ].filter(product => activeFilter === "Show All" || product.category === activeFilter).map((product, index) => (
               <Link key={index} href={`/products/${index + 1}`} className="block">
-                <div className="bg-white border rounded-lg pb-4 hover:shadow-lg transition-shadow text-center">
+                <div className="bg-white border rounded-lg pb-2 md:pb-4 hover:shadow-lg transition-shadow text-center">
                   <Image
                     src={product.image}
                     alt={product.name}
                     width={200}
-                    height={250}
-                    className="w-full h-72 object-cover mb-3"
+                    height={200}
+                    className="w-full h-20 md:h-32 lg:h-48 object-cover mb-1 md:mb-3"
                   />
-                  <h3 className="text-sm text-gray-700 leading-tight">{product.name}</h3>
+                  <h3 className="text-xs md:text-sm text-gray-700 leading-tight px-1">{product.name}</h3>
                 </div>
               </Link>
             ))}
@@ -285,25 +152,25 @@ export default function Home() {
       {/* <div className="section-divider fancy"></div> */}
 
       {/* Carousel Section */}
-      <section className="py-16 bg-blue-100">
-        <div className="container-wide">
+      <section className="py-8 md:py-16 bg-blue-100">
+        <div className="container mx-auto px-4">
           <div className="relative">
             <div className="overflow-hidden">
               <div
                 className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${(currentSlide % carouselItems.length) * (100 / 4)}%)` }}
+                style={{ transform: `translateX(-${(currentSlide % carouselItems.length) * (100 / 3)}%)` }}
               >
                 {[...carouselItems, ...carouselItems].map((item, index) => (
-                  <div key={index} className="w-1/4 flex-shrink-0 px-3">
-                    <div className="bg-white border rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
+                  <div key={index} className="w-1/3 md:w-1/4 lg:w-1/6 flex-shrink-0 px-1 md:px-3">
+                    <div className="bg-white border rounded-lg p-2 md:p-4 hover:shadow-lg transition-shadow text-center">
                       <Image
                         src={item.image}
                         alt={item.title}
                         width={200}
-                        height={250}
-                        className="w-full h-48 object-cover mb-3"
+                        height={200}
+                        className="w-full h-20 md:h-32 lg:h-48 object-cover mb-1 md:mb-3"
                       />
-                      <h3 className="text-sm text-gray-700 leading-tight">{item.title}</h3>
+                      <h3 className="text-xs md:text-sm text-gray-700 leading-tight">{item.title}</h3>
                     </div>
                   </div>
                 ))}
@@ -359,10 +226,10 @@ export default function Home() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-          <h2 className="text-6xl font-bold text-white mb-4 section-heading" style={{ fontFamily: 'cursive' }}>
+          <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-2 md:mb-4 section-heading" style={{ fontFamily: 'cursive' }}>
             Rita
           </h2>
-          <h3 className="text-4xl font-bold text-white mb-6 section-heading">Good Taste - Good Health</h3>
+          <h3 className="text-xl md:text-2xl lg:text-4xl font-bold text-white mb-4 md:mb-6 section-heading">Good Taste - Good Health</h3>
           <p className="text-xl text-white opacity-90 max-w-2xl mx-auto">
             Always make the best tropical juice and drink
           </p>
@@ -379,49 +246,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* <div className="section-divider fancy"></div> */}
-
-      {/* Categories Section */}
-      <section className="py-16 bg-gray-100">
-        <div className="container-wide">
-          <h2 className="text-4xl font-bold text-green-600 text-center mb-12">
-            CATEGORIES
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-56 max-w-4xl mx-auto">
-            {[
-              { name: "FALOODA", image: "https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=300&h=300&fit=crop", bgColor: "bg-yellow-200" },
-              { name: "SEED", image: "https://images.unsplash.com/photo-1515543904379-3d757afe72e4?w=300&h=300&fit=crop", bgColor: "bg-green-200" },
-              { name: "NATA DE COCO", image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=300&h=300&fit=crop", bgColor: "bg-teal-200" },
-            ].map((category, index) => (
-              <Link key={index} href={`/products?filter=${encodeURIComponent(category.name)}`} className="flex flex-col items-center group">
-                <div className={`w-70 h-70 ${category.bgColor} rounded-full flex items-center justify-center mb-4 group-hover:scale-105 transition-transform overflow-hidden`}>
-                  <Image 
-                    src={category.image} 
-                    alt={category.name} 
-                    width={160} 
-                    height={160} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <span className="text-lg font-bold text-gray-700 text-center">
-                  {category.name}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Why Choose Us Section */}
       <section className="py-16 bg-blue-200">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-blue-800 mb-2">WHY CHOOSE US</h2>
+            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-blue-800 mb-2">WHY CHOOSE US</h2>
             <p className="text-sm text-blue-700">The Leading Premium Beverage Manufacturer and Supplier Vietnam</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 max-w-4xl mx-auto">
             {[
               { title: "FREE SAMPLE", icon: "📦" },
               { title: "OEM and ODM", icon: "⚙️" },
@@ -431,10 +264,10 @@ export default function Home() {
               { title: "FAST DELIVERY", icon: "🚚" },
             ].map((feature, index) => (
               <div key={index} className="text-center">
-                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl">{feature.icon}</span>
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-1 md:mb-2">
+                  <span className="text-sm md:text-lg">{feature.icon}</span>
                 </div>
-                <h3 className="text-sm font-bold text-blue-800 uppercase">{feature.title}</h3>
+                <h3 className="text-xs md:text-sm font-bold text-blue-800 uppercase">{feature.title}</h3>
               </div>
             ))}
           </div>
@@ -442,17 +275,17 @@ export default function Home() {
       </section>
 
       {/* Certifications Section */}
-      <section className="py-16 bg-white border-none">
+      <section className="py-8 bg-white border-none">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-rita-red mb-4">CERTIFICATIONS</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-rita-red mb-4">CERTIFICATIONS</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We maintain the highest standards of quality and safety through internationally recognized certifications.
             </p>
           </div>
 
           {/* Certification Logos */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
             {[
               { name: "HACCP", logo: "/images/certifications/haccp.png" },
               { name: "ISO 22000", logo: "/images/certifications/iso.png" },
@@ -461,11 +294,11 @@ export default function Home() {
               { name: "KOSHER", logo: "/images/certifications/kosher.png" },
               { name: "FDA", logo: "/images/certifications/fda.png" }
             ].map((cert, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center">
-                <div className="h-16 w-16 mb-3 flex items-center justify-center">
-                  <div className="text-3xl text-gray-400">Logo</div>
+              <div key={index} className="bg-white rounded-lg p-2 md:p-4 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center min-w-0">
+                <div className="h-8 w-8 md:h-12 md:w-12 mb-1 md:mb-2 flex items-center justify-center">
+                  <div className="text-sm md:text-lg text-gray-400">Logo</div>
                 </div>
-                <div className="text-lg font-bold text-gray-800">{cert.name}</div>
+                <div className="text-xs md:text-sm font-bold text-gray-800">{cert.name}</div>
               </div>
             ))}
           </div>
@@ -495,12 +328,12 @@ export default function Home() {
       </section>
 
       {/* Company Strengths Section */}
-      <section className="py-16 bg-white border-none">
+      <section className="py-8 bg-white border-none">
         <div className="container-wide">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Excellent Products */}
             <div className="text-center">
-              <div className="text-4xl font-bold text-red-600 mb-6">EXCELLENT PRODUCTS</div>
+              <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">EXCELLENT PRODUCTS</div>
               <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center mb-6">
                 <div className="text-gray-500">Product Image</div>
               </div>
@@ -511,7 +344,7 @@ export default function Home() {
 
             {/* Raw Materials Supply */}
             <div className="text-center">
-              <div className="text-4xl font-bold text-rita-red mb-6">OUR RAW MATERIALS</div>
+              <div className="text-xl md:text-2xl lg:text-4xl font-bold text-rita-red mb-6">OUR RAW MATERIALS</div>
               <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center mb-6">
                 <div className="text-gray-500">Raw Materials Image</div>
               </div>
@@ -522,7 +355,7 @@ export default function Home() {
 
             {/* Partner and Distribution */}
             <div className="text-center">
-              <div className="text-4xl font-bold text-rita-red mb-6">DISTRIBUTION</div>
+              <div className="text-xl md:text-2xl lg:text-4xl font-bold text-rita-red mb-6">DISTRIBUTION</div>
               <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center mb-6">
                 <div className="text-gray-500">Distribution Map</div>
               </div>

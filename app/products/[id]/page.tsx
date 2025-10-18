@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Navigation from "../../../components/Navigation";
 
 export async function generateStaticParams() {
   return [
@@ -48,86 +49,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white sticky top-0 z-50 shadow-sm">
-        {/* Utility Bar */}
-        <div className="bg-blue-50 border-b border-gray-200">
-          <div className="container-wide">
-            <div className="flex items-center justify-between h-10 text-sm">
-              <div className="text-red-600 font-medium">Contact Us</div>
-              <div className="flex items-center space-x-4">
-                <a href="#" className="text-gray-700 hover:text-red-600 transition-colors">Exhibition</a>
-                <div className="w-px h-4 bg-gray-300"></div>
-                <a href="#" className="text-gray-700 hover:text-red-600 transition-colors">Video</a>
-                <div className="w-px h-4 bg-gray-300"></div>
-                <div className="relative">
-                  <select className="bg-transparent text-gray-700 hover:text-red-600 transition-colors border-none outline-none cursor-pointer">
-                    <option>Choose</option>
-                    <option>English</option>
-                    <option>Vietnamese</option>
-                  </select>
-                </div>
-                <div className="w-px h-4 bg-gray-300"></div>
-                <div className="flex items-center">
-                  <input 
-                    type="text" 
-                    placeholder="Search" 
-                    className="bg-transparent border-none outline-none text-gray-500 placeholder-gray-400 text-sm"
-                  />
-                  <button className="bg-red-600 text-white p-1 rounded hover:bg-red-700 transition-colors ml-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Navigation */}
-        <div className="bg-white shadow-sm">
-          <div className="container-wide">
-            <div className="flex items-center justify-between h-20">
-              {/* Left Navigation */}
-              <nav className="hidden lg:flex items-center space-x-8">
-                <Link href="/" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">HOME</Link>
-                <div className="relative group">
-                  <Link href="/products" className="text-red-600 font-bold uppercase flex items-center transition-colors">
-                    PRODUCTS
-                    <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </Link>
-                </div>
-              </nav>
-
-              {/* Center Logo */}
-              <div className="flex flex-col items-center">
-                <div className="text-4xl font-bold text-red-600 mb-1" style={{ fontFamily: 'cursive' }}>
-                  Rita
-                  <span className="text-xs text-red-600 ml-1">®</span>
-                </div>
-                <div className="text-sm text-red-600 font-medium">Good Taste - Good Health</div>
-              </div>
-
-              {/* Right Navigation */}
-              <nav className="hidden lg:flex items-center space-x-8">
-                <Link href="/products?filter=New Products" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">NEW PRODUCTS</Link>
-              </nav>
-
-              {/* Mobile Menu Button */}
-              <div className="lg:hidden">
-                <button className="text-gray-600 hover:text-red-600">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Navigation currentPage="Product Details" />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 py-4">
@@ -143,7 +65,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       </div>
 
       {/* Hero Banner Section */}
-      <section className="relative h-screen w-full overflow-hidden">
+      <section className="relative h-64 md:h-96 lg:h-screen w-full overflow-hidden">
         <Image
           src="https://cdn.pixabay.com/photo/2024/04/19/12/27/ai-generated-8706248_1280.jpg"
           alt="Natural Vietnamese Beverages"
@@ -188,7 +110,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             {/* Product Information */}
             <div className="space-y-8">
               <div>
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">{product.name}</h1>
+                <h1 className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-900 mb-2">{product.name}</h1>
                 <p className="text-2xl text-green-600 font-semibold mb-4">Vitamin E 1L</p>
               </div>
 
@@ -280,7 +202,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         <div className="container-wide">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-3xl font-bold text-red-600 mb-8">PRODUCT DESCRIPTION</h2>
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-red-600 mb-4 md:mb-8">PRODUCT DESCRIPTION</h2>
               <div className="space-y-6 text-gray-700 leading-relaxed">
                 <p>
                   Our Orange Carrot Juice Blend Drink is a refreshing and nutritious beverage that combines the natural sweetness of oranges with the earthy goodness of carrots. This vitamin E-enriched drink is perfect for health-conscious consumers who want to enjoy a delicious beverage while getting essential nutrients.
@@ -315,7 +237,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         <div className="container-wide">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-3xl font-bold text-red-600 mb-8">BENEFITS OF ORANGE CARROT JUICE</h2>
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-red-600 mb-4 md:mb-8">BENEFITS OF ORANGE CARROT JUICE</h2>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
@@ -353,7 +275,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             </div>
             
             <div>
-              <h2 className="text-3xl font-bold text-red-600 mb-8">WHAT MAKES OUR ORANGE CARROT JUICE SPECIAL?</h2>
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-red-600 mb-4 md:mb-8">WHAT MAKES OUR ORANGE CARROT JUICE SPECIAL?</h2>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
@@ -396,7 +318,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       {/* Taste and Market Appeal Section */}
       <section className="py-16 bg-gray-50">
         <div className="container-wide">
-          <h2 className="text-3xl font-bold text-red-600 mb-8 text-center">CHARM, FLAVOUR, WHAT IS GOOD OR TO SELL?</h2>
+          <h2 className="text-lg md:text-xl lg:text-3xl font-bold text-red-600 mb-4 md:mb-8 text-center">CHARM, FLAVOUR, WHAT IS GOOD OR TO SELL?</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="space-y-6 text-gray-700 leading-relaxed">
               <p>
@@ -427,7 +349,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       {/* OEM Services Section */}
       <section className="py-16 bg-white">
         <div className="container-wide">
-          <h2 className="text-3xl font-bold text-red-600 mb-8 text-center">OEM SERVICES - OWN BRAND, PRIVATE LABEL, AND EXPORT SUPPORT</h2>
+          <h2 className="text-lg md:text-xl lg:text-3xl font-bold text-red-600 mb-4 md:mb-8 text-center">OEM SERVICES - OWN BRAND, PRIVATE LABEL, AND EXPORT SUPPORT</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -461,21 +383,21 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       </section>
 
       {/* Related Products Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container-wide">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">RELATED PRODUCTS</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {relatedProducts.slice(0, 4).map((product) => (
+      <section className="py-8 md:py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-12 text-center">RELATED PRODUCTS</h2>
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 lg:gap-6">
+            {relatedProducts.slice(0, 6).map((product) => (
               <Link key={product.id} href={`/products/${product.id}`} className="block">
-                <div className="bg-white border rounded-lg pb-4 hover:shadow-lg transition-shadow text-center">
+                <div className="bg-white border rounded-lg pb-2 md:pb-4 hover:shadow-lg transition-shadow text-center">
                   <Image 
                     src={product.image}
                     alt={product.name}
                     width={200}
-                    height={250}
-                    className="w-full h-72 object-cover mb-3"
+                    height={200}
+                    className="w-full h-20 md:h-32 lg:h-48 object-cover mb-1 md:mb-3"
                   />
-                  <h3 className="text-sm text-gray-700 leading-tight">{product.name}</h3>
+                  <h3 className="text-xs md:text-sm text-gray-700 leading-tight px-1">{product.name}</h3>
                 </div>
               </Link>
             ))}
@@ -543,14 +465,14 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16 bg-blue-200">
+      <section className="py-8 bg-blue-200">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-blue-800 mb-2">WHY CHOOSE US</h2>
+            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-blue-800 mb-2">WHY CHOOSE US</h2>
             <p className="text-sm text-blue-700">The Leading Premium Beverage Manufacturer and Supplier Vietnam</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 max-w-4xl mx-auto">
             {[
               { title: "FREE SAMPLE", icon: "📦" },
               { title: "OEM and ODM", icon: "⚙️" },
@@ -560,10 +482,10 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               { title: "FAST DELIVERY", icon: "🚚" },
             ].map((feature, index) => (
               <div key={index} className="text-center">
-                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl">{feature.icon}</span>
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-1 md:mb-2">
+                  <span className="text-sm md:text-lg">{feature.icon}</span>
                 </div>
-                <h3 className="text-sm font-bold text-blue-800 uppercase">{feature.title}</h3>
+                <h3 className="text-xs md:text-sm font-bold text-blue-800 uppercase">{feature.title}</h3>
               </div>
             ))}
           </div>
@@ -571,17 +493,17 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       </section>
 
       {/* Certifications Section */}
-      <section className="py-16 bg-white border-none">
+      <section className="py-8 bg-white border-none">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-rita-red mb-4">CERTIFICATIONS</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-rita-red mb-4">CERTIFICATIONS</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We maintain the highest standards of quality and safety through internationally recognized certifications.
             </p>
           </div>
 
           {/* Certification Logos */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
             {[
               { name: "HACCP", logo: "/images/certifications/haccp.png" },
               { name: "ISO 22000", logo: "/images/certifications/iso.png" },
@@ -590,11 +512,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               { name: "KOSHER", logo: "/images/certifications/kosher.png" },
               { name: "FDA", logo: "/images/certifications/fda.png" }
             ].map((cert, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center">
-                <div className="h-16 w-16 mb-3 flex items-center justify-center">
-                  <div className="text-3xl text-gray-400">Logo</div>
+              <div key={index} className="bg-white rounded-lg p-2 md:p-4 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center min-w-0">
+                <div className="h-8 w-8 md:h-12 md:w-12 mb-1 md:mb-2 flex items-center justify-center">
+                  <div className="text-sm md:text-lg text-gray-400">Logo</div>
                 </div>
-                <div className="text-lg font-bold text-gray-800">{cert.name}</div>
+                <div className="text-xs md:text-sm font-bold text-gray-800">{cert.name}</div>
               </div>
             ))}
           </div>
@@ -624,71 +546,67 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       </section>
 
       {/* Footer */}
-      <footer className="bg-red-600 text-white py-12">
-        <div className="container-wide">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Company Information */}
-            <div>
-              <h3 className="text-2xl font-bold mb-4">RITA FOOD AND DRINK CO.,LTD</h3>
-              <div className="space-y-2 text-sm">
-                <p>No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park</p>
-                <p>Di An Ward, Di An City, Binh Duong Province, Vietnam</p>
-                <p>Phone: +84 123 456 789</p>
-                <p>Fax: +84 123 456 790</p>
-                <p>Email: info@rita.com.vn</p>
-                <p>Website: www.rita.com.vn</p>
-              </div>
+      <footer className="bg-red-600 text-white py-8">
+        <div className="container mx-auto px-4 text-center">
+          <h3 className="text-2xl font-bold mb-4">RITA FOOD AND DRINK CO.,LTD</h3>
+          
+          <div className="text-sm mb-4">
+            <p className="mb-2">Add: No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam.</p>
+            <div className="flex justify-center space-x-6 mb-2">
+              <span>Office: (84)274 3784 688</span>
+              <span>Sales: (84)274 3784 788</span>
+              <span>Fax: (84)274 3784 799</span>
+              <span>Tax Code: 3700574950</span>
             </div>
-
-            {/* Social Media & Payment */}
-            <div className="flex flex-col items-end">
-              <div className="flex space-x-4 mb-6">
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-red-600 text-xs font-bold">f</span>
-                </div>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-red-600 text-xs font-bold">yt</span>
-                </div>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-red-600 text-xs font-bold">ig</span>
-                </div>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-red-600 text-xs font-bold">in</span>
-                </div>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-red-600 text-xs font-bold">tw</span>
-                </div>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-red-600 text-xs font-bold">pt</span>
-                </div>
-              </div>
-              
-              {/* Payment Methods */}
-              <div className="flex space-x-2 mb-6">
-                <div className="w-12 h-8 bg-white rounded flex items-center justify-center">
-                  <span className="text-red-600 text-xs font-bold">VISA</span>
-                </div>
-                <div className="w-12 h-8 bg-white rounded flex items-center justify-center">
-                  <span className="text-red-600 text-xs font-bold">MC</span>
-                </div>
-                <div className="w-12 h-8 bg-white rounded flex items-center justify-center">
-                  <span className="text-red-600 text-xs font-bold">AMEX</span>
-                </div>
-                <div className="w-12 h-8 bg-white rounded flex items-center justify-center">
-                  <span className="text-red-600 text-xs font-bold">PP</span>
-                </div>
-              </div>
-
-              <div className="text-sm text-right">
-                <p>Copyright © 2023 Rita Food and Drink Co., Ltd.</p>
-                <p>All rights reserved.</p>
-              </div>
+            <div className="flex justify-center space-x-6">
+              <span>Email: marketing@rita.com.vn</span>
+              <span>Website: https://rita.com.vn</span>
             </div>
           </div>
 
-          <div className="border-t border-red-500 mt-8 pt-8 flex justify-center space-x-8 text-sm">
-            <a href="#" className="hover:text-red-200 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-red-200 transition-colors">Terms of Service</a>
+          {/* Social Media Icons */}
+          <div className="flex justify-center space-x-3 mb-6">
+            <a href="#" className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">f</span>
+            </a>
+            <a href="#" className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">in</span>
+            </a>
+            <a href="#" className="w-8 h-8 bg-black rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">X</span>
+            </a>
+            <a href="#" className="w-8 h-8 bg-red-500 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">P</span>
+            </a>
+            <a href="#" className="w-8 h-8 bg-red-500 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">YT</span>
+            </a>
+            <a href="#" className="w-8 h-8 bg-pink-500 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">TT</span>
+            </a>
+          </div>
+
+          {/* QR Codes */}
+          <div className="flex justify-center space-x-4 mb-6">
+            <div className="w-16 h-16 bg-white rounded flex items-center justify-center">
+              <div className="text-black text-xs text-center font-bold">QR</div>
+            </div>
+            <div className="w-16 h-16 bg-white rounded flex items-center justify-center">
+              <div className="text-black text-xs text-center font-bold">QR</div>
+            </div>
+          </div>
+
+          <div className="border-t border-red-500 pt-4 text-xs">
+            <p className="mb-2">RITA Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by RITA Beverage Company</p>
+            <div className="flex justify-center space-x-4">
+              <a href="#" className="hover:text-red-200">About us</a>
+              <span>|</span>
+              <a href="#" className="hover:text-red-200">Contact us</a>
+              <span>|</span>
+              <a href="#" className="hover:text-red-200">Privacy Policy</a>
+              <span>|</span>
+              <a href="#" className="hover:text-red-200">Terms of Service Us</a>
+            </div>
           </div>
         </div>
       </footer>
