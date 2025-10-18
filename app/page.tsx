@@ -265,7 +265,7 @@ export default function Home() {
               { name: "Original Nata de Coco", category: "Nata de Coco", image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=300&h=300&fit=crop" },
               { name: "Strawberry Nata de Coco", category: "Nata de Coco", image: "https://images.unsplash.com/photo-1488551511020-571c741f122a?w=300&h=300&fit=crop" },
             ].filter(product => activeFilter === "Show All" || product.category === activeFilter).map((product, index) => (
-              <a key={index} href={`/products/${index + 1}`} className="block">
+              <Link key={index} href={`/products/${index + 1}`} className="block">
                 <div className="bg-white border rounded-lg pb-4 hover:shadow-lg transition-shadow text-center">
                   <Image
                     src={product.image}
@@ -276,7 +276,7 @@ export default function Home() {
                   />
                   <h3 className="text-sm text-gray-700 leading-tight">{product.name}</h3>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

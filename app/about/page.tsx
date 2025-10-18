@@ -74,14 +74,14 @@ export default function AboutPage() {
               <nav className="hidden lg:flex items-center space-x-8">
                 <Link href="/products?filter=New Products" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">NEW PRODUCTS</Link>
                 <div className="relative group">
-                  <a href="/news" className="text-gray-900 hover:text-red-600 font-bold uppercase flex items-center transition-colors">
+                  <Link href="/news" className="text-gray-900 hover:text-red-600 font-bold uppercase flex items-center transition-colors">
                     NEWS
                     <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
-                <a href="/contact" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">CONTACT US</a>
+                <Link href="/contact" className="text-gray-900 hover:text-red-600 font-bold uppercase transition-colors">CONTACT US</Link>
               </nav>
 
               {/* Mobile Menu Button */}
