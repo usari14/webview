@@ -1,20 +1,19 @@
-'use client';
-
 import Image from "next/image";
-import React, { useState } from "react";
 import Link from "next/link";
 
-export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
-  const [resolvedParams, setResolvedParams] = useState<{ id: string } | null>(null);
+export async function generateStaticParams() {
+  return [
+    { id: '1' },
+    { id: '2' },
+    { id: '3' },
+    { id: '4' },
+    { id: '5' },
+    { id: '6' }
+  ];
+}
 
-  // Handle async params
-  React.useEffect(() => {
-    params.then(setResolvedParams);
-  }, [params]);
-
-  if (!resolvedParams) {
-    return <div>Loading...</div>;
-  }
+export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
 
   const product = {
     id: resolvedParams.id,
