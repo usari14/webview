@@ -66,7 +66,7 @@ export default function Home() {
               { name: "NATA DE COCO", image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=300&h=300&fit=crop", bgColor: "bg-teal-200" },
             ].map((category, index) => (
               <Link key={index} href={`/products?filter=${encodeURIComponent(category.name)}`} className="flex flex-col items-center group flex-shrink-0">
-                <div className={`w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 ${category.bgColor} rounded-full flex items-center justify-center mb-2 md:mb-4 group-hover:scale-105 transition-transform overflow-hidden`}>
+                <div className={`w-16 h-16 md:w-32 md:h-32 lg:w-48 lg:h-48 ${category.bgColor} rounded-full flex items-center justify-center mb-2 md:mb-4 group-hover:scale-105 transition-transform overflow-hidden`}>
                   <Image 
                     src={category.image} 
                     alt={category.name} 
@@ -264,7 +264,7 @@ export default function Home() {
               { title: "FAST DELIVERY", icon: "🚚" },
             ].map((feature, index) => (
               <div key={index} className="text-center">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-1 md:mb-2">
+                <div className="w-12 h-12 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-1 md:mb-2">
                   <span className="text-sm md:text-lg">{feature.icon}</span>
                 </div>
                 <h3 className="text-xs md:text-sm font-bold text-blue-800 uppercase">{feature.title}</h3>

@@ -56,7 +56,7 @@ export default function Navigation({ currentPage = "Home" }: NavigationProps) {
             {/* Left Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
               <Link href="/" className={getLinkClass("/")}>HOME</Link>
-              <Link href="/about" className={getLinkClass("/about")}>ABOUT US</Link>
+              {/* <Link href="/about" className={getLinkClass("/about")}>ABOUT US</Link> */}
               <div className="relative group">
                 <Link href="/products" className={`${getLinkClass("/products")} flex items-center`}>
                   PRODUCTS
@@ -79,7 +79,7 @@ export default function Navigation({ currentPage = "Home" }: NavigationProps) {
             {/* Right Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
               <Link href="/products?filter=New Products" className={getLinkClass("/products?filter=New Products")}>NEW PRODUCTS</Link>
-              <div className="relative group">
+              {/* <div className="relative group">
                 <Link href="/news" className={`${getLinkClass("/news")} flex items-center`}>
                   NEWS
                   <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,7 +87,7 @@ export default function Navigation({ currentPage = "Home" }: NavigationProps) {
                   </svg>
                 </Link>
               </div>
-              <Link href="/contact" className={getLinkClass("/contact")}>CONTACT US</Link>
+              <Link href="/contact" className={getLinkClass("/contact")}>CONTACT US</Link> */}
             </nav>
 
             {/* Mobile Menu Button */}
@@ -116,13 +116,13 @@ export default function Navigation({ currentPage = "Home" }: NavigationProps) {
             >
               HOME
             </Link>
-            <Link 
+            {/* <Link 
               href="/about" 
               className={`block py-2 font-bold uppercase ${isActive("/about") ? "text-red-600" : "text-gray-900 hover:text-red-600"}`}
               onClick={() => setMobileMenuOpen(false)}
             >
               ABOUT US
-            </Link>
+            </Link> */}
             <Link 
               href="/products" 
               className={`block py-2 font-bold uppercase ${isActive("/products") ? "text-red-600" : "text-gray-900 hover:text-red-600"}`}
@@ -137,7 +137,7 @@ export default function Navigation({ currentPage = "Home" }: NavigationProps) {
             >
               NEW PRODUCTS
             </Link>
-            <Link 
+            {/* <Link 
               href="/news" 
               className={`block py-2 font-bold uppercase ${isActive("/news") ? "text-red-600" : "text-gray-900 hover:text-red-600"}`}
               onClick={() => setMobileMenuOpen(false)}
@@ -150,7 +150,7 @@ export default function Navigation({ currentPage = "Home" }: NavigationProps) {
               onClick={() => setMobileMenuOpen(false)}
             >
               CONTACT US
-            </Link>
+            </Link> */}
           </div>
         </div>
       )}
