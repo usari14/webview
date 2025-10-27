@@ -31,21 +31,21 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
     paymentTerm: "T/T, L/C",
     deliveryTime: "20-25 days",
     certifications: ["ISO", "HACCP", "HALAL", "FDA", "GMP", "KOSHER", "BRC", "FSSC 22000"],
-    image: getImagePath("/images/products/seed/1.png"),
+    image: getImagePath("/images/all-products/1.png"),
     gallery: [
-      getImagePath("/images/products/seed/1.png"),
-      getImagePath("/images/products/seed/2.png"),
-      getImagePath("/images/products/seed/3.png")
+      getImagePath("/images/all-products/1.png"),
+      getImagePath("/images/all-products/2.png"),
+      getImagePath("/images/all-products/3.png")
     ]
   };
 
   const relatedProducts = [
-    { id: "1", name: "Basil Seed Strawberry", image: getImagePath("/images/products/seed/2.png"), category: "Seed Drink" },
-    { id: "2", name: "Nata de Coco Original", image: getImagePath("/images/products/nata de coco/1.png"), category: "Nata de Coco" },
-    { id: "3", name: "Falooda Original", image: getImagePath("/images/products/falooda/1.png"), category: "Falooda" },
-    { id: "4", name: "Basil Seed Mango", image: getImagePath("/images/products/seed/3.png"), category: "Seed Drink" },
-    { id: "5", name: "Nata de Coco Strawberry", image: getImagePath("/images/products/nata de coco/2.png"), category: "Nata de Coco" },
-    { id: "6", name: "Falooda Strawberry", image: getImagePath("/images/products/falooda/2.png"), category: "Falooda" }
+    { id: "1", name: "Basil Seed Strawberry", image: getImagePath("/images/all-products/2.png"), category: "Seed Drink" },
+    { id: "2", name: "Nata de Coco Original", image: getImagePath("/images/all-products/21.png"), category: "Nata de Coco" },
+    { id: "3", name: "Falooda Original", image: getImagePath("/images/all-products/41.png"), category: "Falooda" },
+    { id: "4", name: "Basil Seed Mango", image: getImagePath("/images/all-products/3.png"), category: "Seed Drink" },
+    { id: "5", name: "Nata de Coco Strawberry", image: getImagePath("/images/all-products/22.png"), category: "Nata de Coco" },
+    { id: "6", name: "Falooda Strawberry", image: getImagePath("/images/all-products/42.png"), category: "Falooda" }
   ];
 
   return (
@@ -218,7 +218,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="relative">
               <div className="aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image 
-                  src={getImagePath("/images/products/seed/4.png")}
+                  src={getImagePath("/images/all-products/4.png")}
                   alt="Dwink Product Showcase"
                   width={600}
                   height={600}
@@ -332,7 +332,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="relative">
               <div className="aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image 
-                  src={getImagePath("/images/products/seed/5.png")}
+                  src={getImagePath("/images/all-products/5.png")}
                   alt="Fresh Dwink Product"
                   width={600}
                   height={600}
@@ -496,7 +496,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           <div className="text-center mb-12">
             <div className="flex justify-center mb-6">
               <Image
-                src={getImagePath("/mainlogo.png")}
+                src={getImagePath("/images/logos/mainlogo.png")}
                 alt="Dwink Logo"
                 width={200}
                 height={100}
@@ -512,16 +512,19 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           {/* Certification Logos */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
             {[
-              { name: "HACCP", logo: "/images/certifications/haccp.png" },
-              { name: "ISO 22000", logo: "/images/certifications/iso.png" },
-              { name: "HALAL", logo: "/images/certifications/halal.png" },
-              { name: "ORGANIC", logo: "/images/certifications/organic.png" },
-              { name: "KOSHER", logo: "/images/certifications/kosher.png" },
-              { name: "FDA", logo: "/images/certifications/fda.png" }
+              { name: "ISO 22000", image: getImagePath('/images/certificates/iso 22000.jpg') },
+              { name: "INTERNATIONAL HALAL", image: getImagePath('/images/certificates/international hala.jpeg') },
+              { name: "SINDH FOOD AUTHORITY", image: getImagePath('/images/certificates/sindh food authority.png') }
             ].map((cert, index) => (
               <div key={index} className="bg-white rounded-lg p-2 md:p-4 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center min-w-0">
                 <div className="h-8 w-8 md:h-12 md:w-12 mb-1 md:mb-2 flex items-center justify-center">
-                  <div className="text-sm md:text-lg text-gray-400">Logo</div>
+                  <Image
+                    src={cert.image}
+                    alt={cert.name}
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div className="text-xs md:text-sm font-bold text-gray-800">{cert.name}</div>
               </div>
@@ -531,9 +534,9 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           {/* Certificate Images */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'ISO 22000 Certificate', image: getImagePath('/images/products/certificates/iso 22000.jpg') },
-              { title: 'International Halal Certificate', image: getImagePath('/images/products/certificates/international hala.jpeg') },
-              { title: 'Sindh Food Authority Certificate', image: getImagePath('/images/products/certificates/sindh food authority.png') }
+              { title: 'ISO 22000 Certificate', image: getImagePath('/images/certificates/iso 22000.jpg') },
+              { title: 'International Halal Certificate', image: getImagePath('/images/certificates/international hala.jpeg') },
+              { title: 'Sindh Food Authority Certificate', image: getImagePath('/images/certificates/sindh food authority.png') }
             ].map((doc, i) => (
               <div key={i} className="card overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
                 <div className="h-56 w-full overflow-hidden bg-white flex items-center justify-center p-4">
@@ -560,7 +563,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         <div className="container mx-auto px-4 text-center">
           <div className="flex flex-col items-center mb-4">
             <Image
-              src={getImagePath("/mainlogo.png")}
+              src={getImagePath("/images/logos/mainlogo.png")}
               alt="Dwink Logo"
               width={150}
               height={75}

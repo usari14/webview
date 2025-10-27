@@ -266,12 +266,12 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 max-w-6xl mx-auto">
             {[
-              { title: "FREE SAMPLE", image: getImagePath("/images/products/seed/1.png") },
-              { title: "OEM and ODM", image: getImagePath("/images/products/falooda/2.png") },
-              { title: "FREE LABEL DESIGN", image: getImagePath("/images/products/nata de coco/3.png") },
-              { title: "SMALL MOQ", image: getImagePath("/images/products/seed/4.png") },
-              { title: "STABLE QUALITY", image: getImagePath("/images/products/falooda/5.png") },
-              { title: "FAST DELIVERY", image: getImagePath("/images/products/nata de coco/6.png") },
+              { title: "FREE SAMPLE", image: getImagePath("/images/all-products/1.png") },
+              { title: "OEM and ODM", image: getImagePath("/images/all-products/2.png") },
+              { title: "FREE LABEL DESIGN", image: getImagePath("/images/all-products/3.png") },
+              { title: "SMALL MOQ", image: getImagePath("/images/all-products/4.png") },
+              { title: "STABLE QUALITY", image: getImagePath("/images/all-products/5.png") },
+              { title: "FAST DELIVERY", image: getImagePath("/images/all-products/6.png") },
             ].map((feature, index) => (
               <div key={index} className="text-center">
                 <div className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 bg-white rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 shadow-lg border-4 border-blue-100 overflow-hidden group hover:scale-105 transition-transform">
@@ -296,7 +296,7 @@ export default function Home() {
           <div className="text-center mb-12">
             <div className="flex justify-center mb-6">
               <Image
-                src={getImagePath("/mainlogo.png")}
+                src={getImagePath("/images/logos/mainlogo.png")}
                 alt="Dwink Logo"
                 width={200}
                 height={100}
@@ -312,9 +312,9 @@ export default function Home() {
           {/* Certification Logos */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
             {[
-              { name: "ISO 22000", image: getImagePath('/images/products/certificates/iso 22000.jpg') },
-              { name: "INTERNATIONAL HALAL", image: getImagePath('/images/products/certificates/international hala.jpeg') },
-              { name: "SINDH FOOD AUTHORITY", image: getImagePath('/images/products/certificates/sindh food authority.png') }
+              { name: "ISO 22000", image: getImagePath('/images/certificates/iso 22000.jpg') },
+              { name: "INTERNATIONAL HALAL", image: getImagePath('/images/certificates/international hala.jpeg') },
+              { name: "SINDH FOOD AUTHORITY", image: getImagePath('/images/certificates/sindh food authority.png') }
             ].map((cert, index) => (
               <div key={index} className="bg-white rounded-lg p-2 md:p-4 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center min-w-0">
                 <div className="h-8 w-8 md:h-12 md:w-12 mb-1 md:mb-2 flex items-center justify-center">
@@ -334,9 +334,9 @@ export default function Home() {
           {/* Certificate Images */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'ISO 22000 Certificate', image: getImagePath('/images/products/certificates/iso 22000.jpg') },
-              { title: 'International Halal Certificate', image: getImagePath('/images/products/certificates/international hala.jpeg') },
-              { title: 'Sindh Food Authority Certificate', image: getImagePath('/images/products/certificates/sindh food authority.png') }
+              { title: 'ISO 22000 Certificate', image: getImagePath('/images/certificates/iso 22000.jpg') },
+              { title: 'International Halal Certificate', image: getImagePath('/images/certificates/international hala.jpeg') },
+              { title: 'Sindh Food Authority Certificate', image: getImagePath('/images/certificates/sindh food authority.png') }
             ].map((doc, i) => (
               <div key={i} className="card overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
                 <div className="h-56 w-full overflow-hidden bg-white flex items-center justify-center p-4">
@@ -367,7 +367,7 @@ export default function Home() {
               <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">EXCELLENT PRODUCTS</div>
               <div className="bg-white rounded-lg h-48 flex items-center justify-center mb-6 p-6 shadow-lg">
                 <Image
-                  src={getImagePath("/images/products/seed/10.png")}
+                  src={getImagePath("/images/all-products/10.png")}
                   alt="Excellent Products"
                   width={200}
                   height={200}
@@ -384,7 +384,7 @@ export default function Home() {
               <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">OUR RAW MATERIALS</div>
               <div className="bg-white rounded-lg h-48 flex items-center justify-center mb-6 p-6 shadow-lg">
                 <Image
-                  src={getImagePath("/images/products/nata de coco/15.png")}
+                  src={getImagePath("/images/all-products/35.png")}
                   alt="Raw Materials"
                   width={200}
                   height={200}
@@ -401,7 +401,7 @@ export default function Home() {
               <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">DISTRIBUTION</div>
               <div className="bg-white rounded-lg h-48 flex items-center justify-center mb-6 p-6 shadow-lg">
                 <Image
-                  src={getImagePath("/images/products/falooda/18.png")}
+                  src={getImagePath("/images/all-products/58.png")}
                   alt="Distribution"
                   width={200}
                   height={200}
@@ -421,7 +421,7 @@ export default function Home() {
         <div className="container-wide text-center">
           <div className="flex flex-col items-center mb-4">
             <Image
-              src={getImagePath("/mainlogo.png")}
+              src={getImagePath("/images/logos/mainlogo.png")}
               alt="Dwink Logo"
               width={150}
               height={75}

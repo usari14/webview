@@ -35,36 +35,32 @@ function ProductsContent() {
       'Kiwi', 'Passion Fruit', 'Blueberry', 'Cherry', 'Watermelon', 'Guava', 'Papaya', 'Dragon Fruit', 'Pomegranate', 'Lime'
     ];
     
-    // Seed products - PNG versions (20 images)
-    for (let i = 1; i <= 20; i++) {
+    // All products from single folder (60 images total)
+    for (let i = 1; i <= 60; i++) {
+      let category, name, description;
+      
+      if (i <= 20) {
+        category = 'Seed Drink';
+        name = `Basil Seed Drink ${flavors[i-1] || `Flavor ${i}`}`;
+        description = `Refreshing basil seed drink with ${(flavors[i-1] || `flavor ${i}`).toLowerCase()} taste`;
+      } else if (i <= 40) {
+        category = 'Nata de Coco';
+        const flavorIndex = (i - 21);
+        name = `Nata de Coco ${flavors[flavorIndex] || `Flavor ${flavorIndex + 1}`}`;
+        description = `Delicious nata de coco with ${(flavors[flavorIndex] || `flavor ${flavorIndex + 1}`).toLowerCase()} taste`;
+      } else {
+        category = 'Falooda';
+        const flavorIndex = (i - 41);
+        name = `Falooda ${flavors[flavorIndex] || `Special ${flavorIndex + 1}`}`;
+        description = `Premium falooda with ${(flavors[flavorIndex] || `special flavor ${flavorIndex + 1}`).toLowerCase()}`;
+      }
+      
       products.push({
         id: String(id++),
-        name: `Basil Seed Drink ${flavors[i-1] || `Flavor ${i}`}`,
-        category: 'Seed Drink',
-        image: getImagePath(`/images/products/seed/${i}.png`),
-        description: `Refreshing basil seed drink with ${(flavors[i-1] || `flavor ${i}`).toLowerCase()} taste`
-      });
-    }
-    
-    // Nata de Coco products - PNG versions (20 images)
-    for (let i = 1; i <= 20; i++) {
-      products.push({
-        id: String(id++),
-        name: `Nata de Coco ${flavors[i-1] || `Flavor ${i}`}`,
-        category: 'Nata de Coco',
-        image: getImagePath(`/images/products/nata de coco/${i}.png`),
-        description: `Delicious nata de coco with ${(flavors[i-1] || `flavor ${i}`).toLowerCase()} taste`
-      });
-    }
-    
-    // Falooda products - PNG versions (20 images)
-    for (let i = 1; i <= 20; i++) {
-      products.push({
-        id: String(id++),
-        name: `Falooda ${flavors[i-1] || `Special ${i}`}`,
-        category: 'Falooda',
-        image: getImagePath(`/images/products/falooda/${i}.png`),
-        description: `Premium falooda with ${(flavors[i-1] || `special flavor ${i}`).toLowerCase()}`
+        name,
+        category,
+        image: getImagePath(`/images/all-products/${i}.png`),
+        description
       });
     }
     
@@ -285,7 +281,7 @@ function ProductsContent() {
           <div className="text-center mb-12">
             <div className="flex justify-center mb-6">
               <Image
-                src={getImagePath("/mainlogo.png")}
+                src={getImagePath("/images/logos/mainlogo.png")}
                 alt="Dwink Logo"
                 width={200}
                 height={100}
@@ -299,19 +295,19 @@ function ProductsContent() {
           </div>
 
           {/* Certification Logos */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 md:mb-12">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
             {[
-              { name: "ISO 22000", image: getImagePath('/images/products/certificates/iso 22000.jpg') },
-              { name: "INTERNATIONAL HALAL", image: getImagePath('/images/products/certificates/international hala.jpeg') },
-              { name: "SINDH FOOD AUTHORITY", image: getImagePath('/images/products/certificates/sindh food authority.png') }
+              { name: "ISO 22000", image: getImagePath('/images/certificates/iso 22000.jpg') },
+              { name: "INTERNATIONAL HALAL", image: getImagePath('/images/certificates/international hala.jpeg') },
+              { name: "SINDH FOOD AUTHORITY", image: getImagePath('/images/certificates/sindh food authority.png') }
             ].map((cert, index) => (
-              <div key={index} className="bg-white rounded-lg p-4 md:p-6 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center">
-                <div className="h-16 w-16 md:h-20 md:w-20 mb-2 md:mb-3 flex items-center justify-center overflow-hidden">
+              <div key={index} className="bg-white rounded-lg p-2 md:p-4 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center min-w-0">
+                <div className="h-8 w-8 md:h-12 md:w-12 mb-1 md:mb-2 flex items-center justify-center">
                   <Image
                     src={cert.image}
                     alt={cert.name}
-                    width={80}
-                    height={80}
+                    width={48}
+                    height={48}
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -323,9 +319,9 @@ function ProductsContent() {
           {/* Certificate Images */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'ISO 22000 Certificate', image: getImagePath('/images/products/certificates/iso 22000.jpg') },
-              { title: 'International Halal Certificate', image: getImagePath('/images/products/certificates/international hala.jpeg') },
-              { title: 'Sindh Food Authority Certificate', image: getImagePath('/images/products/certificates/sindh food authority.png') }
+              { title: 'ISO 22000 Certificate', image: getImagePath('/images/certificates/iso 22000.jpg') },
+              { title: 'International Halal Certificate', image: getImagePath('/images/certificates/international hala.jpeg') },
+              { title: 'Sindh Food Authority Certificate', image: getImagePath('/images/certificates/sindh food authority.png') }
             ].map((doc, i) => (
               <div key={i} className="card overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
                 <div className="h-56 w-full overflow-hidden bg-white flex items-center justify-center p-4">
@@ -352,7 +348,7 @@ function ProductsContent() {
         <div className="container mx-auto px-4 text-center">
           <div className="flex flex-col items-center mb-4">
             <Image
-              src={getImagePath("/mainlogo.png")}
+              src={getImagePath("/images/logos/mainlogo.png")}
               alt="Dwink Logo"
               width={150}
               height={75}

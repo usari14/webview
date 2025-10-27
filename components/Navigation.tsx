@@ -72,7 +72,7 @@ export default function Navigation({ currentPage = "Home" }: NavigationProps) {
             {/* Center Logo */}
             <Link href="/" className="flex flex-col items-center">
               <Image
-                src={getImagePath("/mainlogo.png")}
+                src={getImagePath("/images/logos/mainlogo.png")}
                 alt="Dwink Logo"
                 width={180}
                 height={90}
