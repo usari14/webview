@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navigation from "../../components/Navigation";
-import { products, getProductsByCategory, certificates, logo } from "../../app/assets/products";
+import { getProductsByCategory, certificates, logo } from "../../app/assets/products";
 
 function ProductsContent() {
   const searchParams = useSearchParams();

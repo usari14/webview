@@ -57,7 +57,7 @@ export default function Home() {
               { name: "SEED DRINK", image: products.find(p => p.category === 'Seed Drink')?.image, gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50" },
               { name: "NATA DE COCO", image: products.find(p => p.category === 'Nata de Coco')?.image, gradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50" },
               { name: "FALOODA", image: products.find(p => p.category === 'Falooda')?.image, gradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50" },
-            ].map((category) => (
+            ].map((category, index) => (
               <Link key={index} href={`/products?filter=${encodeURIComponent(category.name)}`} className="flex flex-col items-center group flex-shrink-0">
                 <div className={`w-24 h-24 md:w-40 md:h-40 lg:w-64 lg:h-64 ${category.gradient} rounded-full flex items-center justify-center mb-3 md:mb-6 group-hover:scale-105 transition-transform overflow-hidden shadow-lg border-4 border-white`}>
                   <Image 
