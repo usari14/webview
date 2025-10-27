@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navigation from "../../components/Navigation";
+import { getImagePath } from "../../lib/utils";
 
 function ProductsContent() {
   const searchParams = useSearchParams();
@@ -40,7 +41,7 @@ function ProductsContent() {
         id: String(id++),
         name: `Basil Seed Drink ${flavors[i-1] || `Flavor ${i}`}`,
         category: 'Seed Drink',
-        image: `/images/products/seed/${i}.png`,
+        image: getImagePath(`/images/products/seed/${i}.png`),
         description: `Refreshing basil seed drink with ${(flavors[i-1] || `flavor ${i}`).toLowerCase()} taste`
       });
     }
@@ -51,7 +52,7 @@ function ProductsContent() {
         id: String(id++),
         name: `Nata de Coco ${flavors[i-1] || `Flavor ${i}`}`,
         category: 'Nata de Coco',
-        image: `/images/products/nata de coco/${i}.png`,
+        image: getImagePath(`/images/products/nata de coco/${i}.png`),
         description: `Delicious nata de coco with ${(flavors[i-1] || `flavor ${i}`).toLowerCase()} taste`
       });
     }
@@ -62,7 +63,7 @@ function ProductsContent() {
         id: String(id++),
         name: `Falooda ${flavors[i-1] || `Special ${i}`}`,
         category: 'Falooda',
-        image: `/images/products/falooda/${i}.png`,
+        image: getImagePath(`/images/products/falooda/${i}.png`),
         description: `Premium falooda with ${(flavors[i-1] || `special flavor ${i}`).toLowerCase()}`
       });
     }
@@ -282,47 +283,62 @@ function ProductsContent() {
       <section className="py-8 bg-white border-none">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-rita-red mb-4">CERTIFICATIONS</h2>
+            <div className="flex justify-center mb-6">
+              <Image
+                src={getImagePath("/mainlogo.png")}
+                alt="Dwink Logo"
+                width={200}
+                height={100}
+                className="h-20 w-auto"
+              />
+            </div>
+            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-red-600 mb-4">CERTIFICATIONS</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We maintain the highest standards of quality and safety through internationally recognized certifications.
             </p>
           </div>
 
           {/* Certification Logos */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 md:mb-12">
             {[
-              { name: "HACCP", logo: "/images/certifications/haccp.png" },
-              { name: "ISO 22000", logo: "/images/certifications/iso.png" },
-              { name: "HALAL", logo: "/images/certifications/halal.png" },
-              { name: "ORGANIC", logo: "/images/certifications/organic.png" },
-              { name: "KOSHER", logo: "/images/certifications/kosher.png" },
-              { name: "FDA", logo: "/images/certifications/fda.png" }
+              { name: "ISO 22000", image: getImagePath('/images/products/certificates/iso 22000.jpg') },
+              { name: "INTERNATIONAL HALAL", image: getImagePath('/images/products/certificates/international hala.jpeg') },
+              { name: "SINDH FOOD AUTHORITY", image: getImagePath('/images/products/certificates/sindh food authority.png') }
             ].map((cert, index) => (
-              <div key={index} className="bg-white rounded-lg p-2 md:p-4 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center min-w-0">
-                <div className="h-8 w-8 md:h-12 md:w-12 mb-1 md:mb-2 flex items-center justify-center">
-                  <div className="text-sm md:text-lg text-gray-400">Logo</div>
+              <div key={index} className="bg-white rounded-lg p-4 md:p-6 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center">
+                <div className="h-16 w-16 md:h-20 md:w-20 mb-2 md:mb-3 flex items-center justify-center overflow-hidden">
+                  <Image
+                    src={cert.image}
+                    alt={cert.name}
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div className="text-xs md:text-sm font-bold text-gray-800">{cert.name}</div>
               </div>
             ))}
           </div>
 
-          {/* Certificate Images (Rita Certificates) */}
+          {/* Certificate Images */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'ISO 22000 Certificate', image: '/images/certificates/iso-certificate.jpg' },
-              { title: 'HACCP Certificate', image: '/images/certificates/haccp-certificate.jpg' },
-              { title: 'HALAL Certificate', image: '/images/certificates/halal-certificate.jpg' },
-              { title: 'ORGANIC Certificate', image: '/images/certificates/organic-certificate.jpg' },
-              { title: 'KOSHER Certificate', image: '/images/certificates/kosher-certificate.jpg' },
-              { title: 'FDA Certificate', image: '/images/certificates/fda-certificate.jpg' }
-            ].slice(0, 3).map((doc, i) => (
+              { title: 'ISO 22000 Certificate', image: getImagePath('/images/products/certificates/iso 22000.jpg') },
+              { title: 'International Halal Certificate', image: getImagePath('/images/products/certificates/international hala.jpeg') },
+              { title: 'Sindh Food Authority Certificate', image: getImagePath('/images/products/certificates/sindh food authority.png') }
+            ].map((doc, i) => (
               <div key={i} className="card overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="h-56 w-full overflow-hidden bg-gray-100 flex items-center justify-center">
-                  <div className="text-xl text-gray-400">Certificate Image</div>
+                <div className="h-56 w-full overflow-hidden bg-white flex items-center justify-center p-4">
+                  <Image
+                    src={doc.image}
+                    alt={doc.title}
+                    width={300}
+                    height={400}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div className="p-4 flex items-center justify-between bg-white">
-                  <div className="font-semibold text-gray-900 font-body">{doc.title}</div>
+                  <div className="font-semibold text-gray-900 font-body text-sm">{doc.title}</div>
                   <button className="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded transition-colors">View</button>
                 </div>
               </div>
@@ -336,7 +352,7 @@ function ProductsContent() {
         <div className="container mx-auto px-4 text-center">
           <div className="flex flex-col items-center mb-4">
             <Image
-              src="/logodwink.png"
+              src={getImagePath("/mainlogo.png")}
               alt="Dwink Logo"
               width={150}
               height={75}

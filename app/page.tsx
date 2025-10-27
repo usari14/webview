@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import Navigation from "../components/Navigation";
+import { getImagePath } from "../lib/utils";
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState("Show All");
@@ -14,18 +15,18 @@ export default function Home() {
   ];
 
   const carouselItems = [
-    { title: "Dwink Basil Seed Original", image: "/images/products/seed/1.png" },
-    { title: "Dwink Basil Seed Strawberry", image: "/images/products/seed/2.png" },
-    { title: "Dwink Basil Seed Mango", image: "/images/products/seed/3.png" },
-    { title: "Dwink Nata de Coco Original", image: "/images/products/nata de coco/1.png" },
-    { title: "Dwink Nata de Coco Strawberry", image: "/images/products/nata de coco/2.png" },
-    { title: "Dwink Nata de Coco Mango", image: "/images/products/nata de coco/3.png" },
-    { title: "Dwink Falooda Original", image: "/images/products/falooda/1.png" },
-    { title: "Dwink Falooda Strawberry", image: "/images/products/falooda/2.png" },
-    { title: "Dwink Basil Seed Lychee", image: "/images/products/seed/4.png" },
-    { title: "Dwink Basil Seed Coconut", image: "/images/products/seed/5.png" },
-    { title: "Dwink Falooda Premium", image: "/images/products/falooda/5.png" },
-    { title: "Dwink Basil Seed Grape", image: "/images/products/seed/7.png" }
+    { title: "Dwink Basil Seed Original", image: getImagePath("/images/products/seed/1.png") },
+    { title: "Dwink Basil Seed Strawberry", image: getImagePath("/images/products/seed/2.png") },
+    { title: "Dwink Basil Seed Mango", image: getImagePath("/images/products/seed/3.png") },
+    { title: "Dwink Nata de Coco Original", image: getImagePath("/images/products/nata de coco/1.png") },
+    { title: "Dwink Nata de Coco Strawberry", image: getImagePath("/images/products/nata de coco/2.png") },
+    { title: "Dwink Nata de Coco Mango", image: getImagePath("/images/products/nata de coco/3.png") },
+    { title: "Dwink Falooda Original", image: getImagePath("/images/products/falooda/1.png") },
+    { title: "Dwink Falooda Strawberry", image: getImagePath("/images/products/falooda/2.png") },
+    { title: "Dwink Basil Seed Lychee", image: getImagePath("/images/products/seed/4.png") },
+    { title: "Dwink Basil Seed Coconut", image: getImagePath("/images/products/seed/5.png") },
+    { title: "Dwink Falooda Premium", image: getImagePath("/images/products/falooda/5.png") },
+    { title: "Dwink Basil Seed Grape", image: getImagePath("/images/products/seed/7.png") }
   ];
 
   const nextSlide = () => {
@@ -63,9 +64,9 @@ export default function Home() {
 
           <div className="flex justify-center gap-6 md:gap-12 lg:gap-20">
             {[
-              { name: "FALOODA", image: "/images/products/falooda/1.png", gradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50" },
-              { name: "SEED DRINK", image: "/images/products/seed/1.png", gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50" },
-              { name: "NATA DE COCO", image: "/images/products/nata de coco/1.png", gradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50" },
+              { name: "FALOODA", image: getImagePath("/images/products/falooda/1.png"), gradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50" },
+              { name: "SEED DRINK", image: getImagePath("/images/products/seed/1.png"), gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50" },
+              { name: "NATA DE COCO", image: getImagePath("/images/products/nata de coco/1.png"), gradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50" },
             ].map((category, index) => (
               <Link key={index} href={`/products?filter=${encodeURIComponent(category.name)}`} className="flex flex-col items-center group flex-shrink-0">
                 <div className={`w-24 h-24 md:w-40 md:h-40 lg:w-64 lg:h-64 ${category.gradient} rounded-full flex items-center justify-center mb-3 md:mb-6 group-hover:scale-105 transition-transform overflow-hidden shadow-lg border-4 border-white`}>
@@ -125,21 +126,21 @@ export default function Home() {
           {/* Product Grid */}
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 lg:gap-6 mb-10">
             {[
-              { name: "Falooda Original", category: "Falooda", image: "/images/products/falooda/1.png" },
-              { name: "Falooda Strawberry", category: "Falooda", image: "/images/products/falooda/2.png" },
-              { name: "Falooda Mango", category: "Falooda", image: "/images/products/falooda/3.png" },
-              { name: "Falooda Lychee", category: "Falooda", image: "/images/products/falooda/4.png" },
-              { name: "Falooda Coconut", category: "Falooda", image: "/images/products/falooda/5.png" },
-              { name: "Basil Seed Original", category: "Seed Drink", image: "/images/products/seed/1.png" },
-              { name: "Basil Seed Strawberry", category: "Seed Drink", image: "/images/products/seed/2.png" },
-              { name: "Basil Seed Mango", category: "Seed Drink", image: "/images/products/seed/3.png" },
-              { name: "Basil Seed Lychee", category: "Seed Drink", image: "/images/products/seed/4.png" },
-              { name: "Basil Seed Coconut", category: "Seed Drink", image: "/images/products/seed/5.png" },
-              { name: "Original Nata de Coco", category: "Nata de Coco", image: "/images/products/nata de coco/1.png" },
-              { name: "Strawberry Nata de Coco", category: "Nata de Coco", image: "/images/products/nata de coco/2.png" },
-              { name: "Mango Nata de Coco", category: "Nata de Coco", image: "/images/products/nata de coco/3.png" },
-              { name: "Lychee Nata de Coco", category: "Nata de Coco", image: "/images/products/nata de coco/4.png" },
-              { name: "Coconut Nata de Coco", category: "Nata de Coco", image: "/images/products/nata de coco/5.png" },
+              { name: "Falooda Original", category: "Falooda", image: getImagePath("/images/products/falooda/1.png") },
+              { name: "Falooda Strawberry", category: "Falooda", image: getImagePath("/images/products/falooda/2.png") },
+              { name: "Falooda Mango", category: "Falooda", image: getImagePath("/images/products/falooda/3.png") },
+              { name: "Falooda Lychee", category: "Falooda", image: getImagePath("/images/products/falooda/4.png") },
+              { name: "Falooda Coconut", category: "Falooda", image: getImagePath("/images/products/falooda/5.png") },
+              { name: "Basil Seed Original", category: "Seed Drink", image: getImagePath("/images/products/seed/1.png") },
+              { name: "Basil Seed Strawberry", category: "Seed Drink", image: getImagePath("/images/products/seed/2.png") },
+              { name: "Basil Seed Mango", category: "Seed Drink", image: getImagePath("/images/products/seed/3.png") },
+              { name: "Basil Seed Lychee", category: "Seed Drink", image: getImagePath("/images/products/seed/4.png") },
+              { name: "Basil Seed Coconut", category: "Seed Drink", image: getImagePath("/images/products/seed/5.png") },
+              { name: "Original Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/products/nata de coco/1.png") },
+              { name: "Strawberry Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/products/nata de coco/2.png") },
+              { name: "Mango Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/products/nata de coco/3.png") },
+              { name: "Lychee Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/products/nata de coco/4.png") },
+              { name: "Coconut Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/products/nata de coco/5.png") },
             ].filter(product => activeFilter === "Show All" || product.category === activeFilter).map((product, index) => (
               <Link key={index} href={`/products/${index + 1}`} className="block">
                 <div className="bg-white border rounded-lg pb-2 md:pb-4 hover:shadow-lg transition-shadow text-center">
@@ -265,12 +266,12 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 max-w-6xl mx-auto">
             {[
-              { title: "FREE SAMPLE", image: "/images/products/seed/1.png" },
-              { title: "OEM and ODM", image: "/images/products/falooda/2.png" },
-              { title: "FREE LABEL DESIGN", image: "/images/products/nata de coco/3.png" },
-              { title: "SMALL MOQ", image: "/images/products/seed/4.png" },
-              { title: "STABLE QUALITY", image: "/images/products/falooda/5.png" },
-              { title: "FAST DELIVERY", image: "/images/products/nata de coco/6.png" },
+              { title: "FREE SAMPLE", image: getImagePath("/images/products/seed/1.png") },
+              { title: "OEM and ODM", image: getImagePath("/images/products/falooda/2.png") },
+              { title: "FREE LABEL DESIGN", image: getImagePath("/images/products/nata de coco/3.png") },
+              { title: "SMALL MOQ", image: getImagePath("/images/products/seed/4.png") },
+              { title: "STABLE QUALITY", image: getImagePath("/images/products/falooda/5.png") },
+              { title: "FAST DELIVERY", image: getImagePath("/images/products/nata de coco/6.png") },
             ].map((feature, index) => (
               <div key={index} className="text-center">
                 <div className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 bg-white rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 shadow-lg border-4 border-blue-100 overflow-hidden group hover:scale-105 transition-transform">
@@ -293,6 +294,15 @@ export default function Home() {
       <section className="py-8 bg-white border-none">
         <div className="container-wide">
           <div className="text-center mb-12">
+            <div className="flex justify-center mb-6">
+              <Image
+                src={getImagePath("/mainlogo.png")}
+                alt="Dwink Logo"
+                width={200}
+                height={100}
+                className="h-20 w-auto"
+              />
+            </div>
             <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-red-600 mb-4">CERTIFICATIONS</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We maintain the highest standards of quality and safety through internationally recognized certifications.
@@ -302,38 +312,44 @@ export default function Home() {
           {/* Certification Logos */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
             {[
-              { name: "HACCP", logo: "/images/certifications/haccp.png" },
-              { name: "ISO 22000", logo: "/images/certifications/iso.png" },
-              { name: "HALAL", logo: "/images/certifications/halal.png" },
-              { name: "ORGANIC", logo: "/images/certifications/organic.png" },
-              { name: "KOSHER", logo: "/images/certifications/kosher.png" },
-              { name: "FDA", logo: "/images/certifications/fda.png" }
+              { name: "ISO 22000", image: getImagePath('/images/products/certificates/iso 22000.jpg') },
+              { name: "INTERNATIONAL HALAL", image: getImagePath('/images/products/certificates/international hala.jpeg') },
+              { name: "SINDH FOOD AUTHORITY", image: getImagePath('/images/products/certificates/sindh food authority.png') }
             ].map((cert, index) => (
               <div key={index} className="bg-white rounded-lg p-2 md:p-4 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center min-w-0">
                 <div className="h-8 w-8 md:h-12 md:w-12 mb-1 md:mb-2 flex items-center justify-center">
-                  <div className="text-sm md:text-lg text-gray-400">Logo</div>
+                  <Image
+                    src={cert.image}
+                    alt={cert.name}
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div className="text-xs md:text-sm font-bold text-gray-800">{cert.name}</div>
               </div>
             ))}
           </div>
 
-          {/* Certificate Images (Rita Certificates) */}
+          {/* Certificate Images */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'ISO 22000 Certificate', image: '/images/certificates/iso-certificate.jpg' },
-              { title: 'HACCP Certificate', image: '/images/certificates/haccp-certificate.jpg' },
-              { title: 'HALAL Certificate', image: '/images/certificates/halal-certificate.jpg' },
-              { title: 'ORGANIC Certificate', image: '/images/certificates/organic-certificate.jpg' },
-              { title: 'KOSHER Certificate', image: '/images/certificates/kosher-certificate.jpg' },
-              { title: 'FDA Certificate', image: '/images/certificates/fda-certificate.jpg' }
-            ].slice(0, 3).map((doc, i) => (
+              { title: 'ISO 22000 Certificate', image: getImagePath('/images/products/certificates/iso 22000.jpg') },
+              { title: 'International Halal Certificate', image: getImagePath('/images/products/certificates/international hala.jpeg') },
+              { title: 'Sindh Food Authority Certificate', image: getImagePath('/images/products/certificates/sindh food authority.png') }
+            ].map((doc, i) => (
               <div key={i} className="card overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="h-56 w-full overflow-hidden bg-gray-100 flex items-center justify-center">
-                  <div className="text-xl text-gray-400">Certificate Image</div>
+                <div className="h-56 w-full overflow-hidden bg-white flex items-center justify-center p-4">
+                  <Image
+                    src={doc.image}
+                    alt={doc.title}
+                    width={300}
+                    height={400}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div className="p-4 flex items-center justify-between bg-white">
-                  <div className="font-semibold text-gray-900 font-body">{doc.title}</div>
+                  <div className="font-semibold text-gray-900 font-body text-sm">{doc.title}</div>
                   <button className="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded transition-colors">View</button>
                 </div>
               </div>
@@ -349,8 +365,14 @@ export default function Home() {
             {/* Excellent Products */}
             <div className="text-center">
               <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">EXCELLENT PRODUCTS</div>
-              <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center mb-6">
-                <div className="text-gray-500">Product Image</div>
+              <div className="bg-white rounded-lg h-48 flex items-center justify-center mb-6 p-6 shadow-lg">
+                <Image
+                  src={getImagePath("/images/products/seed/10.png")}
+                  alt="Excellent Products"
+                  width={200}
+                  height={200}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <p className="text-gray-600">
                 Our commitment to excellence ensures every product meets the highest standards of quality, taste, and nutrition.
@@ -360,8 +382,14 @@ export default function Home() {
             {/* Raw Materials Supply */}
             <div className="text-center">
               <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">OUR RAW MATERIALS</div>
-              <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center mb-6">
-                <div className="text-gray-500">Raw Materials Image</div>
+              <div className="bg-white rounded-lg h-48 flex items-center justify-center mb-6 p-6 shadow-lg">
+                <Image
+                  src={getImagePath("/images/products/nata de coco/15.png")}
+                  alt="Raw Materials"
+                  width={200}
+                  height={200}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <p className="text-gray-600">
                 We source the finest raw materials from trusted suppliers to ensure the best quality ingredients in every product.
@@ -371,8 +399,14 @@ export default function Home() {
             {/* Partner and Distribution */}
             <div className="text-center">
               <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">DISTRIBUTION</div>
-              <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center mb-6">
-                <div className="text-gray-500">Distribution Map</div>
+              <div className="bg-white rounded-lg h-48 flex items-center justify-center mb-6 p-6 shadow-lg">
+                <Image
+                  src={getImagePath("/images/products/falooda/18.png")}
+                  alt="Distribution"
+                  width={200}
+                  height={200}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <p className="text-gray-600">
                 Our extensive distribution network ensures your products reach customers worldwide efficiently and reliably.
@@ -387,7 +421,7 @@ export default function Home() {
         <div className="container-wide text-center">
           <div className="flex flex-col items-center mb-4">
             <Image
-              src="/logodwink.png"
+              src={getImagePath("/mainlogo.png")}
               alt="Dwink Logo"
               width={150}
               height={75}

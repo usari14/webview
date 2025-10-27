@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navigation from "../../../components/Navigation";
+import { getImagePath } from "../../../lib/utils";
 
 export async function generateStaticParams() {
   return [
@@ -30,21 +31,21 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
     paymentTerm: "T/T, L/C",
     deliveryTime: "20-25 days",
     certifications: ["ISO", "HACCP", "HALAL", "FDA", "GMP", "KOSHER", "BRC", "FSSC 22000"],
-    image: "/images/products/seed/1.png",
+    image: getImagePath("/images/products/seed/1.png"),
     gallery: [
-      "/images/products/seed/1.png",
-      "/images/products/seed/2.png",
-      "/images/products/seed/3.png"
+      getImagePath("/images/products/seed/1.png"),
+      getImagePath("/images/products/seed/2.png"),
+      getImagePath("/images/products/seed/3.png")
     ]
   };
 
   const relatedProducts = [
-    { id: "1", name: "Basil Seed Strawberry", image: "/images/products/seed/2.png", category: "Seed Drink" },
-    { id: "2", name: "Nata de Coco Original", image: "/images/products/nata de coco/1.png", category: "Nata de Coco" },
-    { id: "3", name: "Falooda Original", image: "/images/products/falooda/1.png", category: "Falooda" },
-    { id: "4", name: "Basil Seed Mango", image: "/images/products/seed/3.png", category: "Seed Drink" },
-    { id: "5", name: "Nata de Coco Strawberry", image: "/images/products/nata de coco/2.png", category: "Nata de Coco" },
-    { id: "6", name: "Falooda Strawberry", image: "/images/products/falooda/2.png", category: "Falooda" }
+    { id: "1", name: "Basil Seed Strawberry", image: getImagePath("/images/products/seed/2.png"), category: "Seed Drink" },
+    { id: "2", name: "Nata de Coco Original", image: getImagePath("/images/products/nata de coco/1.png"), category: "Nata de Coco" },
+    { id: "3", name: "Falooda Original", image: getImagePath("/images/products/falooda/1.png"), category: "Falooda" },
+    { id: "4", name: "Basil Seed Mango", image: getImagePath("/images/products/seed/3.png"), category: "Seed Drink" },
+    { id: "5", name: "Nata de Coco Strawberry", image: getImagePath("/images/products/nata de coco/2.png"), category: "Nata de Coco" },
+    { id: "6", name: "Falooda Strawberry", image: getImagePath("/images/products/falooda/2.png"), category: "Falooda" }
   ];
 
   return (
@@ -217,7 +218,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="relative">
               <div className="aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image 
-                  src="/images/products/seed/4.png"
+                  src={getImagePath("/images/products/seed/4.png")}
                   alt="Dwink Product Showcase"
                   width={600}
                   height={600}
@@ -331,7 +332,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="relative">
               <div className="aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image 
-                  src="/images/products/seed/5.png"
+                  src={getImagePath("/images/products/seed/5.png")}
                   alt="Fresh Dwink Product"
                   width={600}
                   height={600}
@@ -493,6 +494,15 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       <section className="py-8 bg-white border-none">
         <div className="container-wide">
           <div className="text-center mb-12">
+            <div className="flex justify-center mb-6">
+              <Image
+                src={getImagePath("/mainlogo.png")}
+                alt="Dwink Logo"
+                width={200}
+                height={100}
+                className="h-20 w-auto"
+              />
+            </div>
             <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-red-600 mb-4">CERTIFICATIONS</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We maintain the highest standards of quality and safety through internationally recognized certifications.
@@ -518,22 +528,25 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             ))}
           </div>
 
-          {/* Certificate Images (Rita Certificates) */}
+          {/* Certificate Images */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'ISO 22000 Certificate', image: '/images/certificates/iso-certificate.jpg' },
-              { title: 'HACCP Certificate', image: '/images/certificates/haccp-certificate.jpg' },
-              { title: 'HALAL Certificate', image: '/images/certificates/halal-certificate.jpg' },
-              { title: 'ORGANIC Certificate', image: '/images/certificates/organic-certificate.jpg' },
-              { title: 'KOSHER Certificate', image: '/images/certificates/kosher-certificate.jpg' },
-              { title: 'FDA Certificate', image: '/images/certificates/fda-certificate.jpg' }
-            ].slice(0, 3).map((doc, i) => (
+              { title: 'ISO 22000 Certificate', image: getImagePath('/images/products/certificates/iso 22000.jpg') },
+              { title: 'International Halal Certificate', image: getImagePath('/images/products/certificates/international hala.jpeg') },
+              { title: 'Sindh Food Authority Certificate', image: getImagePath('/images/products/certificates/sindh food authority.png') }
+            ].map((doc, i) => (
               <div key={i} className="card overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="h-56 w-full overflow-hidden bg-gray-100 flex items-center justify-center">
-                  <div className="text-xl text-gray-400">Certificate Image</div>
+                <div className="h-56 w-full overflow-hidden bg-white flex items-center justify-center p-4">
+                  <Image
+                    src={doc.image}
+                    alt={doc.title}
+                    width={300}
+                    height={400}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div className="p-4 flex items-center justify-between bg-white">
-                  <div className="font-semibold text-gray-900 font-body">{doc.title}</div>
+                  <div className="font-semibold text-gray-900 font-body text-sm">{doc.title}</div>
                   <button className="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded transition-colors">View</button>
                 </div>
               </div>
@@ -547,7 +560,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         <div className="container mx-auto px-4 text-center">
           <div className="flex flex-col items-center mb-4">
             <Image
-              src="/logodwink.png"
+              src={getImagePath("/mainlogo.png")}
               alt="Dwink Logo"
               width={150}
               height={75}

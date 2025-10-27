@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { getImagePath } from "../lib/utils";
 
 interface NavigationProps {
   currentPage?: string;
@@ -71,7 +72,7 @@ export default function Navigation({ currentPage = "Home" }: NavigationProps) {
             {/* Center Logo */}
             <Link href="/" className="flex flex-col items-center">
               <Image
-                src="/logodwink.png"
+                src={getImagePath("/mainlogo.png")}
                 alt="Dwink Logo"
                 width={180}
                 height={90}
