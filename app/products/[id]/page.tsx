@@ -4,14 +4,11 @@ import Navigation from "../../../components/Navigation";
 import { getImagePath } from "../../../lib/utils";
 
 export async function generateStaticParams() {
-  return [
-    { id: '1' },
-    { id: '2' },
-    { id: '3' },
-    { id: '4' },
-    { id: '5' },
-    { id: '6' }
-  ];
+  const params = [];
+  for (let i = 1; i <= 60; i++) {
+    params.push({ id: String(i) });
+  }
+  return params;
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {

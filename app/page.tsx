@@ -15,18 +15,18 @@ export default function Home() {
   ];
 
   const carouselItems = [
-    { title: "Dwink Basil Seed Original", image: getImagePath("/images/products/seed/1.png") },
-    { title: "Dwink Basil Seed Strawberry", image: getImagePath("/images/products/seed/2.png") },
-    { title: "Dwink Basil Seed Mango", image: getImagePath("/images/products/seed/3.png") },
-    { title: "Dwink Nata de Coco Original", image: getImagePath("/images/products/nata de coco/1.png") },
-    { title: "Dwink Nata de Coco Strawberry", image: getImagePath("/images/products/nata de coco/2.png") },
-    { title: "Dwink Nata de Coco Mango", image: getImagePath("/images/products/nata de coco/3.png") },
-    { title: "Dwink Falooda Original", image: getImagePath("/images/products/falooda/1.png") },
-    { title: "Dwink Falooda Strawberry", image: getImagePath("/images/products/falooda/2.png") },
-    { title: "Dwink Basil Seed Lychee", image: getImagePath("/images/products/seed/4.png") },
-    { title: "Dwink Basil Seed Coconut", image: getImagePath("/images/products/seed/5.png") },
-    { title: "Dwink Falooda Premium", image: getImagePath("/images/products/falooda/5.png") },
-    { title: "Dwink Basil Seed Grape", image: getImagePath("/images/products/seed/7.png") }
+    { title: "Dwink Basil Seed Original", image: getImagePath("/images/all-products/1.png") },
+    { title: "Dwink Basil Seed Strawberry", image: getImagePath("/images/all-products/2.png") },
+    { title: "Dwink Basil Seed Mango", image: getImagePath("/images/all-products/3.png") },
+    { title: "Dwink Nata de Coco Original", image: getImagePath("/images/all-products/21.png") },
+    { title: "Dwink Nata de Coco Strawberry", image: getImagePath("/images/all-products/22.png") },
+    { title: "Dwink Nata de Coco Mango", image: getImagePath("/images/all-products/23.png") },
+    { title: "Dwink Falooda Original", image: getImagePath("/images/all-products/41.png") },
+    { title: "Dwink Falooda Strawberry", image: getImagePath("/images/all-products/42.png") },
+    { title: "Dwink Basil Seed Lychee", image: getImagePath("/images/all-products/4.png") },
+    { title: "Dwink Basil Seed Coconut", image: getImagePath("/images/all-products/5.png") },
+    { title: "Dwink Falooda Premium", image: getImagePath("/images/all-products/45.png") },
+    { title: "Dwink Basil Seed Grape", image: getImagePath("/images/all-products/7.png") }
   ];
 
   const nextSlide = () => {
@@ -64,9 +64,9 @@ export default function Home() {
 
           <div className="flex justify-center gap-6 md:gap-12 lg:gap-20">
             {[
-              { name: "FALOODA", image: getImagePath("/images/products/falooda/1.png"), gradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50" },
-              { name: "SEED DRINK", image: getImagePath("/images/products/seed/1.png"), gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50" },
-              { name: "NATA DE COCO", image: getImagePath("/images/products/nata de coco/1.png"), gradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50" },
+              { name: "FALOODA", image: getImagePath("/images/all-products/41.png"), gradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50" },
+              { name: "SEED DRINK", image: getImagePath("/images/all-products/1.png"), gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50" },
+              { name: "NATA DE COCO", image: getImagePath("/images/all-products/21.png"), gradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50" },
             ].map((category, index) => (
               <Link key={index} href={`/products?filter=${encodeURIComponent(category.name)}`} className="flex flex-col items-center group flex-shrink-0">
                 <div className={`w-24 h-24 md:w-40 md:h-40 lg:w-64 lg:h-64 ${category.gradient} rounded-full flex items-center justify-center mb-3 md:mb-6 group-hover:scale-105 transition-transform overflow-hidden shadow-lg border-4 border-white`}>
@@ -126,21 +126,21 @@ export default function Home() {
           {/* Product Grid */}
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 lg:gap-6 mb-10">
             {[
-              { name: "Falooda Original", category: "Falooda", image: getImagePath("/images/products/falooda/1.png") },
-              { name: "Falooda Strawberry", category: "Falooda", image: getImagePath("/images/products/falooda/2.png") },
-              { name: "Falooda Mango", category: "Falooda", image: getImagePath("/images/products/falooda/3.png") },
-              { name: "Falooda Lychee", category: "Falooda", image: getImagePath("/images/products/falooda/4.png") },
-              { name: "Falooda Coconut", category: "Falooda", image: getImagePath("/images/products/falooda/5.png") },
-              { name: "Basil Seed Original", category: "Seed Drink", image: getImagePath("/images/products/seed/1.png") },
-              { name: "Basil Seed Strawberry", category: "Seed Drink", image: getImagePath("/images/products/seed/2.png") },
-              { name: "Basil Seed Mango", category: "Seed Drink", image: getImagePath("/images/products/seed/3.png") },
-              { name: "Basil Seed Lychee", category: "Seed Drink", image: getImagePath("/images/products/seed/4.png") },
-              { name: "Basil Seed Coconut", category: "Seed Drink", image: getImagePath("/images/products/seed/5.png") },
-              { name: "Original Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/products/nata de coco/1.png") },
-              { name: "Strawberry Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/products/nata de coco/2.png") },
-              { name: "Mango Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/products/nata de coco/3.png") },
-              { name: "Lychee Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/products/nata de coco/4.png") },
-              { name: "Coconut Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/products/nata de coco/5.png") },
+              { name: "Falooda Original", category: "Falooda", image: getImagePath("/images/all-products/41.png") },
+              { name: "Falooda Strawberry", category: "Falooda", image: getImagePath("/images/all-products/42.png") },
+              { name: "Falooda Mango", category: "Falooda", image: getImagePath("/images/all-products/43.png") },
+              { name: "Falooda Lychee", category: "Falooda", image: getImagePath("/images/all-products/44.png") },
+              { name: "Falooda Coconut", category: "Falooda", image: getImagePath("/images/all-products/45.png") },
+              { name: "Basil Seed Original", category: "Seed Drink", image: getImagePath("/images/all-products/1.png") },
+              { name: "Basil Seed Strawberry", category: "Seed Drink", image: getImagePath("/images/all-products/2.png") },
+              { name: "Basil Seed Mango", category: "Seed Drink", image: getImagePath("/images/all-products/3.png") },
+              { name: "Basil Seed Lychee", category: "Seed Drink", image: getImagePath("/images/all-products/4.png") },
+              { name: "Basil Seed Coconut", category: "Seed Drink", image: getImagePath("/images/all-products/5.png") },
+              { name: "Original Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/all-products/21.png") },
+              { name: "Strawberry Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/all-products/22.png") },
+              { name: "Mango Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/all-products/23.png") },
+              { name: "Lychee Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/all-products/24.png") },
+              { name: "Coconut Nata de Coco", category: "Nata de Coco", image: getImagePath("/images/all-products/25.png") },
             ].filter(product => activeFilter === "Show All" || product.category === activeFilter).map((product, index) => (
               <Link key={index} href={`/products/${index + 1}`} className="block">
                 <div className="bg-white border rounded-lg pb-2 md:pb-4 hover:shadow-lg transition-shadow text-center">
