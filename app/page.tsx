@@ -10,18 +10,22 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const filters = [
-    "Falooda", "Seed", "Nata de Coco", "Show All"
+    "Falooda", "Seed Drink", "Nata de Coco", "Show All"
   ];
 
   const carouselItems = [
-    { title: "Rita Iced Coffee", image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=400&h=300&fit=crop" },
-    { title: "Lemon Sparkling", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" },
-    { title: "Mango Drink", image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop" },
-    { title: "Bubble Tea", image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=400&h=300&fit=crop" },
-    { title: "Orange Juice", image: "https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?w=400&h=300&fit=crop" },
-    { title: "Coconut Water", image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c76b1?w=400&h=300&fit=crop" },
-    { title: "Green Tea", image: "https://images.unsplash.com/photo-1541976076image.pngimage.png758-347942db1972?w=400&h=300&fit=crop" },
-    { title: "Energy Drink", image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=400&h=300&fit=crop" }
+    { title: "Dwink Basil Seed Original", image: "/images/products/seed/1.png" },
+    { title: "Dwink Basil Seed Strawberry", image: "/images/products/seed/2.png" },
+    { title: "Dwink Basil Seed Mango", image: "/images/products/seed/3.png" },
+    { title: "Dwink Nata de Coco Original", image: "/images/products/nata de coco/1.png" },
+    { title: "Dwink Nata de Coco Strawberry", image: "/images/products/nata de coco/2.png" },
+    { title: "Dwink Nata de Coco Mango", image: "/images/products/nata de coco/3.png" },
+    { title: "Dwink Falooda Original", image: "/images/products/falooda/1.png" },
+    { title: "Dwink Falooda Strawberry", image: "/images/products/falooda/2.png" },
+    { title: "Dwink Basil Seed Lychee", image: "/images/products/seed/4.png" },
+    { title: "Dwink Basil Seed Coconut", image: "/images/products/seed/5.png" },
+    { title: "Dwink Falooda Premium", image: "/images/products/falooda/5.png" },
+    { title: "Dwink Basil Seed Grape", image: "/images/products/seed/7.png" }
   ];
 
   const nextSlide = () => {
@@ -42,14 +46,12 @@ export default function Home() {
       <Navigation currentPage="Home" />
 
       {/* Hero Section - Large Banner Image */}
-      <section className="relative h-64 md:h-96 lg:h-screen w-full overflow-hidden">
-        <Image
-          src="https://cdn.pixabay.com/photo/2024/04/19/12/27/ai-generated-8706248_1280.jpg"
-          alt="Natural Vietnamese Beverages"
-          fill
-          className="object-cover"
-          priority
-        />
+      <section className="relative h-64 md:h-96 lg:h-screen w-full overflow-hidden bg-gradient-to-br from-blue-600 via-green-600 to-teal-600 flex items-center justify-center">
+        <div className="text-center text-white">
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-4" style={{ fontFamily: 'cursive' }}>Dwink</h1>
+          <p className="text-xl md:text-2xl lg:text-3xl mb-6">Premium Tropical Beverages</p>
+          <p className="text-lg md:text-xl opacity-90">Good Taste - Good Health</p>
+        </div>
       </section>
 
       {/* Categories Section */}
@@ -59,23 +61,23 @@ export default function Home() {
             CATEGORIES
           </h2>
 
-          <div className="flex justify-center gap-4 md:gap-8 lg:gap-16">
+          <div className="flex justify-center gap-6 md:gap-12 lg:gap-20">
             {[
-              { name: "FALOODA", image: "https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=300&h=300&fit=crop", bgColor: "bg-yellow-200" },
-              { name: "SEED", image: "https://images.unsplash.com/photo-1515543904379-3d757afe72e4?w=300&h=300&fit=crop", bgColor: "bg-green-200" },
-              { name: "NATA DE COCO", image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=300&h=300&fit=crop", bgColor: "bg-teal-200" },
+              { name: "FALOODA", image: "/images/products/falooda/1.png", gradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50" },
+              { name: "SEED DRINK", image: "/images/products/seed/1.png", gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50" },
+              { name: "NATA DE COCO", image: "/images/products/nata de coco/1.png", gradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50" },
             ].map((category, index) => (
               <Link key={index} href={`/products?filter=${encodeURIComponent(category.name)}`} className="flex flex-col items-center group flex-shrink-0">
-                <div className={`w-16 h-16 md:w-32 md:h-32 lg:w-48 lg:h-48 ${category.bgColor} rounded-full flex items-center justify-center mb-2 md:mb-4 group-hover:scale-105 transition-transform overflow-hidden`}>
+                <div className={`w-24 h-24 md:w-40 md:h-40 lg:w-64 lg:h-64 ${category.gradient} rounded-full flex items-center justify-center mb-3 md:mb-6 group-hover:scale-105 transition-transform overflow-hidden shadow-lg border-4 border-white`}>
                   <Image 
                     src={category.image} 
                     alt={category.name} 
-                    width={128} 
-                    height={128} 
-                    className="w-full h-full object-cover"
+                    width={200} 
+                    height={200} 
+                    className="w-4/5 h-4/5 object-contain"
                   />
                 </div>
-                <span className="text-xs md:text-sm lg:text-lg font-bold text-gray-700 text-center">
+                <span className="text-sm md:text-base lg:text-xl font-bold text-gray-700 text-center">
                   {category.name}
                 </span>
               </Link>
@@ -123,14 +125,21 @@ export default function Home() {
           {/* Product Grid */}
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 lg:gap-6 mb-10">
             {[
-              { name: "Rose Falooda", category: "Falooda", image: "https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=300&h=300&fit=crop" },
-              { name: "Mango Falooda", category: "Falooda", image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=300&h=300&fit=crop" },
-              { name: "Kulfi Falooda", category: "Falooda", image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=300&h=300&fit=crop" },
-              { name: "Basil Seeds", category: "Seed", image: "https://images.unsplash.com/photo-1515543904379-3d757afe72e4?w=300&h=300&fit=crop" },
-              { name: "Chia Seeds", category: "Seed", image: "https://images.unsplash.com/photo-1514733670139-4d87a1941d55?w=300&h=300&fit=crop" },
-              { name: "Flax Seeds", category: "Seed", image: "https://images.unsplash.com/photo-1611071536243-eaf7a7ec3344?w=300&h=300&fit=crop" },
-              { name: "Original Nata de Coco", category: "Nata de Coco", image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=300&h=300&fit=crop" },
-              { name: "Strawberry Nata de Coco", category: "Nata de Coco", image: "https://images.unsplash.com/photo-1488551511020-571c741f122a?w=300&h=300&fit=crop" },
+              { name: "Falooda Original", category: "Falooda", image: "/images/products/falooda/1.png" },
+              { name: "Falooda Strawberry", category: "Falooda", image: "/images/products/falooda/2.png" },
+              { name: "Falooda Mango", category: "Falooda", image: "/images/products/falooda/3.png" },
+              { name: "Falooda Lychee", category: "Falooda", image: "/images/products/falooda/4.png" },
+              { name: "Falooda Coconut", category: "Falooda", image: "/images/products/falooda/5.png" },
+              { name: "Basil Seed Original", category: "Seed Drink", image: "/images/products/seed/1.png" },
+              { name: "Basil Seed Strawberry", category: "Seed Drink", image: "/images/products/seed/2.png" },
+              { name: "Basil Seed Mango", category: "Seed Drink", image: "/images/products/seed/3.png" },
+              { name: "Basil Seed Lychee", category: "Seed Drink", image: "/images/products/seed/4.png" },
+              { name: "Basil Seed Coconut", category: "Seed Drink", image: "/images/products/seed/5.png" },
+              { name: "Original Nata de Coco", category: "Nata de Coco", image: "/images/products/nata de coco/1.png" },
+              { name: "Strawberry Nata de Coco", category: "Nata de Coco", image: "/images/products/nata de coco/2.png" },
+              { name: "Mango Nata de Coco", category: "Nata de Coco", image: "/images/products/nata de coco/3.png" },
+              { name: "Lychee Nata de Coco", category: "Nata de Coco", image: "/images/products/nata de coco/4.png" },
+              { name: "Coconut Nata de Coco", category: "Nata de Coco", image: "/images/products/nata de coco/5.png" },
             ].filter(product => activeFilter === "Show All" || product.category === activeFilter).map((product, index) => (
               <Link key={index} href={`/products/${index + 1}`} className="block">
                 <div className="bg-white border rounded-lg pb-2 md:pb-4 hover:shadow-lg transition-shadow text-center">
@@ -227,7 +236,7 @@ export default function Home() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-2 md:mb-4 section-heading" style={{ fontFamily: 'cursive' }}>
-            Rita
+            Dwink
           </h2>
           <h3 className="text-xl md:text-2xl lg:text-4xl font-bold text-white mb-4 md:mb-6 section-heading">Good Taste - Good Health</h3>
           <p className="text-xl text-white opacity-90 max-w-2xl mx-auto">
@@ -247,27 +256,33 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16 bg-blue-200">
+      <section className="py-20 bg-blue-200">
         <div className="container-wide">
           <div className="text-center mb-12">
             <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-blue-800 mb-2">WHY CHOOSE US</h2>
             <p className="text-sm text-blue-700">The Leading Premium Beverage Manufacturer and Supplier Vietnam</p>
           </div>
 
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 max-w-6xl mx-auto">
             {[
-              { title: "FREE SAMPLE", icon: "📦" },
-              { title: "OEM and ODM", icon: "⚙️" },
-              { title: "FREE LABEL DESIGN", icon: "🎨" },
-              { title: "SMALL MOQ", icon: "📊" },
-              { title: "STABLE QUALITY", icon: "💎" },
-              { title: "FAST DELIVERY", icon: "🚚" },
+              { title: "FREE SAMPLE", image: "/images/products/seed/1.png" },
+              { title: "OEM and ODM", image: "/images/products/falooda/2.png" },
+              { title: "FREE LABEL DESIGN", image: "/images/products/nata de coco/3.png" },
+              { title: "SMALL MOQ", image: "/images/products/seed/4.png" },
+              { title: "STABLE QUALITY", image: "/images/products/falooda/5.png" },
+              { title: "FAST DELIVERY", image: "/images/products/nata de coco/6.png" },
             ].map((feature, index) => (
               <div key={index} className="text-center">
-                <div className="w-12 h-12 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-1 md:mb-2">
-                  <span className="text-sm md:text-lg">{feature.icon}</span>
+                <div className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 bg-white rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 shadow-lg border-4 border-blue-100 overflow-hidden group hover:scale-105 transition-transform">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    width={120}
+                    height={120}
+                    className="w-4/5 h-4/5 object-cover rounded-full group-hover:scale-110 transition-transform"
+                  />
                 </div>
-                <h3 className="text-xs md:text-sm font-bold text-blue-800 uppercase">{feature.title}</h3>
+                <h3 className="text-sm md:text-base font-bold text-blue-800 uppercase">{feature.title}</h3>
               </div>
             ))}
           </div>
@@ -278,7 +293,7 @@ export default function Home() {
       <section className="py-8 bg-white border-none">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-rita-red mb-4">CERTIFICATIONS</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-red-600 mb-4">CERTIFICATIONS</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We maintain the highest standards of quality and safety through internationally recognized certifications.
             </p>
@@ -344,7 +359,7 @@ export default function Home() {
 
             {/* Raw Materials Supply */}
             <div className="text-center">
-              <div className="text-xl md:text-2xl lg:text-4xl font-bold text-rita-red mb-6">OUR RAW MATERIALS</div>
+              <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">OUR RAW MATERIALS</div>
               <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center mb-6">
                 <div className="text-gray-500">Raw Materials Image</div>
               </div>
@@ -355,7 +370,7 @@ export default function Home() {
 
             {/* Partner and Distribution */}
             <div className="text-center">
-              <div className="text-xl md:text-2xl lg:text-4xl font-bold text-rita-red mb-6">DISTRIBUTION</div>
+              <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">DISTRIBUTION</div>
               <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center mb-6">
                 <div className="text-gray-500">Distribution Map</div>
               </div>
@@ -370,7 +385,16 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-red-600 text-white py-8">
         <div className="container-wide text-center">
-          <h3 className="text-2xl font-bold mb-4">RITA FOOD AND DRINK CO.,LTD</h3>
+          <div className="flex flex-col items-center mb-4">
+            <Image
+              src="/logodwink.png"
+              alt="Dwink Logo"
+              width={150}
+              height={75}
+              className="h-16 w-auto mb-2"
+            />
+            <h3 className="text-xl font-bold">DWINK FOOD AND DRINK CO.,LTD</h3>
+          </div>
           
           <div className="text-sm mb-4">
             <p className="mb-2">Add: No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam.</p>
@@ -381,8 +405,8 @@ export default function Home() {
               <span>Tax Code: 3700574950</span>
             </div>
             <div className="flex justify-center space-x-6">
-              <span>Email: marketing@rita.com.vn</span>
-              <span>Website: https://rita.com.vn</span>
+              <span>Email: marketing@dwink.com.vn</span>
+              <span>Website: https://dwink.com.vn</span>
             </div>
           </div>
 
@@ -419,7 +443,7 @@ export default function Home() {
           </div>
 
           <div className="border-t border-red-500 pt-4 text-xs">
-            <p className="mb-2">RITA Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by RITA Beverage Company</p>
+            <p className="mb-2">DWINK Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by DWINK Beverage Company</p>
             <div className="flex justify-center space-x-4">
               <a href="#" className="hover:text-red-200">About us</a>
               <span>|</span>

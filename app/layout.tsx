@@ -25,7 +25,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Rita Food and Drink Co., Ltd. - Good Taste, Good Health",
+  title: "Dwink Co., Ltd. - Good Taste, Good Health",
   description: "Always make the best tropical juice and drink. Premium beverage products including coconut water, fruit juices, tea drinks, and more.",
 };
 

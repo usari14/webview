@@ -3,9 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #e53e3e; /* Rita red */
-  --secondary: #38a169; /* Rita green */
-  --accent: #3182ce; /* Rita blue */
+  --primary: #e53e3e; /* Dwink red */
+  --secondary: #38a169; /* Dwink green */
+  --accent: #3182ce; /* Dwink blue */
 }
 
 @theme inline {
@@ -19,9 +19,9 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --primary: #f56565; /* Rita red (lighter for dark mode) */
-    --secondary: #48bb78; /* Rita green (lighter for dark mode) */
-    --accent: #4299e1; /* Rita blue (lighter for dark mode) */
+    --primary: #f56565; /* Dwink red (lighter for dark mode) */
+    --secondary: #48bb78; /* Dwink green (lighter for dark mode) */
+    --accent: #4299e1; /* Dwink blue (lighter for dark mode) */
   }
 }
 
@@ -31,7 +31,32 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Rita Brand Colors */
+/* Dwink Brand Colors */
+.bg-dwink-red {
+  background-color: var(--primary);
+}
+
+.text-dwink-red {
+  color: var(--primary);
+}
+
+.bg-dwink-green {
+  background-color: var(--secondary);
+}
+
+.text-dwink-green {
+  color: var(--secondary);
+}
+
+.bg-dwink-blue {
+  background-color: var(--accent);
+}
+
+.text-dwink-blue {
+  color: var(--accent);
+}
+
+/* Legacy Rita classes for backward compatibility */
 .bg-rita-red {
   background-color: var(--primary);
 }

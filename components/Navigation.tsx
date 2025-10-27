@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -69,10 +70,14 @@ export default function Navigation({ currentPage = "Home" }: NavigationProps) {
 
             {/* Center Logo */}
             <Link href="/" className="flex flex-col items-center">
-              <div className="text-4xl font-bold text-red-600 mb-1" style={{ fontFamily: 'cursive' }}>
-                Rita
-                <span className="text-xs text-red-600 ml-1">®</span>
-              </div>
+              <Image
+                src="/logodwink.png"
+                alt="Dwink Logo"
+                width={180}
+                height={90}
+                className="h-14 md:h-14 w-auto mb-1"
+                priority
+              />
               <div className="text-sm text-red-600 font-medium">Good Taste - Good Health</div>
             </Link>
 

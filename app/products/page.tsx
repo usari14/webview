@@ -21,38 +21,56 @@ function ProductsContent() {
   }, [searchParams]);
 
   const filters = [
-    "Show All", "New Products", "Fresh Fruit Juice", "Coconut Products", "Aloe Vera Drink",
-    "Sparkling Drink", "Coffee Drink", "Energy Drink", "Non-Alcoholic Beer",
-    "Milk Drink", "Tea Drink", "Seed Drink", "Sports Drink",
-    "Bubble Tea", "Protein Milk Shake", "Iced Coffee"
+    "Show All", "Seed Drink", "Nata de Coco", "Falooda"
   ];
 
-  const allProducts = [
-    { id: "1", name: "Orange Carrot Juice", category: "Fresh Fruit Juice", image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=300&h=300&fit=crop", description: "Natural orange and carrot blend with Vitamin E" },
-    { id: "2", name: "Kale Juice", category: "Fresh Fruit Juice", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=300&fit=crop", description: "Healthy green juice with kale and mixed fruits" },
-    { id: "3", name: "Coco 100% Coconut Water", category: "Coconut Products", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop", description: "Pure coconut water from Vietnam" },
-    { id: "4", name: "Matcha Tea", category: "Tea Drink", image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&h=300&fit=crop", description: "Premium Japanese matcha green tea" },
-    { id: "5", name: "Protein Milk Shake", category: "Protein Milk Shake", image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=300&h=300&fit=crop", description: "High protein chocolate milkshake" },
-    { id: "6", name: "Sparkling Fresh Apple", category: "Sparkling Drink", image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=300&h=300&fit=crop", description: "Refreshing sparkling apple drink" },
-    { id: "7", name: "Lemon Sparkling", category: "Sparkling Drink", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=300&fit=crop", description: "Zesty lemon sparkling water" },
-    { id: "8", name: "Bubble Tea", category: "Bubble Tea", image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=300&h=300&fit=crop", description: "Traditional bubble tea with tapioca pearls" },
-    { id: "9", name: "Energy Drink", category: "Energy Drink", image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=300&h=300&fit=crop", description: "High energy drink with natural caffeine" },
-    { id: "10", name: "Iced Coffee", category: "Coffee Drink", image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=300&h=300&fit=crop", description: "Premium Vietnamese iced coffee" },
-    { id: "11", name: "Aloe Vera Drink", category: "Aloe Vera Drink", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=300&fit=crop", description: "Refreshing aloe vera gel drink" },
-    { id: "12", name: "Sports Drink", category: "Sports Drink", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop", description: "Electrolyte-rich sports drink" },
-    { id: "13", name: "Mango Juice", category: "Fresh Fruit Juice", image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=300&h=300&fit=crop", description: "Sweet and tropical mango juice" },
-    { id: "14", name: "Coconut Milk", category: "Coconut Products", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop", description: "Creamy coconut milk drink" },
-    { id: "15", name: "Green Tea", category: "Tea Drink", image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&h=300&fit=crop", description: "Antioxidant-rich green tea" },
-    { id: "16", name: "Vanilla Protein Shake", category: "Protein Milk Shake", image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=300&h=300&fit=crop", description: "Smooth vanilla protein shake" },
-    { id: "17", name: "Grape Sparkling", category: "Sparkling Drink", image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=300&h=300&fit=crop", description: "Bubbly grape sparkling drink" },
-    { id: "18", name: "Taro Bubble Tea", category: "Bubble Tea", image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=300&h=300&fit=crop", description: "Creamy taro flavored bubble tea" },
-    { id: "19", name: "Red Bull Style", category: "Energy Drink", image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=300&h=300&fit=crop", description: "High performance energy drink" },
-    { id: "20", name: "Vietnamese Coffee", category: "Coffee Drink", image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=300&h=300&fit=crop", description: "Traditional Vietnamese coffee blend" },
-    { id: "21", name: "Pineapple Juice", category: "Fresh Fruit Juice", image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=300&h=300&fit=crop", description: "Tropical pineapple juice" },
-    { id: "22", name: "Coconut Cream", category: "Coconut Products", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop", description: "Rich coconut cream drink" },
-    { id: "23", name: "Jasmine Tea", category: "Tea Drink", image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&h=300&fit=crop", description: "Fragrant jasmine green tea" },
-    { id: "24", name: "Strawberry Milk", category: "Milk Drink", image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=300&h=300&fit=crop", description: "Sweet strawberry flavored milk" }
-  ];
+  // Generate products dynamically based on available PNG images
+  const generateProducts = () => {
+    const products = [];
+    let id = 1;
+    
+    const flavors = [
+      'Original', 'Strawberry', 'Mango', 'Lychee', 'Coconut', 'Pineapple', 'Grape', 'Apple', 'Orange', 'Peach',
+      'Kiwi', 'Passion Fruit', 'Blueberry', 'Cherry', 'Watermelon', 'Guava', 'Papaya', 'Dragon Fruit', 'Pomegranate', 'Lime'
+    ];
+    
+    // Seed products - PNG versions (20 images)
+    for (let i = 1; i <= 20; i++) {
+      products.push({
+        id: String(id++),
+        name: `Basil Seed Drink ${flavors[i-1] || `Flavor ${i}`}`,
+        category: 'Seed Drink',
+        image: `/images/products/seed/${i}.png`,
+        description: `Refreshing basil seed drink with ${(flavors[i-1] || `flavor ${i}`).toLowerCase()} taste`
+      });
+    }
+    
+    // Nata de Coco products - PNG versions (20 images)
+    for (let i = 1; i <= 20; i++) {
+      products.push({
+        id: String(id++),
+        name: `Nata de Coco ${flavors[i-1] || `Flavor ${i}`}`,
+        category: 'Nata de Coco',
+        image: `/images/products/nata de coco/${i}.png`,
+        description: `Delicious nata de coco with ${(flavors[i-1] || `flavor ${i}`).toLowerCase()} taste`
+      });
+    }
+    
+    // Falooda products - PNG versions (20 images)
+    for (let i = 1; i <= 20; i++) {
+      products.push({
+        id: String(id++),
+        name: `Falooda ${flavors[i-1] || `Special ${i}`}`,
+        category: 'Falooda',
+        image: `/images/products/falooda/${i}.png`,
+        description: `Premium falooda with ${(flavors[i-1] || `special flavor ${i}`).toLowerCase()}`
+      });
+    }
+    
+    return products;
+  };
+  
+  const allProducts = generateProducts();
 
   // Filter products based on active filter
   const filteredProducts = activeFilter === "Show All" 
@@ -89,7 +107,7 @@ function ProductsContent() {
       <section className="py-16 bg-gradient-to-r from-green-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-green-800 mb-4" style={{ fontFamily: 'cursive' }}>
-            Our Products
+            Dwink Products
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Discover our wide range of premium beverages made with natural ingredients from Vietnam. 
@@ -102,7 +120,7 @@ function ProductsContent() {
       <section className="py-16 bg-white">
         <div className="container-wide">
           <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-green-800 text-center mb-6 md:mb-12">
-            BEVERAGE PRODUCTS
+            DWINK BEVERAGE PRODUCTS
           </h2>
           
           {/* Category Filters */}
@@ -316,7 +334,16 @@ function ProductsContent() {
       {/* Footer */}
       <footer className="bg-red-600 text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold mb-4">RITA FOOD AND DRINK CO.,LTD</h3>
+          <div className="flex flex-col items-center mb-4">
+            <Image
+              src="/logodwink.png"
+              alt="Dwink Logo"
+              width={150}
+              height={75}
+              className="h-16 w-auto mb-2"
+            />
+            <h3 className="text-xl font-bold">DWINK FOOD AND DRINK CO.,LTD</h3>
+          </div>
           
           <div className="text-sm mb-4">
             <p className="mb-2">Add: No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam.</p>
@@ -327,8 +354,8 @@ function ProductsContent() {
               <span>Tax Code: 3700574950</span>
             </div>
             <div className="flex justify-center space-x-6">
-              <span>Email: marketing@rita.com.vn</span>
-              <span>Website: https://rita.com.vn</span>
+              <span>Email: marketing@dwink.com.vn</span>
+              <span>Website: https://dwink.com.vn</span>
             </div>
           </div>
 
@@ -365,7 +392,7 @@ function ProductsContent() {
           </div>
 
           <div className="border-t border-red-500 pt-4 text-xs">
-            <p className="mb-2">RITA Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by RITA Beverage Company</p>
+            <p className="mb-2">DWINK Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by DWINK Beverage Company</p>
             <div className="flex justify-center space-x-4">
               <a href="#" className="hover:text-red-200">About us</a>
               <span>|</span>

@@ -19,7 +19,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   const product = {
     id: resolvedParams.id,
     name: "Orange Carrot Juice Blend Drink",
-    brand: "Rita",
+    brand: "Dwink",
     volume: "1L",
     packing: "12 bottles/carton",
     shelfLife: "12 months",
@@ -30,21 +30,21 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
     paymentTerm: "T/T, L/C",
     deliveryTime: "20-25 days",
     certifications: ["ISO", "HACCP", "HALAL", "FDA", "GMP", "KOSHER", "BRC", "FSSC 22000"],
-    image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&h=800&fit=crop",
+    image: "/images/products/seed/1.png",
     gallery: [
-      "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&h=800&fit=crop",
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=800&fit=crop",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=800&fit=crop"
+      "/images/products/seed/1.png",
+      "/images/products/seed/2.png",
+      "/images/products/seed/3.png"
     ]
   };
 
   const relatedProducts = [
-    { id: "1", name: "Kale Juice Blend", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=300&fit=crop", category: "Fresh Fruit Juice" },
-    { id: "2", name: "Coconut Water", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop", category: "Coconut Products" },
-    { id: "3", name: "Matcha Tea", image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&h=300&fit=crop", category: "Tea Drink" },
-    { id: "4", name: "Protein Milk Shake", image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=300&h=300&fit=crop", category: "Protein Milk Shake" },
-    { id: "5", name: "Sparkling Apple", image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=300&h=300&fit=crop", category: "Sparkling Drink" },
-    { id: "6", name: "Bubble Tea", image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=300&h=300&fit=crop", category: "Bubble Tea" }
+    { id: "1", name: "Basil Seed Strawberry", image: "/images/products/seed/2.png", category: "Seed Drink" },
+    { id: "2", name: "Nata de Coco Original", image: "/images/products/nata de coco/1.png", category: "Nata de Coco" },
+    { id: "3", name: "Falooda Original", image: "/images/products/falooda/1.png", category: "Falooda" },
+    { id: "4", name: "Basil Seed Mango", image: "/images/products/seed/3.png", category: "Seed Drink" },
+    { id: "5", name: "Nata de Coco Strawberry", image: "/images/products/nata de coco/2.png", category: "Nata de Coco" },
+    { id: "6", name: "Falooda Strawberry", image: "/images/products/falooda/2.png", category: "Falooda" }
   ];
 
   return (
@@ -64,15 +64,12 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         </div>
       </div>
 
-      {/* Hero Banner Section */}
-      <section className="relative h-64 md:h-96 lg:h-screen w-full overflow-hidden">
-        <Image
-          src="https://cdn.pixabay.com/photo/2024/04/19/12/27/ai-generated-8706248_1280.jpg"
-          alt="Natural Vietnamese Beverages"
-          fill
-          className="object-cover"
-          priority
-        />
+      {/* Small Hero Banner Section */}
+      <section className="relative h-32 md:h-40 w-full bg-gradient-to-r from-blue-600 to-green-600 flex items-center justify-center">
+        <div className="text-center text-white">
+          <h1 className="text-2xl md:text-4xl font-bold mb-2">{product.name}</h1>
+          <p className="text-lg md:text-xl">Premium Dwink Product</p>
+        </div>
       </section>
 
       {/* Product Detail Section */}
@@ -220,11 +217,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="relative">
               <div className="aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image 
-                  src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&h=600&fit=crop"
-                  alt="Orange Carrot Juice Showcase"
+                  src="/images/products/seed/4.png"
+                  alt="Dwink Product Showcase"
                   width={600}
                   height={600}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>
@@ -334,11 +331,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="relative">
               <div className="aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image 
-                  src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop"
-                  alt="Fresh Orange Carrot Juice"
+                  src="/images/products/seed/5.png"
+                  alt="Fresh Dwink Product"
                   width={600}
                   height={600}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>
@@ -496,7 +493,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       <section className="py-8 bg-white border-none">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-rita-red mb-4">CERTIFICATIONS</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-red-600 mb-4">CERTIFICATIONS</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We maintain the highest standards of quality and safety through internationally recognized certifications.
             </p>
@@ -548,7 +545,16 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       {/* Footer */}
       <footer className="bg-red-600 text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold mb-4">RITA FOOD AND DRINK CO.,LTD</h3>
+          <div className="flex flex-col items-center mb-4">
+            <Image
+              src="/logodwink.png"
+              alt="Dwink Logo"
+              width={150}
+              height={75}
+              className="h-16 w-auto mb-2"
+            />
+            <h3 className="text-xl font-bold">DWINK FOOD AND DRINK CO.,LTD</h3>
+          </div>
           
           <div className="text-sm mb-4">
             <p className="mb-2">Add: No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam.</p>
@@ -559,8 +565,8 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               <span>Tax Code: 3700574950</span>
             </div>
             <div className="flex justify-center space-x-6">
-              <span>Email: marketing@rita.com.vn</span>
-              <span>Website: https://rita.com.vn</span>
+              <span>Email: marketing@dwink.com.vn</span>
+              <span>Website: https://dwink.com.vn</span>
             </div>
           </div>
 
@@ -597,7 +603,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           </div>
 
           <div className="border-t border-red-500 pt-4 text-xs">
-            <p className="mb-2">RITA Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by RITA Beverage Company</p>
+            <p className="mb-2">DWINK Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by DWINK Beverage Company</p>
             <div className="flex justify-center space-x-4">
               <a href="#" className="hover:text-red-200">About us</a>
               <span>|</span>
