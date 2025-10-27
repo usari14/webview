@@ -1,3 +1,5 @@
+import { StaticImageData } from 'next/image';
+
 // Logo
 import logo from './mainlogo.png';
 
@@ -42,7 +44,7 @@ export interface Product {
   id: string;
   name: string;
   category: 'Seed Drink' | 'Nata de Coco' | 'Falooda';
-  image: any;
+  image: string | StaticImageData;
   description: string;
 }
 

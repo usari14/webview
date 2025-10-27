@@ -25,8 +25,6 @@ function ProductsContent() {
     "Show All", "Seed Drink", "Nata de Coco", "Falooda"
   ];
 
-  const allProducts = products;
-
   // Filter products based on active filter
   const filteredProducts = getProductsByCategory(activeFilter);
 
