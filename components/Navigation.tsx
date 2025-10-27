@@ -4,8 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { getImagePath } from "../lib/utils";
-import logo from "../app/assets/mainlogo.png"
+import { logo } from "../app/assets/images";
 
 interface NavigationProps {
   currentPage?: string;

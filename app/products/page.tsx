@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navigation from "../../components/Navigation";
-import { getImagePath } from "../../lib/utils";
+import { getProductImage, certificates, logo } from "../../app/assets/images";
 
 function ProductsContent() {
   const searchParams = useSearchParams();
@@ -59,7 +59,7 @@ function ProductsContent() {
         id: String(id++),
         name,
         category,
-        image: getImagePath(`/images/all-products/${i}.png`),
+        image: getProductImage(i),
         description
       });
     }
@@ -281,7 +281,7 @@ function ProductsContent() {
           <div className="text-center mb-12">
             <div className="flex justify-center mb-6">
               <Image
-                src={getImagePath("/images/logos/mainlogo.png")}
+                src={logo}
                 alt="Dwink Logo"
                 width={200}
                 height={100}
@@ -297,9 +297,9 @@ function ProductsContent() {
           {/* Certification Logos */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
             {[
-              { name: "ISO 22000", image: getImagePath('/images/certificates/iso 22000.jpg') },
-              { name: "INTERNATIONAL HALAL", image: getImagePath('/images/certificates/international hala.jpeg') },
-              { name: "SINDH FOOD AUTHORITY", image: getImagePath('/images/certificates/sindh food authority.png') }
+              { name: "ISO 22000", image: certificates.iso },
+              { name: "INTERNATIONAL HALAL", image: certificates.halal },
+              { name: "SINDH FOOD AUTHORITY", image: certificates.sindh }
             ].map((cert, index) => (
               <div key={index} className="bg-white rounded-lg p-2 md:p-4 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center min-w-0">
                 <div className="h-8 w-8 md:h-12 md:w-12 mb-1 md:mb-2 flex items-center justify-center">
@@ -319,9 +319,9 @@ function ProductsContent() {
           {/* Certificate Images */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'ISO 22000 Certificate', image: getImagePath('/images/certificates/iso 22000.jpg') },
-              { title: 'International Halal Certificate', image: getImagePath('/images/certificates/international hala.jpeg') },
-              { title: 'Sindh Food Authority Certificate', image: getImagePath('/images/certificates/sindh food authority.png') }
+              { title: 'ISO 22000 Certificate', image: certificates.iso },
+              { title: 'International Halal Certificate', image: certificates.halal },
+              { title: 'Sindh Food Authority Certificate', image: certificates.sindh }
             ].map((doc, i) => (
               <div key={i} className="card overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
                 <div className="h-56 w-full overflow-hidden bg-white flex items-center justify-center p-4">
@@ -348,7 +348,7 @@ function ProductsContent() {
         <div className="container mx-auto px-4 text-center">
           <div className="flex flex-col items-center mb-4">
             <Image
-              src={getImagePath("/images/logos/mainlogo.png")}
+              src={logo}
               alt="Dwink Logo"
               width={150}
               height={75}

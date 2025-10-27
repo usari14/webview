@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navigation from "../../../components/Navigation";
-import { getImagePath } from "../../../lib/utils";
+import { getProductImage, certificates, logo } from "../../../app/assets/images";
 
 export async function generateStaticParams() {
   const params = [];
@@ -28,21 +28,21 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
     paymentTerm: "T/T, L/C",
     deliveryTime: "20-25 days",
     certifications: ["ISO", "HACCP", "HALAL", "FDA", "GMP", "KOSHER", "BRC", "FSSC 22000"],
-    image: getImagePath("/images/all-products/1.png"),
+    image: getProductImage(1),
     gallery: [
-      getImagePath("/images/all-products/1.png"),
-      getImagePath("/images/all-products/2.png"),
-      getImagePath("/images/all-products/3.png")
+      getProductImage(1),
+      getProductImage(2),
+      getProductImage(3)
     ]
   };
 
   const relatedProducts = [
-    { id: "1", name: "Basil Seed Strawberry", image: getImagePath("/images/all-products/2.png"), category: "Seed Drink" },
-    { id: "2", name: "Nata de Coco Original", image: getImagePath("/images/all-products/21.png"), category: "Nata de Coco" },
-    { id: "3", name: "Falooda Original", image: getImagePath("/images/all-products/41.png"), category: "Falooda" },
-    { id: "4", name: "Basil Seed Mango", image: getImagePath("/images/all-products/3.png"), category: "Seed Drink" },
-    { id: "5", name: "Nata de Coco Strawberry", image: getImagePath("/images/all-products/22.png"), category: "Nata de Coco" },
-    { id: "6", name: "Falooda Strawberry", image: getImagePath("/images/all-products/42.png"), category: "Falooda" }
+    { id: "1", name: "Basil Seed Strawberry", image: getProductImage(2), category: "Seed Drink" },
+    { id: "2", name: "Nata de Coco Original", image: getProductImage(21), category: "Nata de Coco" },
+    { id: "3", name: "Falooda Original", image: getProductImage(41), category: "Falooda" },
+    { id: "4", name: "Basil Seed Mango", image: getProductImage(3), category: "Seed Drink" },
+    { id: "5", name: "Nata de Coco Strawberry", image: getProductImage(22), category: "Nata de Coco" },
+    { id: "6", name: "Falooda Strawberry", image: getProductImage(42), category: "Falooda" }
   ];
 
   return (
@@ -215,7 +215,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="relative">
               <div className="aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image 
-                  src={getImagePath("/images/all-products/4.png")}
+                  src={getProductImage(4)}
                   alt="Dwink Product Showcase"
                   width={600}
                   height={600}
@@ -329,7 +329,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="relative">
               <div className="aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image 
-                  src={getImagePath("/images/all-products/5.png")}
+                  src={getProductImage(5)}
                   alt="Fresh Dwink Product"
                   width={600}
                   height={600}
@@ -493,7 +493,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           <div className="text-center mb-12">
             <div className="flex justify-center mb-6">
               <Image
-                src={getImagePath("/images/logos/mainlogo.png")}
+                src={logo}
                 alt="Dwink Logo"
                 width={200}
                 height={100}
@@ -509,9 +509,9 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           {/* Certification Logos */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
             {[
-              { name: "ISO 22000", image: getImagePath('/images/certificates/iso 22000.jpg') },
-              { name: "INTERNATIONAL HALAL", image: getImagePath('/images/certificates/international hala.jpeg') },
-              { name: "SINDH FOOD AUTHORITY", image: getImagePath('/images/certificates/sindh food authority.png') }
+              { name: "ISO 22000", image: certificates.iso },
+              { name: "INTERNATIONAL HALAL", image: certificates.halal },
+              { name: "SINDH FOOD AUTHORITY", image: certificates.sindh }
             ].map((cert, index) => (
               <div key={index} className="bg-white rounded-lg p-2 md:p-4 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center min-w-0">
                 <div className="h-8 w-8 md:h-12 md:w-12 mb-1 md:mb-2 flex items-center justify-center">
@@ -531,9 +531,9 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           {/* Certificate Images */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'ISO 22000 Certificate', image: getImagePath('/images/certificates/iso 22000.jpg') },
-              { title: 'International Halal Certificate', image: getImagePath('/images/certificates/international hala.jpeg') },
-              { title: 'Sindh Food Authority Certificate', image: getImagePath('/images/certificates/sindh food authority.png') }
+              { title: 'ISO 22000 Certificate', image: certificates.iso },
+              { title: 'International Halal Certificate', image: certificates.halal },
+              { title: 'Sindh Food Authority Certificate', image: certificates.sindh }
             ].map((doc, i) => (
               <div key={i} className="card overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
                 <div className="h-56 w-full overflow-hidden bg-white flex items-center justify-center p-4">
@@ -560,7 +560,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         <div className="container mx-auto px-4 text-center">
           <div className="flex flex-col items-center mb-4">
             <Image
-              src={getImagePath("/images/logos/mainlogo.png")}
+              src={logo}
               alt="Dwink Logo"
               width={150}
               height={75}
