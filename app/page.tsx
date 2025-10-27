@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import Navigation from "../components/Navigation";
-import { productImages, getProductImage, certificates, logo } from "./assets/images";
+import { products, getProductsByCategory, certificates, logo } from "./assets/products";
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState("Show All");
@@ -14,20 +14,10 @@ export default function Home() {
     "Falooda", "Seed Drink", "Nata de Coco", "Show All"
   ];
 
-  const carouselItems = [
-    { title: "Dwink Basil Seed Original", image: getProductImage(1) },
-    { title: "Dwink Basil Seed Strawberry", image: getProductImage(2) },
-    { title: "Dwink Basil Seed Mango", image: getProductImage(3) },
-    { title: "Dwink Nata de Coco Original", image: getProductImage(21) },
-    { title: "Dwink Nata de Coco Strawberry", image: getProductImage(22) },
-    { title: "Dwink Nata de Coco Mango", image: getProductImage(23) },
-    { title: "Dwink Falooda Original", image: getProductImage(41) },
-    { title: "Dwink Falooda Strawberry", image: getProductImage(42) },
-    { title: "Dwink Basil Seed Lychee", image: getProductImage(4) },
-    { title: "Dwink Basil Seed Coconut", image: getProductImage(5) },
-    { title: "Dwink Falooda Premium", image: getProductImage(45) },
-    { title: "Dwink Basil Seed Grape", image: getProductImage(7) }
-  ];
+  const carouselItems = products.slice(0, 12).map(product => ({
+    title: `Dwink ${product.name}`,
+    image: product.image
+  }));
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % carouselItems.length);
@@ -64,9 +54,9 @@ export default function Home() {
 
           <div className="flex justify-center gap-6 md:gap-12 lg:gap-20">
             {[
-              { name: "FALOODA", image: getProductImage(41), gradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50" },
-              { name: "SEED DRINK", image: getProductImage(1), gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50" },
-              { name: "NATA DE COCO", image: getProductImage(21), gradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50" },
+              { name: "SEED DRINK", image: products.find(p => p.category === 'Seed Drink')?.image, gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50" },
+              { name: "NATA DE COCO", image: products.find(p => p.category === 'Nata de Coco')?.image, gradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50" },
+              { name: "FALOODA", image: products.find(p => p.category === 'Falooda')?.image, gradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50" },
             ].map((category, index) => (
               <Link key={index} href={`/products?filter=${encodeURIComponent(category.name)}`} className="flex flex-col items-center group flex-shrink-0">
                 <div className={`w-24 h-24 md:w-40 md:h-40 lg:w-64 lg:h-64 ${category.gradient} rounded-full flex items-center justify-center mb-3 md:mb-6 group-hover:scale-105 transition-transform overflow-hidden shadow-lg border-4 border-white`}>
@@ -125,24 +115,8 @@ export default function Home() {
 
           {/* Product Grid */}
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 lg:gap-6 mb-10">
-            {[
-              { name: "Falooda Original", category: "Falooda", image: getProductImage(41) },
-              { name: "Falooda Strawberry", category: "Falooda", image: getProductImage(42) },
-              { name: "Falooda Mango", category: "Falooda", image: getProductImage(43) },
-              { name: "Falooda Lychee", category: "Falooda", image: getProductImage(44) },
-              { name: "Falooda Coconut", category: "Falooda", image: getProductImage(45) },
-              { name: "Basil Seed Original", category: "Seed Drink", image: getProductImage(1) },
-              { name: "Basil Seed Strawberry", category: "Seed Drink", image: getProductImage(2) },
-              { name: "Basil Seed Mango", category: "Seed Drink", image: getProductImage(3) },
-              { name: "Basil Seed Lychee", category: "Seed Drink", image: getProductImage(4) },
-              { name: "Basil Seed Coconut", category: "Seed Drink", image: getProductImage(5) },
-              { name: "Original Nata de Coco", category: "Nata de Coco", image: getProductImage(21) },
-              { name: "Strawberry Nata de Coco", category: "Nata de Coco", image: getProductImage(22) },
-              { name: "Mango Nata de Coco", category: "Nata de Coco", image: getProductImage(23) },
-              { name: "Lychee Nata de Coco", category: "Nata de Coco", image: getProductImage(24) },
-              { name: "Coconut Nata de Coco", category: "Nata de Coco", image: getProductImage(25) },
-            ].filter(product => activeFilter === "Show All" || product.category === activeFilter).map((product, index) => (
-              <Link key={index} href={`/products/${index + 1}`} className="block">
+            {getProductsByCategory(activeFilter).slice(0, 15).map((product, index) => (
+              <Link key={product.id} href={`/products/${product.id}`} className="block">
                 <div className="bg-white border rounded-lg pb-2 md:pb-4 hover:shadow-lg transition-shadow text-center">
                   <Image
                     src={product.image}
@@ -266,12 +240,12 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 max-w-6xl mx-auto">
             {[
-              { title: "FREE SAMPLE", image: getProductImage(1) },
-              { title: "OEM and ODM", image: getProductImage(2) },
-              { title: "FREE LABEL DESIGN", image: getProductImage(3) },
-              { title: "SMALL MOQ", image: getProductImage(4) },
-              { title: "STABLE QUALITY", image: getProductImage(5) },
-              { title: "FAST DELIVERY", image: getProductImage(6) },
+              { title: "FREE SAMPLE", image: products[0]?.image },
+              { title: "OEM and ODM", image: products[1]?.image },
+              { title: "FREE LABEL DESIGN", image: products[2]?.image },
+              { title: "SMALL MOQ", image: products[3]?.image },
+              { title: "STABLE QUALITY", image: products[4]?.image },
+              { title: "FAST DELIVERY", image: products[5]?.image },
             ].map((feature, index) => (
               <div key={index} className="text-center">
                 <div className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 bg-white rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 shadow-lg border-4 border-blue-100 overflow-hidden group hover:scale-105 transition-transform">
@@ -367,7 +341,7 @@ export default function Home() {
               <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">EXCELLENT PRODUCTS</div>
               <div className="bg-white rounded-lg h-48 flex items-center justify-center mb-6 p-6 shadow-lg">
                 <Image
-                  src={getProductImage(10)}
+                  src={products[9]?.image || products[0].image}
                   alt="Excellent Products"
                   width={200}
                   height={200}
@@ -384,7 +358,7 @@ export default function Home() {
               <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">OUR RAW MATERIALS</div>
               <div className="bg-white rounded-lg h-48 flex items-center justify-center mb-6 p-6 shadow-lg">
                 <Image
-                  src={getProductImage(35)}
+                  src={products[15]?.image || products[0].image}
                   alt="Raw Materials"
                   width={200}
                   height={200}
@@ -401,7 +375,7 @@ export default function Home() {
               <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">DISTRIBUTION</div>
               <div className="bg-white rounded-lg h-48 flex items-center justify-center mb-6 p-6 shadow-lg">
                 <Image
-                  src={getProductImage(58)}
+                  src={products[20]?.image || products[0].image}
                   alt="Distribution"
                   width={200}
                   height={200}

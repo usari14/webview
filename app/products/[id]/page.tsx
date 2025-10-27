@@ -1,49 +1,46 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navigation from "../../../components/Navigation";
-import { getProductImage, certificates, logo } from "../../../app/assets/images";
+import { products, getProductById, certificates, logo } from "../../../app/assets/products";
 
 export async function generateStaticParams() {
-  const params = [];
-  for (let i = 1; i <= 60; i++) {
-    params.push({ id: String(i) });
-  }
-  return params;
+  const { products } = await import('../../../app/assets/products');
+  return products.map((product) => ({
+    id: product.id,
+  }));
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
+  const currentProduct = getProductById(resolvedParams.id);
+  
+  if (!currentProduct) {
+    return <div>Product not found</div>;
+  }
 
   const product = {
-    id: resolvedParams.id,
-    name: "Orange Carrot Juice Blend Drink",
+    ...currentProduct,
     brand: "Dwink",
     volume: "1L",
     packing: "12 bottles/carton",
     shelfLife: "12 months",
-    ingredients: "Water, Orange Juice, Carrot Juice, Sugar, Vitamin E, Natural Flavors, Citric Acid",
+    ingredients: "Water, Natural Fruit Juice, Sugar, Vitamin E, Natural Flavors, Citric Acid",
     storage: "Cool, dry place",
     usage: "Drink directly",
     moq: "1 container",
     paymentTerm: "T/T, L/C",
     deliveryTime: "20-25 days",
     certifications: ["ISO", "HACCP", "HALAL", "FDA", "GMP", "KOSHER", "BRC", "FSSC 22000"],
-    image: getProductImage(1),
     gallery: [
-      getProductImage(1),
-      getProductImage(2),
-      getProductImage(3)
+      currentProduct.image,
+      products[Math.min(parseInt(resolvedParams.id), products.length - 1)]?.image || currentProduct.image,
+      products[Math.min(parseInt(resolvedParams.id) + 1, products.length - 1)]?.image || currentProduct.image
     ]
   };
 
-  const relatedProducts = [
-    { id: "1", name: "Basil Seed Strawberry", image: getProductImage(2), category: "Seed Drink" },
-    { id: "2", name: "Nata de Coco Original", image: getProductImage(21), category: "Nata de Coco" },
-    { id: "3", name: "Falooda Original", image: getProductImage(41), category: "Falooda" },
-    { id: "4", name: "Basil Seed Mango", image: getProductImage(3), category: "Seed Drink" },
-    { id: "5", name: "Nata de Coco Strawberry", image: getProductImage(22), category: "Nata de Coco" },
-    { id: "6", name: "Falooda Strawberry", image: getProductImage(42), category: "Falooda" }
-  ];
+  const relatedProducts = products
+    .filter(p => p.category === currentProduct.category && p.id !== currentProduct.id)
+    .slice(0, 6);
 
   return (
     <div className="min-h-screen bg-white">
@@ -215,7 +212,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="relative">
               <div className="aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image 
-                  src={getProductImage(4)}
+                  src={currentProduct.image}
                   alt="Dwink Product Showcase"
                   width={600}
                   height={600}
@@ -329,7 +326,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="relative">
               <div className="aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image 
-                  src={getProductImage(5)}
+                  src={currentProduct.image}
                   alt="Fresh Dwink Product"
                   width={600}
                   height={600}

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navigation from "../../components/Navigation";
-import { getProductImage, certificates, logo } from "../../app/assets/images";
+import { products, getProductsByCategory, certificates, logo } from "../../app/assets/products";
 
 function ProductsContent() {
   const searchParams = useSearchParams();
@@ -25,54 +25,10 @@ function ProductsContent() {
     "Show All", "Seed Drink", "Nata de Coco", "Falooda"
   ];
 
-  // Generate products dynamically based on available PNG images
-  const generateProducts = () => {
-    const products = [];
-    let id = 1;
-    
-    const flavors = [
-      'Original', 'Strawberry', 'Mango', 'Lychee', 'Coconut', 'Pineapple', 'Grape', 'Apple', 'Orange', 'Peach',
-      'Kiwi', 'Passion Fruit', 'Blueberry', 'Cherry', 'Watermelon', 'Guava', 'Papaya', 'Dragon Fruit', 'Pomegranate', 'Lime'
-    ];
-    
-    // All products from single folder (60 images total)
-    for (let i = 1; i <= 60; i++) {
-      let category, name, description;
-      
-      if (i <= 20) {
-        category = 'Seed Drink';
-        name = `Basil Seed Drink ${flavors[i-1] || `Flavor ${i}`}`;
-        description = `Refreshing basil seed drink with ${(flavors[i-1] || `flavor ${i}`).toLowerCase()} taste`;
-      } else if (i <= 40) {
-        category = 'Nata de Coco';
-        const flavorIndex = (i - 21);
-        name = `Nata de Coco ${flavors[flavorIndex] || `Flavor ${flavorIndex + 1}`}`;
-        description = `Delicious nata de coco with ${(flavors[flavorIndex] || `flavor ${flavorIndex + 1}`).toLowerCase()} taste`;
-      } else {
-        category = 'Falooda';
-        const flavorIndex = (i - 41);
-        name = `Falooda ${flavors[flavorIndex] || `Special ${flavorIndex + 1}`}`;
-        description = `Premium falooda with ${(flavors[flavorIndex] || `special flavor ${flavorIndex + 1}`).toLowerCase()}`;
-      }
-      
-      products.push({
-        id: String(id++),
-        name,
-        category,
-        image: getProductImage(i),
-        description
-      });
-    }
-    
-    return products;
-  };
-  
-  const allProducts = generateProducts();
+  const allProducts = products;
 
   // Filter products based on active filter
-  const filteredProducts = activeFilter === "Show All" 
-    ? allProducts 
-    : allProducts.filter(product => product.category === activeFilter);
+  const filteredProducts = getProductsByCategory(activeFilter);
 
   // Pagination
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
