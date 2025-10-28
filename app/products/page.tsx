@@ -57,7 +57,7 @@ function ProductsContent() {
       {/* Page Header */}
       <section className="py-16 bg-gradient-to-r from-green-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-green-800 mb-4" style={{ fontFamily: 'cursive' }}>
+          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-teal-700 mb-4" style={{ fontFamily: 'cursive' }}>
             Dwink Products
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -70,7 +70,7 @@ function ProductsContent() {
       {/* Products Section */}
       <section className="py-16 bg-white">
         <div className="container-wide">
-          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-green-800 text-center mb-6 md:mb-12">
+          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-teal-600 text-center mb-6 md:mb-12">
             DWINK BEVERAGE PRODUCTS
           </h2>
           
@@ -82,8 +82,8 @@ function ProductsContent() {
                 onClick={() => handleFilterChange(category)}
                 className={`px-4 py-2 rounded transition-all duration-300 text-sm font-medium ${
                   activeFilter === category 
-                    ? 'bg-red-600 text-white shadow-lg transform scale-105' 
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300 hover:scale-105'
+                    ? 'bg-teal-500 text-white shadow-lg transform scale-105' 
+                    : 'bg-slate-200 text-slate-700 hover:bg-slate-300 hover:scale-105'
                 }`}
               >
                 {category}
@@ -106,7 +106,7 @@ function ProductsContent() {
             {currentProducts.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`} className="group">
                 <div className="card-hover overflow-hidden">
-                  <div className="w-full h-20 md:h-32 lg:h-48 overflow-hidden">
+                  <div className="w-full h-28 md:h-32 lg:h-48 overflow-hidden">
                     <Image 
                       src={product.image}
                       alt={product.name}
@@ -201,104 +201,12 @@ function ProductsContent() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="py-8 bg-blue-200">
-        <div className="container-wide">
-          <div className="text-center mb-12">
-            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-blue-800 mb-2">WHY CHOOSE US</h2>
-            <p className="text-sm text-blue-700">The Leading Premium Beverage Manufacturer and Supplier Vietnam</p>
-          </div>
 
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 max-w-4xl mx-auto">
-            {[
-              { title: "FREE SAMPLE", icon: "📦" },
-              { title: "OEM and ODM", icon: "⚙️" },
-              { title: "FREE LABEL DESIGN", icon: "🎨" },
-              { title: "SMALL MOQ", icon: "📊" },
-              { title: "STABLE QUALITY", icon: "💎" },
-              { title: "FAST DELIVERY", icon: "🚚" },
-            ].map((feature, index) => (
-              <div key={index} className="text-center">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-1 md:mb-2">
-                  <span className="text-sm md:text-lg">{feature.icon}</span>
-                </div>
-                <h3 className="text-xs md:text-sm font-bold text-blue-800 uppercase">{feature.title}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Certifications Section */}
-      <section className="py-8 bg-white border-none">
-        <div className="container-wide">
-          <div className="text-center mb-12">
-            <div className="flex justify-center mb-6">
-              <Image
-                src={logo}
-                alt="Dwink Logo"
-                width={200}
-                height={100}
-                className="h-20 w-auto"
-              />
-            </div>
-            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-red-600 mb-4">CERTIFICATIONS</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              We maintain the highest standards of quality and safety through internationally recognized certifications.
-            </p>
-          </div>
 
-          {/* Certification Logos */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
-            {[
-              { name: "ISO 22000", image: certificates.iso },
-              { name: "INTERNATIONAL HALAL", image: certificates.halal },
-              { name: "SINDH FOOD AUTHORITY", image: certificates.sindh }
-            ].map((cert, index) => (
-              <div key={index} className="bg-white rounded-lg p-2 md:p-4 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center min-w-0">
-                <div className="h-8 w-8 md:h-12 md:w-12 mb-1 md:mb-2 flex items-center justify-center">
-                  <Image
-                    src={cert.image}
-                    alt={cert.name}
-                    width={48}
-                    height={48}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <div className="text-xs md:text-sm font-bold text-gray-800">{cert.name}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Certificate Images */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { title: 'ISO 22000 Certificate', image: certificates.iso },
-              { title: 'International Halal Certificate', image: certificates.halal },
-              { title: 'Sindh Food Authority Certificate', image: certificates.sindh }
-            ].map((doc, i) => (
-              <div key={i} className="card overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="h-56 w-full overflow-hidden bg-white flex items-center justify-center p-4">
-                  <Image
-                    src={doc.image}
-                    alt={doc.title}
-                    width={300}
-                    height={400}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <div className="p-4 flex items-center justify-between bg-white">
-                  <div className="font-semibold text-gray-900 font-body text-sm">{doc.title}</div>
-                  <button className="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded transition-colors">View</button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
-      <footer className="bg-red-600 text-white py-8">
+      <footer className="bg-slate-100 text-gray-800 py-8">
         <div className="container mx-auto px-4 text-center">
           <div className="flex flex-col items-center mb-4">
             <Image
@@ -314,59 +222,24 @@ function ProductsContent() {
           <div className="text-sm mb-4">
             <p className="mb-2">Add: No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam.</p>
             <div className="flex justify-center space-x-6 mb-2">
-              <span>Office: (84)274 3784 688</span>
-              <span>Sales: (84)274 3784 788</span>
-              <span>Fax: (84)274 3784 799</span>
-              <span>Tax Code: 3700574950</span>
-            </div>
-            <div className="flex justify-center space-x-6">
-              <span>Email: marketing@dwink.com.vn</span>
+              <span>Email: info@dwink.pk</span>
               <span>Website: https://dwink.com.vn</span>
             </div>
-          </div>
-
-          {/* Social Media Icons */}
-          <div className="flex justify-center space-x-3 mb-6">
-            <a href="#" className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">f</span>
-            </a>
-            <a href="#" className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">in</span>
-            </a>
-            <a href="#" className="w-8 h-8 bg-black rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">X</span>
-            </a>
-            <a href="#" className="w-8 h-8 bg-red-500 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">P</span>
-            </a>
-            <a href="#" className="w-8 h-8 bg-red-500 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">YT</span>
-            </a>
-            <a href="#" className="w-8 h-8 bg-pink-500 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">TT</span>
-            </a>
-          </div>
-
-          {/* QR Codes */}
-          <div className="flex justify-center space-x-4 mb-6">
-            <div className="w-16 h-16 bg-white rounded flex items-center justify-center">
-              <div className="text-black text-xs text-center font-bold">QR</div>
-            </div>
-            <div className="w-16 h-16 bg-white rounded flex items-center justify-center">
-              <div className="text-black text-xs text-center font-bold">QR</div>
+            <div className="flex justify-center">
+              <span>PO Box: 13002</span>
             </div>
           </div>
 
-          <div className="border-t border-red-500 pt-4 text-xs">
+          <div className="border-t border-slate-300 pt-4 text-xs">
             <p className="mb-2">DWINK Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by DWINK Beverage Company</p>
             <div className="flex justify-center space-x-4">
-              <a href="#" className="hover:text-red-200">About us</a>
+              <a href="#" className="hover:text-teal-600">About us</a>
               <span>|</span>
-              <a href="#" className="hover:text-red-200">Contact us</a>
+              <a href="#" className="hover:text-teal-600">Contact us</a>
               <span>|</span>
-              <a href="#" className="hover:text-red-200">Privacy Policy</a>
+              <a href="#" className="hover:text-teal-600">Privacy Policy</a>
               <span>|</span>
-              <a href="#" className="hover:text-red-200">Terms of Service Us</a>
+              <a href="#" className="hover:text-teal-600">Terms of Service Us</a>
             </div>
           </div>
         </div>

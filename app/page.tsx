@@ -2,13 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
+import ContactPopup from "../components/ContactPopup";
 import { products, getProductsByCategory, certificates, logo } from "./assets/products";
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState("Show All");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
+  const [hasShownPopup, setHasShownPopup] = useState(false);
 
   const filters = [
     "Seed Drink", "Nata de Coco", "Falooda", "Show All"
@@ -26,39 +29,69 @@ export default function Home() {
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
   };
+  // Carousel auto-slide
   React.useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselItems.length);
     }, 4000);
     return () => clearInterval(intervalId);
   }, [carouselItems.length]);
+
+  // Scroll detection for popup
+  useEffect(() => {
+    const handleScroll = () => {
+      if (hasShownPopup) return;
+      
+      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      
+      if (scrollPercent >= 30) {
+        setShowPopup(true);
+        setHasShownPopup(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [hasShownPopup]);
   return (
     <div className="min-h-screen bg-white">
       <Navigation currentPage="Home" />
 
       {/* Hero Section - Large Banner Image */}
-      <section className="relative h-64 md:h-96 lg:h-screen w-full overflow-hidden bg-gradient-to-br from-blue-600 via-green-600 to-teal-600 flex items-center justify-center">
-        <div className="text-center text-white">
-          <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-4" style={{ fontFamily: 'cursive' }}>Dwink</h1>
-          <p className="text-xl md:text-2xl lg:text-3xl mb-6">Premium Tropical Beverages</p>
-          <p className="text-lg md:text-xl opacity-90">Good Taste - Good Health</p>
+      <section className="relative h-[80vh] w-full overflow-hidden bg-gradient-to-br from-teal-500 via-cyan-600 to-blue-600 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="text-center text-white z-10 max-w-6xl mx-auto px-4">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6" style={{ fontFamily: 'cursive' }}>Dwink</h1>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-6">Premium Tropical Beverages</h2>
+          <p className="text-xl md:text-2xl lg:text-3xl mb-8 font-semibold opacity-95">Good Taste - Good Health</p>
+          <p className="text-lg md:text-xl lg:text-2xl opacity-90 max-w-4xl mx-auto leading-relaxed mb-10">
+            Discover our premium collection of tropical beverages crafted with the finest ingredients for exceptional taste and health benefits.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link href="/products" className="bg-white text-teal-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              Explore Products
+            </Link>
+            <Link href="/contact" className="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-teal-600 transition-all duration-300">
+              Contact Us
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Categories Section */}
       <section className="py-8 md:py-16 bg-gray-100">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-green-600 text-center mb-6 md:mb-12">
+          <h2 className="text-2xl md:text-4xl font-bold text-teal-600 text-center mb-6 md:mb-12">
             CATEGORIES
           </h2>
 
           <div className="flex justify-center gap-6 md:gap-12 lg:gap-20">
             {[
-              { name: "SEED DRINK", image: products.find(p => p.category === 'Seed Drink')?.image, gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50" },
-              { name: "NATA DE COCO", image: products.find(p => p.category === 'Nata de Coco')?.image, gradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50" },
-              { name: "FALOODA", image: products.find(p => p.category === 'Falooda')?.image, gradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50" },
+              { name: "SEED DRINK", image: products.find(p => p.category === 'Seed Drink')?.image, gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50", filter: "Seed Drink" },
+              { name: "NATA DE COCO", image: products.find(p => p.category === 'Nata de Coco')?.image, gradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50", filter: "Nata de Coco" },
+              { name: "FALOODA", image: products.find(p => p.category === 'Falooda')?.image, gradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50", filter: "Falooda" },
             ].map((category) => (
-              <Link key={category.name} href={`/products?filter=${encodeURIComponent(category.name)}`} className="flex flex-col items-center group flex-shrink-0">
+              <Link key={category.name} href={`/products?filter=${encodeURIComponent(category.filter)}`} className="flex flex-col items-center group flex-shrink-0">
                 <div className={`w-24 h-24 md:w-40 md:h-40 lg:w-64 lg:h-64 ${category.gradient} rounded-full flex items-center justify-center mb-3 md:mb-6 group-hover:scale-105 transition-transform overflow-hidden shadow-lg border-4 border-white`}>
                   {category.image && (
                     <Image 
@@ -82,7 +115,7 @@ export default function Home() {
       {/* Beverage Products Section */}
       <section className="py-10 bg-white">
         <div className="container-wide">
-          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-green-600 text-center mb-4 md:mb-8">
+          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-teal-600 text-center mb-4 md:mb-8">
             BEVERAGE PRODUCTS
           </h2>
 
@@ -106,8 +139,8 @@ export default function Home() {
                 key={category}
                 onClick={() => setActiveFilter(category)}
                 className={`px-4 py-2 rounded transition-colors text-sm font-medium ${activeFilter === category
-                    ? 'bg-red-600 text-white shadow-md'
-                    : 'bg-red-600 text-white hover:bg-red-700'
+                    ? 'bg-teal-500 text-white shadow-md'
+                    : 'bg-teal-500 text-white hover:bg-teal-600'
                   }`}
               >
                 {category}
@@ -125,7 +158,7 @@ export default function Home() {
                     alt={product.name}
                     width={200}
                     height={200}
-                    className="w-full h-20 md:h-32 lg:h-48 object-cover mb-1 md:mb-3"
+                    className="w-full h-28 md:h-32 lg:h-48 object-cover mb-1 md:mb-3"
                   />
                   <h3 className="text-xs md:text-sm text-gray-700 leading-tight px-1">{product.name}</h3>
                 </div>
@@ -138,7 +171,7 @@ export default function Home() {
       {/* <div className="section-divider fancy"></div> */}
 
       {/* Carousel Section */}
-      <section className="py-8 md:py-16 bg-blue-100">
+      <section className="py-8 md:py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="relative">
             <div className="overflow-hidden">
@@ -154,7 +187,7 @@ export default function Home() {
                         alt={item.title}
                         width={200}
                         height={200}
-                        className="w-full h-20 md:h-32 lg:h-48 object-cover mb-1 md:mb-3"
+                        className="w-full h-28 md:h-32 lg:h-48 object-cover mb-1 md:mb-3"
                       />
                       <h3 className="text-xs md:text-sm text-gray-700 leading-tight">{item.title}</h3>
                     </div>
@@ -201,7 +234,7 @@ export default function Home() {
       {/* <div className="section-divider"></div> */}
 
       {/* Good Taste - Good Health Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-slate-600 via-slate-700 to-slate-800 overflow-hidden">
         {/* Wave Background */}
         <div className="absolute top-0 left-0 w-full">
           <svg className="w-full h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -233,11 +266,11 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-blue-200">
+      <section className="py-20 bg-slate-100">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-blue-800 mb-2">WHY CHOOSE US</h2>
-            <p className="text-sm text-blue-700">The Leading Premium Beverage Manufacturer and Supplier Vietnam</p>
+            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-slate-700 mb-2">WHY CHOOSE US</h2>
+            <p className="text-sm text-slate-600">The Leading Premium Beverage Manufacturer and Supplier Vietnam</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 max-w-6xl mx-auto">
@@ -250,7 +283,7 @@ export default function Home() {
               { title: "FAST DELIVERY", image: products[5]?.image },
             ].map((feature, index) => (
               <div key={index} className="text-center">
-                <div className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 bg-white rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 shadow-lg border-4 border-blue-100 overflow-hidden group hover:scale-105 transition-transform">
+                <div className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 bg-white rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 shadow-lg border-4 border-slate-100 overflow-hidden group hover:scale-105 transition-transform">
                   <Image
                     src={feature.image}
                     alt={feature.title}
@@ -259,7 +292,7 @@ export default function Home() {
                     className="w-4/5 h-4/5 object-cover rounded-full group-hover:scale-110 transition-transform"
                   />
                 </div>
-                <h3 className="text-sm md:text-base font-bold text-blue-800 uppercase">{feature.title}</h3>
+                <h3 className="text-sm md:text-base font-bold text-slate-700 uppercase">{feature.title}</h3>
               </div>
             ))}
           </div>
@@ -269,36 +302,24 @@ export default function Home() {
       {/* Certifications Section */}
       <section className="py-8 bg-white border-none">
         <div className="container-wide">
-          <div className="text-center mb-12">
-            <div className="flex justify-center mb-6">
-              <Image
-                src={logo}
-                alt="Dwink Logo"
-                width={200}
-                height={100}
-                className="h-20 w-auto"
-              />
-            </div>
-            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-red-600 mb-4">CERTIFICATIONS</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              We maintain the highest standards of quality and safety through internationally recognized certifications.
-            </p>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-teal-600 mb-4">CERTIFICATIONS</h2>
           </div>
 
           {/* Certification Logos */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
+          <div className="flex justify-center gap-8 md:gap-12">
             {[
               { name: "ISO 22000", image: certificates.iso },
               { name: "INTERNATIONAL HALAL", image: certificates.halal },
               { name: "SINDH FOOD AUTHORITY", image: certificates.sindh }
             ].map((cert, index) => (
-              <div key={index} className="bg-white rounded-lg p-2 md:p-4 text-center shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center min-w-0">
-                <div className="h-8 w-8 md:h-12 md:w-12 mb-1 md:mb-2 flex items-center justify-center">
+              <div key={index} className="text-center">
+                <div className="w-16 h-16 md:w-20 md:h-20 mb-2 flex items-center justify-center mx-auto">
                   <Image
                     src={cert.image}
                     alt={cert.name}
-                    width={48}
-                    height={48}
+                    width={80}
+                    height={80}
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -306,94 +327,13 @@ export default function Home() {
               </div>
             ))}
           </div>
-
-          {/* Certificate Images */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { title: 'ISO 22000 Certificate', image: certificates.iso },
-              { title: 'International Halal Certificate', image: certificates.halal },
-              { title: 'Sindh Food Authority Certificate', image: certificates.sindh }
-            ].map((doc, i) => (
-              <div key={i} className="card overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="h-56 w-full overflow-hidden bg-white flex items-center justify-center p-4">
-                  <Image
-                    src={doc.image}
-                    alt={doc.title}
-                    width={300}
-                    height={400}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <div className="p-4 flex items-center justify-between bg-white">
-                  <div className="font-semibold text-gray-900 font-body text-sm">{doc.title}</div>
-                  <button className="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded transition-colors">View</button>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Company Strengths Section */}
-      <section className="py-8 bg-white border-none">
-        <div className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Excellent Products */}
-            <div className="text-center">
-              <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">EXCELLENT PRODUCTS</div>
-              <div className="bg-white rounded-lg h-48 flex items-center justify-center mb-6 p-6 shadow-lg">
-                <Image
-                  src={products[9]?.image || products[0].image}
-                  alt="Excellent Products"
-                  width={200}
-                  height={200}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <p className="text-gray-600">
-                Our commitment to excellence ensures every product meets the highest standards of quality, taste, and nutrition.
-              </p>
-            </div>
 
-            {/* Raw Materials Supply */}
-            <div className="text-center">
-              <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">OUR RAW MATERIALS</div>
-              <div className="bg-white rounded-lg h-48 flex items-center justify-center mb-6 p-6 shadow-lg">
-                <Image
-                  src={products[15]?.image || products[0].image}
-                  alt="Raw Materials"
-                  width={200}
-                  height={200}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <p className="text-gray-600">
-                We source the finest raw materials from trusted suppliers to ensure the best quality ingredients in every product.
-              </p>
-            </div>
-
-            {/* Partner and Distribution */}
-            <div className="text-center">
-              <div className="text-xl md:text-2xl lg:text-4xl font-bold text-red-600 mb-6">DISTRIBUTION</div>
-              <div className="bg-white rounded-lg h-48 flex items-center justify-center mb-6 p-6 shadow-lg">
-                <Image
-                  src={products[20]?.image || products[0].image}
-                  alt="Distribution"
-                  width={200}
-                  height={200}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <p className="text-gray-600">
-                Our extensive distribution network ensures your products reach customers worldwide efficiently and reliably.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
-      <footer className="bg-red-600 text-white py-8">
+      <footer className="bg-slate-100 text-gray-800 py-8">
         <div className="container-wide text-center">
           <div className="flex flex-col items-center mb-4">
             <Image
@@ -409,63 +349,34 @@ export default function Home() {
           <div className="text-sm mb-4">
             <p className="mb-2">Add: No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam.</p>
             <div className="flex justify-center space-x-6 mb-2">
-              <span>Office: (84)274 3784 688</span>
-              <span>Sales: (84)274 3784 788</span>
-              <span>Fax: (84)274 3784 799</span>
-              <span>Tax Code: 3700574950</span>
-            </div>
-            <div className="flex justify-center space-x-6">
-              <span>Email: marketing@dwink.com.vn</span>
+              <span>Email: info@dwink.pk</span>
               <span>Website: https://dwink.com.vn</span>
             </div>
-          </div>
-
-          {/* Social Media Icons */}
-          <div className="flex justify-center space-x-3 mb-6">
-            <a href="#" className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">f</span>
-            </a>
-            <a href="#" className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">in</span>
-            </a>
-            <a href="#" className="w-8 h-8 bg-black rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">X</span>
-            </a>
-            <a href="#" className="w-8 h-8 bg-red-500 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">P</span>
-            </a>
-            <a href="#" className="w-8 h-8 bg-red-500 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">YT</span>
-            </a>
-            <a href="#" className="w-8 h-8 bg-pink-500 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">TT</span>
-            </a>
-          </div>
-
-          {/* QR Codes */}
-          <div className="flex justify-center space-x-4 mb-6">
-            <div className="w-16 h-16 bg-white rounded flex items-center justify-center">
-              <div className="text-black text-xs text-center font-bold">QR</div>
-            </div>
-            <div className="w-16 h-16 bg-white rounded flex items-center justify-center">
-              <div className="text-black text-xs text-center font-bold">QR</div>
+            <div className="flex justify-center">
+              <span>PO Box: 13002</span>
             </div>
           </div>
 
-          <div className="border-t border-red-500 pt-4 text-xs">
+          <div className="border-t border-slate-300 pt-4 text-xs">
             <p className="mb-2">DWINK Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by DWINK Beverage Company</p>
             <div className="flex justify-center space-x-4">
-              <a href="#" className="hover:text-red-200">About us</a>
+              <a href="#" className="hover:text-teal-600">About us</a>
               <span>|</span>
-              <a href="#" className="hover:text-red-200">Contact us</a>
+              <a href="#" className="hover:text-teal-600">Contact us</a>
               <span>|</span>
-              <a href="#" className="hover:text-red-200">Privacy Policy</a>
+              <a href="#" className="hover:text-teal-600">Privacy Policy</a>
               <span>|</span>
-              <a href="#" className="hover:text-red-200">Terms of Service Us</a>
+              <a href="#" className="hover:text-teal-600">Terms of Service Us</a>
             </div>
           </div>
         </div>
       </footer>
+
+      {/* Contact Popup */}
+      <ContactPopup 
+        isOpen={showPopup} 
+        onClose={() => setShowPopup(false)} 
+      />
     </div>
   );
 }

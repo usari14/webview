@@ -1,18 +1,23 @@
 'use client';
 
-import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 import Navigation from "../../components/Navigation";
+import { logo } from "../assets/products";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    company: '',
+    subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -20,140 +25,99 @@ export default function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    
+    try {
+      // Email integration - you can replace this with your preferred email service
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-white">
       <Navigation currentPage="Contact Us" />
 
-      {/* Breadcrumb */}
-      <div className="bg-gray-50 py-4">
-        <div className="container-wide">
-          <nav className="text-sm">
-            <Link href="/" className="text-gray-500 hover:text-red-600 transition-colors">Home</Link>
-            <span className="mx-2 text-gray-400">/</span>
-            <span className="text-gray-900">Contact Us</span>
-          </nav>
-        </div>
-      </div>
-
-      {/* Map Section */}
-      <section className="py-16 bg-white">
-        <div className="container-wide">
-          <div className="text-center mb-12 animate-fadeInUp">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Find Us on Map</h1>
-            <p className="text-xl text-gray-600">Visit our headquarters in Vietnam</p>
-          </div>
-          
-          {/* Map Container */}
-          <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden shadow-lg animate-scaleIn">
-            <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-800">Rita Food and Drink Co., Ltd</h3>
-                <p className="text-sm text-gray-600">Ho Chi Minh City, Vietnam</p>
-              </div>
-            </div>
-            
-            {/* Map Overlay Info */}
-            <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-xs animate-fadeInLeft">
-              <h4 className="font-semibold text-gray-900 mb-2">Rita Food and Drink Co., Ltd</h4>
-              <div className="flex items-center mb-2">
-                <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <span className="text-sm text-gray-600 ml-2">4.0 (52 reviews)</span>
-              </div>
-              <a href="#" className="text-blue-600 text-sm hover:underline">View larger map</a>
-            </div>
-          </div>
-
-          {/* Map Controls */}
-          <div className="flex justify-center space-x-4 mt-8">
-            <button className="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm hover:bg-gray-50 transition-colors hover-lift">
-              Zoom In
-            </button>
-            <button className="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm hover:bg-gray-50 transition-colors hover-lift">
-              Street View
-            </button>
-          </div>
+      {/* Hero Section */}
+      <section className="relative h-[40vh] w-full overflow-hidden bg-gradient-to-br from-slate-500 via-teal-500 to-slate-600 flex items-center justify-center">
+        <div className="text-center text-white z-10">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ fontFamily: 'cursive' }}>Contact Us</h1>
+          <p className="text-lg md:text-xl lg:text-2xl mb-4">Get in Touch</p>
+          <p className="text-base md:text-lg opacity-90 max-w-2xl mx-auto">
+            We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+          </p>
         </div>
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container-wide">
-          <div className="text-center mb-12 animate-fadeInUp">
-            <h2 className="text-4xl font-bold text-gray-900 mb-2">CONTACT US</h2>
-            <p className="text-gray-600 text-lg">- Keep up to date with us -</p>
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-teal-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Send Us a Message</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Have questions about our products or services? We're here to help you find the perfect beverage solutions.
+            </p>
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Company Information */}
-            <div className="space-y-6 animate-fadeInLeft">
-              <div className="flex items-center space-x-3">
-                <div className="text-3xl font-bold text-red-600" style={{ fontFamily: 'cursive' }}>
-                  Rita
-                </div>
-                <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
+          
+          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+            {submitStatus === 'success' && (
+              <div className="mb-8 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Thank you! Your message has been sent successfully. We'll get back to you soon.
                 </div>
               </div>
+            )}
 
-              <div className="space-y-4 text-sm">
-                <h3 className="font-bold text-gray-900 uppercase">RITA FOOD AND DRINK CO.,LTD</h3>
-                
-                <div>
-                  <p className="font-medium text-gray-700">Address:</p>
-                  <p className="text-gray-600">No. 08, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam</p>
-                </div>
-
-                <div>
-                  <p className="font-medium text-gray-700">Phone:</p>
-                  <p className="text-gray-600">(+84) 274 3784 688 (Office)</p>
-                  <p className="text-gray-600">(+84) 274 3784 788 (Sales)</p>
-                </div>
-
-                <div>
-                  <p className="font-medium text-gray-700">Email:</p>
-                  <p className="text-gray-600">marketing@rita.com.vn</p>
-                </div>
-
-                <div>
-                  <p className="font-medium text-gray-700">Fax:</p>
-                  <p className="text-gray-600">(+84) 274 3784 788</p>
-                </div>
-
-                <div>
-                  <p className="font-medium text-gray-700">Website:</p>
-                  <p className="text-gray-600">www.rita.com.vn</p>
+            {submitStatus === 'error' && (
+              <div className="mb-8 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  Sorry, there was an error sending your message. Please try again.
                 </div>
               </div>
-            </div>
+            )}
 
-            {/* Contact Form */}
-            <div className="animate-fadeInRight">
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Name <span className="text-red-500">*</span>
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="block text-sm font-semibold text-gray-800 mb-3">
+                    <span className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      Full Name *
+                    </span>
                   </label>
                   <input
                     type="text"
@@ -162,14 +126,18 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-300"
-                    placeholder="Your Name"
+                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-100 focus:border-teal-500 transition-all duration-300 text-lg text-gray-900 placeholder-gray-500"
+                    placeholder="Enter your full name"
                   />
                 </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email <span className="text-red-500">*</span>
+                <div className="space-y-2">
+                  <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-3">
+                    <span className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      Email Address *
+                    </span>
                   </label>
                   <input
                     type="email"
@@ -178,14 +146,21 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-300"
+                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-100 focus:border-teal-500 transition-all duration-300 text-lg text-gray-900 placeholder-gray-500"
                     placeholder="your@email.com"
                   />
                 </div>
-
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                    Phone
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-2">
+                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-800 mb-3">
+                    <span className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      Phone Number
+                    </span>
                   </label>
                   <input
                     type="tel"
@@ -193,104 +168,189 @@ export default function ContactPage() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-300"
-                    placeholder="Your Phone Number"
+                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-100 focus:border-teal-500 transition-all duration-300 text-lg text-gray-900 placeholder-gray-500"
+                    placeholder="+1 (555) 123-4567"
                   />
                 </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                    Message <span className="text-red-500">*</span>
+                <div className="space-y-2">
+                  <label htmlFor="company" className="block text-sm font-semibold text-gray-800 mb-3">
+                    <span className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                      Company Name
+                    </span>
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
                     onChange={handleInputChange}
-                    required
-                    rows={6}
-                    maxLength={1000}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-300 resize-none"
-                    placeholder="Your message here..."
+                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-100 focus:border-teal-500 transition-all duration-300 text-lg text-gray-900 placeholder-gray-500"
+                    placeholder="Your company name"
                   />
-                  <p className="text-sm text-gray-500 mt-1">
-                    {1000 - formData.message.length} characters left
-                  </p>
                 </div>
-
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="subject" className="block text-sm font-semibold text-gray-800 mb-3">
+                  <span className="flex items-center">
+                    <svg className="w-5 h-5 mr-2 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                    </svg>
+                    Subject *
+                  </span>
+                </label>
+                <select
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-100 focus:border-teal-500 transition-all duration-300 text-lg text-gray-900"
+                >
+                  <option value="">Select inquiry type</option>
+                  <option value="product-inquiry">Product Inquiry</option>
+                  <option value="bulk-order">Bulk Order</option>
+                  <option value="oem-services">OEM Services</option>
+                  <option value="partnership">Partnership Opportunity</option>
+                  <option value="technical-support">Technical Support</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-800 mb-3">
+                  <span className="flex items-center">
+                    <svg className="w-5 h-5 mr-2 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    Message *
+                  </span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={6}
+                  required
+                  className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-100 focus:border-teal-500 transition-all duration-300 text-lg resize-none text-gray-900 placeholder-gray-500"
+                  placeholder="Please provide details about your inquiry, including quantity requirements, specifications, or any specific questions you may have..."
+                ></textarea>
+              </div>
+              
+              <div className="flex items-center space-x-3 mb-6">
+                <input
+                  type="checkbox"
+                  id="privacy"
+                  name="privacy"
+                  required
+                  className="w-5 h-5 text-teal-600 border-2 border-gray-300 rounded focus:ring-teal-500"
+                />
+                <label htmlFor="privacy" className="text-sm text-gray-600">
+                  I agree to the <a href="#" className="text-teal-600 hover:text-teal-700 font-medium">Privacy Policy</a> and consent to being contacted regarding my inquiry.
+                </label>
+              </div>
+              
+              <div className="text-center">
                 <button
                   type="submit"
-                  className="w-full btn-primary text-lg py-4"
+                  disabled={isSubmitting}
+                  className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-12 py-5 rounded-xl font-bold text-lg hover:from-teal-700 hover:to-teal-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto space-x-3 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  SEND EMAIL
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin w-6 h-6" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      <span>SENDING...</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                      </svg>
+                      <span>SEND MESSAGE</span>
+                    </>
+                  )}
                 </button>
-              </form>
+                <p className="text-sm text-gray-500 mt-4">
+                  We typically respond within 24 hours during business days
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="py-20 bg-white">
+        <div className="container-wide">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Find Us</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Visit our facilities in Ho Chi Minh City, Vietnam
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-br from-slate-100 to-teal-100 rounded-2xl p-8 text-center">
+            <div className="aspect-video bg-gradient-to-br from-teal-200 to-slate-200 rounded-xl flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">Dwink Food & Drink Co., Ltd</h4>
+                <p className="text-gray-600">Ho Chi Minh City, Vietnam</p>
+                <button className="mt-4 bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors">
+                  View on Google Maps
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-red-600 text-white py-12">
-        <div className="container-wide">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Company Information */}
-            <div className="md:col-span-2">
-              <h3 className="text-2xl font-bold mb-4">RITA FOOD AND DRINK CO.,LTD</h3>
-              <div className="space-y-2 text-sm">
-                <p>Add: No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam.</p>
-                <p>Office:(84)274 3784 688 Sales: (84)274 3784 788 Fax: (84)274 3784 799 Tax Code: 3700574950</p>
-                <p>Email: marketing@rita.com.vn Website: https://rita.com.vn</p>
-              </div>
+      <footer className="bg-slate-300 text-gray-800 py-8">
+        <div className="container-wide text-center">
+          <div className="flex flex-col items-center mb-4">
+            <Image
+              src={logo}
+              alt="Dwink Logo"
+              width={150}
+              height={75}
+              className="h-16 w-auto mb-2"
+            />
+            <h3 className="text-xl font-bold">DWINK FOOD AND DRINK CO.,LTD</h3>
+          </div>
+          
+          <div className="text-sm mb-4">
+            <p className="mb-2">Add: No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam.</p>
+            <div className="flex justify-center space-x-6 mb-2">
+              <span>Email: info@dwink.pk</span>
+              <span>Website: https://dwink.com.vn</span>
             </div>
-
-            {/* Social Media & QR Code */}
-            <div className="flex flex-col items-end">
-              <div className="flex space-x-4 mb-6">
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
-                  <span className="text-red-600 text-xs font-bold">f</span>
-                </div>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
-                  <span className="text-red-600 text-xs font-bold">in</span>
-                </div>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
-                  <span className="text-red-600 text-xs font-bold">X</span>
-                </div>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
-                  <span className="text-red-600 text-xs font-bold">P</span>
-                </div>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
-                  <svg className="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                  </svg>
-                </div>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
-                  <span className="text-red-600 text-xs font-bold">♫</span>
-                </div>
-              </div>
-              
-              <div className="w-20 h-20 bg-white rounded-lg flex items-center justify-center mb-4">
-                <div className="text-red-600 text-xs text-center">QR<br/>CODE</div>
-              </div>
-
-              <div className="bg-white rounded p-2">
-                <div className="text-red-600 text-xs font-bold">Alibaba.com</div>
-              </div>
+            <div className="flex justify-center">
+              <span>PO Box: 13002</span>
             </div>
           </div>
 
-          <div className="border-t border-red-500 mt-8 pt-8">
-            <div className="text-center text-sm mb-4">
-              <p>RITA Food & Drink Co., Ltd. 2004 - 2023. All Rights Reserved Development by RITA Beverage Company</p>
-            </div>
-            <div className="flex justify-center space-x-4 text-sm">
-              <a href="#" className="hover:text-red-200 transition-colors">About us</a>
-              <span className="text-red-400">|</span>
-              <a href="#" className="hover:text-red-200 transition-colors">Contact us</a>
-              <span className="text-red-400">|</span>
-              <a href="#" className="hover:text-red-200 transition-colors">Privacy Policy</a>
-              <span className="text-red-400">|</span>
-              <a href="#" className="hover:text-red-200 transition-colors">Terms of Service Us</a>
+          <div className="border-t border-slate-300 pt-4 text-xs">
+            <p className="mb-2">DWINK Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by DWINK Beverage Company</p>
+            <div className="flex justify-center space-x-4">
+              <a href="#" className="hover:text-teal-600">About us</a>
+              <span>|</span>
+              <a href="#" className="hover:text-teal-600">Contact us</a>
+              <span>|</span>
+              <a href="#" className="hover:text-teal-600">Privacy Policy</a>
+              <span>|</span>
+              <a href="#" className="hover:text-teal-600">Terms of Service Us</a>
             </div>
           </div>
         </div>
