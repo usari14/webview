@@ -36,7 +36,7 @@ export default function AboutPage() {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">Our Story</h2>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
                 <p>
-                  Dwink is the beverage division of a family legacy that has shaped Pakistan's food industry for decades. Founded by the same visionary family behind Freshmate, Pakistan's first ready-to-eat meal brand, we carry forward over 50 years of business experience across textiles, pharmaceuticals, poultry, and fruit farming — industries that taught us precision, quality, and consistency.
+                  Dwink is the beverage division of a family legacy that has shaped Pakistan&apos;s food industry for decades. Founded by the same visionary family behind Freshmate, Pakistan&apos;s first ready-to-eat meal brand, we carry forward over 50 years of business experience across textiles, pharmaceuticals, poultry, and fruit farming — industries that taught us precision, quality, and consistency.
                 </p>
                 <p>
                   Building on the trust and success of Freshmate, we ventured into the beverage sector five years ago, determined to bring the same innovation and commitment to quality into a new category. Thus, Dwink was born — a line of premium, refreshing, and innovative beverages designed for modern consumers who value both taste and health.
@@ -116,7 +116,7 @@ export default function AboutPage() {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">Dwink Today</h2>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
                 <p>
-                  From Basil Seed Juices to Nata de Coco blends, every Dwink bottle reflects our promise of uncompromising quality, hygienic production, and authentic flavor. Today, Dwink stands as one of Pakistan's leading beverage brands, continually expanding its range to serve a wider audience across local and international markets.
+                  From Basil Seed Juices to Nata de Coco blends, every Dwink bottle reflects our promise of uncompromising quality, hygienic production, and authentic flavor. Today, Dwink stands as one of Pakistan&apos;s leading beverage brands, continually expanding its range to serve a wider audience across local and international markets.
                 </p>
               </div>
               

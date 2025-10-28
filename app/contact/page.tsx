@@ -52,7 +52,7 @@ export default function ContactPage() {
       } else {
         setSubmitStatus('error');
       }
-    } catch (error) {
+    } catch {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
     } finally {
@@ -70,7 +70,7 @@ export default function ContactPage() {
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ fontFamily: 'cursive' }}>Contact Us</h1>
           <p className="text-lg md:text-xl lg:text-2xl mb-4">Get in Touch</p>
           <p className="text-base md:text-lg opacity-90 max-w-2xl mx-auto">
-            We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
           </p>
         </div>
       </section>
@@ -81,7 +81,7 @@ export default function ContactPage() {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Send Us a Message</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Have questions about our products or services? We're here to help you find the perfect beverage solutions.
+              Have questions about our products or services? We&apos;re here to help you find the perfect beverage solutions.
             </p>
           </div>
           
@@ -92,7 +92,7 @@ export default function ContactPage() {
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  Thank you! Your message has been sent successfully. We'll get back to you soon.
+                  Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
                 </div>
               </div>
             )}

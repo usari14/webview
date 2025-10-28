@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { X, Mail, Phone, Building2, Send, CheckCircle } from 'lucide-react';
 
 interface ContactPopupProps {
@@ -41,7 +41,7 @@ export default function ContactPopup({ isOpen, onClose }: ContactPopupProps) {
       } else {
         setSubmitStatus('error');
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -70,7 +70,7 @@ export default function ContactPopup({ isOpen, onClose }: ContactPopupProps) {
             <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
               <Mail className="w-8 h-8 text-white" />
             </div>
-            <h2 className="text-3xl font-bold mb-2">Let's Connect</h2>
+            <h2 className="text-3xl font-bold mb-2">Let&apos;s Connect</h2>
             <p className="text-teal-100 text-lg">Ready to discuss your beverage needs?</p>
           </div>
         </div>
@@ -83,7 +83,7 @@ export default function ContactPopup({ isOpen, onClose }: ContactPopupProps) {
                 <CheckCircle className="w-10 h-10 text-green-600" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">Message Sent Successfully!</h3>
-              <p className="text-gray-600 text-lg">We'll get back to you within 24 hours.</p>
+              <p className="text-gray-600 text-lg">We&apos;ll get back to you within 24 hours.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navigation from "../../../components/Navigation";
-import { products, getProductById, certificates, logo } from "../../../app/assets/products";
+import { products, getProductById, logo } from "../../../app/assets/products";
 
 export async function generateStaticParams() {
   const { products } = await import('../../../app/assets/products');

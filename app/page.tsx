@@ -150,7 +150,7 @@ export default function Home() {
 
           {/* Product Grid */}
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 lg:gap-6 mb-10">
-            {getProductsByCategory(activeFilter).slice(0, 15).map((product, index) => (
+            {getProductsByCategory(activeFilter).slice(0, 15).map((product) => (
               <Link key={product.id} href={`/products/${product.id}`} className="block">
                 <div className="bg-white border rounded-lg pb-2 md:pb-4 hover:shadow-lg transition-shadow text-center">
                   <Image
