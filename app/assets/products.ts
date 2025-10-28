@@ -80,12 +80,7 @@ export const products: Product[] = [
   { id: '26', name: 'Mr. Coco Red Grapes', category: 'Nata de Coco', image: mrCocoRedGrapes, description: 'Delicious Mr. Coco with red grapes taste' },
   { id: '27', name: 'Nata de Coco Original', category: 'Nata de Coco', image: nataDeCoco1, description: 'Original nata de coco with classic taste' },
 
-  // Falooda Products (using some Nata de Coco images for now)
-  { id: '28', name: 'Falooda Mango', category: 'Falooda', image: cocoMango, description: 'Rich and creamy mango falooda with traditional taste' },
-  { id: '29', name: 'Falooda Strawberry', category: 'Falooda', image: cocoStrawberry, description: 'Sweet strawberry falooda with authentic flavor' },
-  { id: '30', name: 'Falooda Lychee', category: 'Falooda', image: cocoLychee, description: 'Exotic lychee falooda with premium ingredients' },
-  { id: '31', name: 'Falooda Fruit Punch', category: 'Falooda', image: cocoFruitPunch, description: 'Mixed fruit falooda with tropical taste' },
-  { id: '32', name: 'Falooda Blueberry', category: 'Falooda', image: cocoBlueberry, description: 'Antioxidant-rich blueberry falooda' },
+  // Falooda Products - Coming Soon
 ];
 
 export const certificates = {

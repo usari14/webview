@@ -11,7 +11,7 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const filters = [
-    "Falooda", "Seed Drink", "Nata de Coco", "Show All"
+    "Seed Drink", "Nata de Coco", "Falooda", "Show All"
   ];
 
   const carouselItems = products.slice(0, 12).map(product => ({
