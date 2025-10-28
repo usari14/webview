@@ -52,7 +52,7 @@ export default function ContactPage() {
       } else {
         setSubmitStatus('error');
       }
-    } catch {
+    } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
     } finally {
