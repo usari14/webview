@@ -5,37 +5,11 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
 import ContactPopup from "../components/ContactPopup";
-import { products, getProductsByCategory, certificates, logo } from "./assets/products";
+import { products, certificates, logo } from "./assets/products";
 
 export default function Home() {
-  const [activeFilter, setActiveFilter] = useState("Show All");
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
   const [hasShownPopup, setHasShownPopup] = useState(false);
-
-  const filters = [
-    "Basil Seed", "Nata de Coco", "Falooda", "Show All"
-  ];
-
-  const carouselItems = products.slice(0, 12).map(product => ({
-    title: `Dwink ${product.name}`,
-    image: product.image
-  }));
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % carouselItems.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
-  };
-  // Carousel auto-slide
-  React.useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % carouselItems.length);
-    }, 4000);
-    return () => clearInterval(intervalId);
-  }, [carouselItems.length]);
 
   // Scroll detection for popup
   useEffect(() => {

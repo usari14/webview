@@ -149,7 +149,7 @@ export default function AboutPage() {
             {[
               { 
                 name: "Basil Seed Drinks", 
-                image: products.find(p => p.category === 'Seed Drink')?.image,
+                image: products.find(p => p.category === 'Basil Seed')?.image,
                 description: "Refreshing and nutritious basil seed beverages with natural flavors"
               },
               { 

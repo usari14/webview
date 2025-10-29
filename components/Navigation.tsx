@@ -10,7 +10,7 @@ interface NavigationProps {
   currentPage?: string;
 }
 
-export default function Navigation({ currentPage = "Home" }: NavigationProps) {
+export default function Navigation({ }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
