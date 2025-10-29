@@ -10,8 +10,8 @@ export default function AboutPage() {
       <Navigation currentPage="About Us" />
 
       {/* Hero Section */}
-      <section className="relative h-[40vh] w-full overflow-hidden bg-gradient-to-br from-slate-500 via-teal-500 to-slate-600 flex items-center justify-center">
-        <div className="text-center text-white z-10">
+      <section className="relative h-[40vh] w-full overflow-hidden flex items-center justify-center" style={{background: 'linear-gradient(135deg, #C2eaba 0%, #b8e5a8 50%, #C2eaba 100%)'}}>
+        <div className="text-center text-gray-800 z-10">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ fontFamily: 'cursive' }}>About Dwink</h1>
           <p className="text-lg md:text-xl lg:text-2xl mb-4">A Legacy of Excellence</p>
           <p className="text-base md:text-lg opacity-90 max-w-2xl mx-auto">
@@ -54,7 +54,7 @@ export default function AboutPage() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-xl">
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-xl">
                 <div className="text-white text-center">
                   <div className="text-3xl font-bold">50+</div>
                   <div className="text-sm">Years Legacy</div>
@@ -122,11 +122,11 @@ export default function AboutPage() {
               
               <div className="grid grid-cols-2 gap-6 mt-10">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-teal-600 mb-2">5+</div>
+                  <div className="text-4xl font-bold text-green-600 mb-2">5+</div>
                   <div className="text-gray-600">Years in Beverages</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-teal-600 mb-2">#1</div>
+                  <div className="text-4xl font-bold text-green-600 mb-2">#1</div>
                   <div className="text-gray-600">Leading Brand</div>
                 </div>
               </div>
@@ -198,8 +198,7 @@ export default function AboutPage() {
           <div className="flex justify-center gap-12 md:gap-16">
             {[
               { name: "ISO 22000", image: certificates.iso },
-              { name: "INTERNATIONAL HALAL", image: certificates.halal },
-              { name: "SINDH FOOD AUTHORITY", image: certificates.sindh }
+              { name: "INTERNATIONAL HALAL", image: certificates.halal }
             ].map((cert, index) => (
               <div key={index} className="text-center">
                 <div className="w-24 h-24 md:w-32 md:h-32 mb-4 flex items-center justify-center mx-auto bg-white rounded-2xl shadow-lg">
@@ -229,14 +228,12 @@ export default function AboutPage() {
               height={75}
               className="h-16 w-auto mb-2"
             />
-            <h3 className="text-xl font-bold">DWINK FOOD AND DRINK CO.,LTD</h3>
+            <h3 className="text-xl font-bold">Dwink</h3>
           </div>
           
           <div className="text-sm mb-4">
-            <p className="mb-2">Add: No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam.</p>
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
-              <span>Website: https://dwink.com.vn</span>
             </div>
             <div className="flex justify-center">
               <span>PO Box: 13002</span>
@@ -244,15 +241,15 @@ export default function AboutPage() {
           </div>
 
           <div className="border-t border-slate-300 pt-4 text-xs">
-            <p className="mb-2">DWINK Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by DWINK Beverage Company</p>
+            <p className="mb-2">Dwink 2004 - 2023. All Rights Reserved Development by Dwink Beverage Company</p>
             <div className="flex justify-center space-x-4">
-              <a href="#" className="hover:text-teal-600">About us</a>
+              <a href="#" className="hover:text-green-600">About us</a>
               <span>|</span>
-              <a href="#" className="hover:text-teal-600">Contact us</a>
+              <a href="#" className="hover:text-green-600">Contact us</a>
               <span>|</span>
-              <a href="#" className="hover:text-teal-600">Privacy Policy</a>
+              <a href="#" className="hover:text-green-600">Privacy Policy</a>
               <span>|</span>
-              <a href="#" className="hover:text-teal-600">Terms of Service Us</a>
+              <a href="#" className="hover:text-green-600">Terms of Service Us</a>
             </div>
           </div>
         </div>
