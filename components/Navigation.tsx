@@ -29,28 +29,6 @@ export default function Navigation({ currentPage = "Home" }: NavigationProps) {
 
   return (
     <header className="bg-white sticky top-0 z-50 shadow-sm">
-      {/* Utility Bar */}
-      <div className="bg-blue-50 border-b border-gray-200">
-        <div className="container-wide">
-          <div className="flex items-center justify-between h-10 text-sm">
-            <div className="text-red-600 font-medium">{currentPage}</div>
-            <div className="flex items-center space-x-4">
-              <a href="#" className="text-gray-700 hover:text-red-600 transition-colors">Exhibition</a>
-              <div className="w-px h-4 bg-gray-300"></div>
-              <a href="#" className="text-gray-700 hover:text-red-600 transition-colors">Video</a>
-              <div className="w-px h-4 bg-gray-300"></div>
-              <div className="relative">
-                <select className="bg-transparent text-gray-700 hover:text-red-600 transition-colors border-none outline-none cursor-pointer">
-                  <option>Choose</option>
-                  <option>English</option>
-                  <option>Vietnamese</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navigation */}
       <div className="bg-white shadow-sm">
         <div className="container-wide">
@@ -62,16 +40,15 @@ export default function Navigation({ currentPage = "Home" }: NavigationProps) {
             </nav>
 
             {/* Center Logo */}
-            <Link href="/" className="flex flex-col items-center">
+            <Link href="/" className="flex items-center">
               <Image
                 src={logo}
                 alt="Dwink Logo"
                 width={180}
                 height={90}
-                className="h-14 md:h-14 w-auto mb-1"
+                className="h-14 md:h-14 w-auto"
                 priority
               />
-              <div className="text-sm text-red-600 font-medium">Good Taste - Good Health</div>
             </Link>
 
             {/* Right Navigation */}
