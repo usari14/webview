@@ -22,7 +22,7 @@ function ProductsContent() {
   }, [searchParams]);
 
   const filters = [
-    "Show All", "Seed Drink", "Nata de Coco", "Falooda"
+    "Show All", "Basil Seed", "Nata de Coco", "Falooda"
   ];
 
   // Filter products based on active filter
@@ -116,7 +116,13 @@ function ProductsContent() {
                     />
                   </div>
                   <div className="p-1 md:p-2 lg:p-4">
-                    <h3 className="text-xs md:text-sm lg:text-base font-semibold text-gray-900 mb-1 md:mb-2 group-hover:text-red-600 transition-colors font-body">{product.name}</h3>
+                    <h3 className="text-xs md:text-sm lg:text-base font-semibold text-gray-900 mb-1 md:mb-2 group-hover:text-red-600 transition-colors font-body">
+                      {product.category === 'Basil Seed' 
+                        ? `${product.name} Flavour` 
+                        : product.category === 'Nata de Coco' 
+                        ? `Nata de Coco ${product.name.replace(/^(Coco |Mr\. Coco )/i, '')} Flavour`
+                        : product.name}
+                    </h3>
                     <p className="text-xs md:text-sm text-gray-600 mb-1 md:mb-2 font-body hidden md:block">{product.category}</p>
                     <p className="text-xs text-gray-500 line-clamp-2 font-body hidden lg:block">{product.description}</p>
                   </div>
@@ -177,10 +183,10 @@ function ProductsContent() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 bg-gradient-to-r from-green-600 to-blue-600">
+      <section className="py-16" style={{background: 'linear-gradient(135deg, #C2eaba 0%, rgba(194, 234, 186, 0.8) 100%)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">Interested in Our Products?</h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-gray-800 mb-6">Interested in Our Products?</h2>
+          <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
             Contact us for samples, pricing, or custom manufacturing solutions. 
             We&apos;re here to help you find the perfect beverage for your needs.
           </p>
@@ -193,7 +199,7 @@ function ProductsContent() {
             </Link>
             <Link 
               href="/contact" 
-              className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors transform hover:scale-105"
+              className="bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors transform hover:scale-105"
             >
               Contact Us
             </Link>
@@ -207,7 +213,7 @@ function ProductsContent() {
 
       {/* Footer */}
       <footer className="bg-slate-100 text-gray-800 py-8">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container-wide text-center">
           <div className="flex flex-col items-center mb-4">
             <Image
               src={logo}
@@ -216,14 +222,12 @@ function ProductsContent() {
               height={75}
               className="h-16 w-auto mb-2"
             />
-            <h3 className="text-xl font-bold">DWINK FOOD AND DRINK CO.,LTD</h3>
+            <h3 className="text-xl font-bold">Dwink</h3>
           </div>
           
           <div className="text-sm mb-4">
-            <p className="mb-2">Add: No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam.</p>
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
-              <span>Website: https://dwink.com.vn</span>
             </div>
             <div className="flex justify-center">
               <span>PO Box: 13002</span>
@@ -231,15 +235,15 @@ function ProductsContent() {
           </div>
 
           <div className="border-t border-slate-300 pt-4 text-xs">
-            <p className="mb-2">DWINK Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by DWINK Beverage Company</p>
+            <p className="mb-2">Dwink 2004 - 2023. All Rights Reserved Development by Dwink Beverage Company</p>
             <div className="flex justify-center space-x-4">
-              <a href="#" className="hover:text-teal-600">About us</a>
+              <a href="#" className="hover:text-green-600">About us</a>
               <span>|</span>
-              <a href="#" className="hover:text-teal-600">Contact us</a>
+              <a href="#" className="hover:text-green-600">Contact us</a>
               <span>|</span>
-              <a href="#" className="hover:text-teal-600">Privacy Policy</a>
+              <a href="#" className="hover:text-green-600">Privacy Policy</a>
               <span>|</span>
-              <a href="#" className="hover:text-teal-600">Terms of Service Us</a>
+              <a href="#" className="hover:text-green-600">Terms of Service Us</a>
             </div>
           </div>
         </div>

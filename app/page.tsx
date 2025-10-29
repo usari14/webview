@@ -14,7 +14,7 @@ export default function Home() {
   const [hasShownPopup, setHasShownPopup] = useState(false);
 
   const filters = [
-    "Seed Drink", "Nata de Coco", "Falooda", "Show All"
+    "Basil Seed", "Nata de Coco", "Falooda", "Show All"
   ];
 
   const carouselItems = products.slice(0, 12).map(product => ({
@@ -58,7 +58,7 @@ export default function Home() {
       <Navigation currentPage="Home" />
 
       {/* Hero Section - Large Banner Image */}
-      <section className="relative h-[80vh] w-full overflow-hidden bg-gradient-to-br from-teal-500 via-cyan-600 to-blue-600 flex items-center justify-center">
+      <section className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center" style={{background: 'linear-gradient(135deg, #C2eaba 0%, #b8e5a8 50%, #C2eaba 100%)'}}>
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="text-center text-white z-10 max-w-6xl mx-auto px-4">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6" style={{ fontFamily: 'cursive' }}>Dwink</h1>
@@ -68,10 +68,10 @@ export default function Home() {
             Discover our premium collection of tropical beverages crafted with the finest ingredients for exceptional taste and health benefits.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/products" className="bg-white text-teal-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            <Link href="/products" className="bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
               Explore Products
             </Link>
-            <Link href="/contact" className="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-teal-600 transition-all duration-300">
+            <Link href="/contact" className="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-green-600 transition-all duration-300">
               Contact Us
             </Link>
           </div>
@@ -81,13 +81,13 @@ export default function Home() {
       {/* Categories Section */}
       <section className="py-8 md:py-16 bg-gray-100">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-teal-600 text-center mb-6 md:mb-12">
+          <h2 className="text-2xl md:text-4xl font-bold text-green-600 text-center mb-6 md:mb-12">
             CATEGORIES
           </h2>
 
           <div className="flex justify-center gap-6 md:gap-12 lg:gap-20">
             {[
-              { name: "SEED DRINK", image: products.find(p => p.category === 'Seed Drink')?.image, gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50", filter: "Seed Drink" },
+              { name: "BASIL SEED", image: products.find(p => p.category === 'Basil Seed')?.image, gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50", filter: "Basil Seed" },
               { name: "NATA DE COCO", image: products.find(p => p.category === 'Nata de Coco')?.image, gradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50", filter: "Nata de Coco" },
               { name: "FALOODA", image: products.find(p => p.category === 'Falooda')?.image, gradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50", filter: "Falooda" },
             ].map((category) => (
@@ -112,129 +112,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Beverage Products Section */}
-      <section className="py-10 bg-white">
-        <div className="container-wide">
-          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-teal-600 text-center mb-4 md:mb-8">
-            BEVERAGE PRODUCTS
-          </h2>
 
 
 
-          {/* Hot Products */}
-          {/* <div className="max-w-4xl mx-auto mb-6">
-            <span className="text-sm font-medium mr-4">Hot products:</span>
-            <div className="inline-flex flex-wrap gap-2 text-sm">
-              {["coconut water with pulp", "popping boba", "bbt bbt", "juice with pulp", "ice coffee", "nata de coco", "protein milk", "prebiotic"].map((item, i) => (
-                <span key={i} className="text-red-600 hover:underline cursor-pointer">{item}</span>
-              ))}
-              <span className="text-red-600 hover:underline cursor-pointer">show all »</span>
-            </div>
-          </div> */}
-
-          {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {filters.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveFilter(category)}
-                className={`px-4 py-2 rounded transition-colors text-sm font-medium ${activeFilter === category
-                    ? 'bg-teal-500 text-white shadow-md'
-                    : 'bg-teal-500 text-white hover:bg-teal-600'
-                  }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          {/* Product Grid */}
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 lg:gap-6 mb-10">
-            {getProductsByCategory(activeFilter).slice(0, 15).map((product) => (
-              <Link key={product.id} href={`/products/${product.id}`} className="block">
-                <div className="bg-white border rounded-lg pb-2 md:pb-4 hover:shadow-lg transition-shadow text-center">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={200}
-                    height={200}
-                    className="w-full h-28 md:h-32 lg:h-48 object-cover mb-1 md:mb-3"
-                  />
-                  <h3 className="text-xs md:text-sm text-gray-700 leading-tight px-1">{product.name}</h3>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* <div className="section-divider fancy"></div> */}
-
-      {/* Carousel Section */}
-      <section className="py-8 md:py-16 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <div className="relative">
-            <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${(currentSlide % carouselItems.length) * (100 / 3)}%)` }}
-              >
-                {[...carouselItems, ...carouselItems].map((item, index) => (
-                  <div key={index} className="w-1/3 md:w-1/4 lg:w-1/6 flex-shrink-0 px-1 md:px-3">
-                    <div className="bg-white border rounded-lg p-2 md:p-4 hover:shadow-lg transition-shadow text-center">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        width={200}
-                        height={200}
-                        className="w-full h-28 md:h-32 lg:h-48 object-cover mb-1 md:mb-3"
-                      />
-                      <h3 className="text-xs md:text-sm text-gray-700 leading-tight">{item.title}</h3>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Carousel Navigation */}
-          <div className="flex justify-center items-center mt-8 space-x-4">
-            <button
-              onClick={prevSlide}
-              className="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:shadow-lg transition-shadow"
-            >
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            <div className="flex space-x-2">
-              {carouselItems.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${index === currentSlide ? 'bg-white' : 'bg-white opacity-50'
-                    }`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={nextSlide}
-              className="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:shadow-lg transition-shadow"
-            >
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </section>
 
       {/* <div className="section-divider"></div> */}
 
       {/* Good Taste - Good Health Section */}
-      <section className="relative bg-gradient-to-br from-slate-600 via-slate-700 to-slate-800 overflow-hidden">
+      <section className="relative overflow-hidden" style={{background: 'linear-gradient(135deg, #C2eaba 0%, rgba(194, 234, 186, 0.8) 50%, rgba(194, 234, 186, 0.6) 100%)'}}>
         {/* Wave Background */}
         <div className="absolute top-0 left-0 w-full">
           <svg className="w-full h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -245,11 +130,11 @@ export default function Home() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-2 md:mb-4 section-heading" style={{ fontFamily: 'cursive' }}>
+          <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-gray-800 mb-2 md:mb-4 section-heading" style={{ fontFamily: 'cursive' }}>
             Dwink
           </h2>
-          <h3 className="text-xl md:text-2xl lg:text-4xl font-bold text-white mb-4 md:mb-6 section-heading">Good Taste - Good Health</h3>
-          <p className="text-xl text-white opacity-90 max-w-2xl mx-auto">
+          <h3 className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-800 mb-4 md:mb-6 section-heading">Good Taste - Good Health</h3>
+          <p className="text-xl text-gray-700 max-w-2xl mx-auto">
             Always make the best tropical juice and drink
           </p>
 
@@ -270,7 +155,6 @@ export default function Home() {
         <div className="container-wide">
           <div className="text-center mb-12">
             <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-slate-700 mb-2">WHY CHOOSE US</h2>
-            <p className="text-sm text-slate-600">The Leading Premium Beverage Manufacturer and Supplier Vietnam</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 max-w-6xl mx-auto">
@@ -303,15 +187,14 @@ export default function Home() {
       <section className="py-8 bg-white border-none">
         <div className="container-wide">
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-teal-600 mb-4">CERTIFICATIONS</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-green-600 mb-4">CERTIFICATIONS</h2>
           </div>
 
           {/* Certification Logos */}
           <div className="flex justify-center gap-8 md:gap-12">
             {[
               { name: "ISO 22000", image: certificates.iso },
-              { name: "INTERNATIONAL HALAL", image: certificates.halal },
-              { name: "SINDH FOOD AUTHORITY", image: certificates.sindh }
+              { name: "INTERNATIONAL HALAL", image: certificates.halal }
             ].map((cert, index) => (
               <div key={index} className="text-center">
                 <div className="w-16 h-16 md:w-20 md:h-20 mb-2 flex items-center justify-center mx-auto">
@@ -343,14 +226,12 @@ export default function Home() {
               height={75}
               className="h-16 w-auto mb-2"
             />
-            <h3 className="text-xl font-bold">DWINK FOOD AND DRINK CO.,LTD</h3>
+            <h3 className="text-xl font-bold">Dwink</h3>
           </div>
           
           <div className="text-sm mb-4">
-            <p className="mb-2">Add: No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam.</p>
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
-              <span>Website: https://dwink.com.vn</span>
             </div>
             <div className="flex justify-center">
               <span>PO Box: 13002</span>
@@ -358,15 +239,15 @@ export default function Home() {
           </div>
 
           <div className="border-t border-slate-300 pt-4 text-xs">
-            <p className="mb-2">DWINK Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by DWINK Beverage Company</p>
+            <p className="mb-2">Dwink 2004 - 2023. All Rights Reserved Development by Dwink Beverage Company</p>
             <div className="flex justify-center space-x-4">
-              <a href="#" className="hover:text-teal-600">About us</a>
+              <a href="#" className="hover:text-green-600">About us</a>
               <span>|</span>
-              <a href="#" className="hover:text-teal-600">Contact us</a>
+              <a href="#" className="hover:text-green-600">Contact us</a>
               <span>|</span>
-              <a href="#" className="hover:text-teal-600">Privacy Policy</a>
+              <a href="#" className="hover:text-green-600">Privacy Policy</a>
               <span>|</span>
-              <a href="#" className="hover:text-teal-600">Terms of Service Us</a>
+              <a href="#" className="hover:text-green-600">Terms of Service Us</a>
             </div>
           </div>
         </div>

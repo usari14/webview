@@ -43,42 +43,44 @@ import sindhCert from './certificates/sindh food authority.png';
 export interface Product {
   id: string;
   name: string;
-  category: 'Seed Drink' | 'Nata de Coco' | 'Falooda';
+  category: 'Basil Seed' | 'Nata de Coco' | 'Falooda';
   image: string | StaticImageData;
   description: string;
+  brand?: string;
 }
 
 export const products: Product[] = [
-  // Basil Seed Products (Seed Drink)
-  { id: '1', name: 'Basil Seed Apple', category: 'Seed Drink', image: basilSeedApple, description: 'Refreshing basil seed drink with crisp apple flavor' },
-  { id: '2', name: 'Basil Seed Lychee', category: 'Seed Drink', image: basilSeedLychee, description: 'Exotic basil seed drink with sweet lychee taste' },
-  { id: '3', name: 'Basil Seed Mango', category: 'Seed Drink', image: basilSeedMango, description: 'Tropical basil seed drink with rich mango flavor' },
-  { id: '4', name: 'Basil Seed Mixed Fruit', category: 'Seed Drink', image: basilSeedMixedFruit, description: 'Delicious basil seed drink with mixed fruit blend' },
-  { id: '5', name: 'Basil Seed Orange', category: 'Seed Drink', image: basilSeedOrange, description: 'Citrusy basil seed drink with fresh orange taste' },
-  { id: '6', name: 'Basil Seed Peach', category: 'Seed Drink', image: basilSeedPeach, description: 'Sweet basil seed drink with juicy peach flavor' },
-  { id: '7', name: 'Basil Seed Pineapple', category: 'Seed Drink', image: basilSeedPineApple, description: 'Tropical basil seed drink with tangy pineapple taste' },
-  { id: '8', name: 'Basil Seed Sharbat', category: 'Seed Drink', image: basilSeedSharbat, description: 'Traditional basil seed sharbat with authentic flavor' },
-  { id: '9', name: 'Basil Seed Strawberry', category: 'Seed Drink', image: basilSeedStrawberry, description: 'Sweet basil seed drink with fresh strawberry taste' },
-  { id: '10', name: 'Basil Seed Pine Guava', category: 'Seed Drink', image: basilSeedPineGuava, description: 'Unique basil seed drink with pine guava flavor' },
-  { id: '11', name: 'Basil Seed Pomegranate', category: 'Seed Drink', image: basilSeedPomegranate, description: 'Antioxidant-rich basil seed drink with pomegranate' },
+  // Basil Seed Products
+  { id: '1', name: 'Basil Seed Apple', category: 'Basil Seed', image: basilSeedApple, description: 'Refreshing basil seed drink with crisp apple flavor' },
+  { id: '2', name: 'Basil Seed Lychee', category: 'Basil Seed', image: basilSeedLychee, description: 'Exotic basil seed drink with sweet lychee taste' },
+  { id: '3', name: 'Basil Seed Mango', category: 'Basil Seed', image: basilSeedMango, description: 'Tropical basil seed drink with rich mango flavor' },
+  { id: '4', name: 'Basil Seed Mixed Fruit', category: 'Basil Seed', image: basilSeedMixedFruit, description: 'Delicious basil seed drink with mixed fruit blend' },
+  { id: '5', name: 'Basil Seed Orange', category: 'Basil Seed', image: basilSeedOrange, description: 'Citrusy basil seed drink with fresh orange taste' },
+  { id: '6', name: 'Basil Seed Peach', category: 'Basil Seed', image: basilSeedPeach, description: 'Sweet basil seed drink with juicy peach flavor' },
+  { id: '7', name: 'Basil Seed Pineapple', category: 'Basil Seed', image: basilSeedPineApple, description: 'Tropical basil seed drink with tangy pineapple taste' },
+  { id: '8', name: 'Basil Seed Sharbat', category: 'Basil Seed', image: basilSeedSharbat, description: 'Traditional basil seed sharbat with authentic flavor' },
+  { id: '9', name: 'Basil Seed Strawberry', category: 'Basil Seed', image: basilSeedStrawberry, description: 'Sweet basil seed drink with fresh strawberry taste' },
+  { id: '10', name: 'Basil Seed Pine Guava', category: 'Basil Seed', image: basilSeedPineGuava, description: 'Unique basil seed drink with pine guava flavor' },
+  { id: '11', name: 'Basil Seed Pomegranate', category: 'Basil Seed', image: basilSeedPomegranate, description: 'Antioxidant-rich basil seed drink with pomegranate' },
 
   // Nata de Coco Products
-  { id: '12', name: 'Coco Mango Special', category: 'Nata de Coco', image: cocoMango2, description: 'Premium nata de coco with rich mango flavor' },
-  { id: '13', name: 'Coco Mango', category: 'Nata de Coco', image: cocoMango, description: 'Classic nata de coco with tropical mango taste' },
-  { id: '14', name: 'Coco Orange', category: 'Nata de Coco', image: cocoOrange, description: 'Refreshing nata de coco with citrus orange flavor' },
-  { id: '15', name: 'Coco Blueberry', category: 'Nata de Coco', image: cocoBlueberry, description: 'Antioxidant nata de coco with sweet blueberry taste' },
-  { id: '16', name: 'Coco Bubblegum', category: 'Nata de Coco', image: cocoBubblegum, description: 'Fun nata de coco with unique bubblegum flavor' },
-  { id: '17', name: 'Coco Coconut', category: 'Nata de Coco', image: cocoCoconut, description: 'Pure nata de coco with natural coconut taste' },
-  { id: '18', name: 'Coco Drink Mango', category: 'Nata de Coco', image: cocoDrinkMango, description: 'Smooth nata de coco drink with mango essence' },
-  { id: '19', name: 'Coco Pineapple', category: 'Nata de Coco', image: cocoPineApple, description: 'Tropical nata de coco with tangy pineapple flavor' },
-  { id: '20', name: 'Coco Fruit Punch', category: 'Nata de Coco', image: cocoFruitPunch, description: 'Mixed fruit nata de coco with punch flavor' },
-  { id: '21', name: 'Coco Lemon Lime', category: 'Nata de Coco', image: cocoLemonLime, description: 'Zesty nata de coco with lemon lime twist' },
-  { id: '22', name: 'Coco Lychee', category: 'Nata de Coco', image: cocoLychee, description: 'Exotic nata de coco with sweet lychee flavor' },
-  { id: '23', name: 'Coco Pineapple Classic', category: 'Nata de Coco', image: cocoPineApple2, description: 'Traditional nata de coco with pineapple taste' },
-  { id: '24', name: 'Coco Strawberry', category: 'Nata de Coco', image: cocoStrawberry, description: 'Sweet nata de coco with fresh strawberry flavor' },
-  { id: '25', name: 'Mr. Coco Mango', category: 'Nata de Coco', image: mrCocoMango, description: 'Premium Mr. Coco brand with mango flavor' },
-  { id: '26', name: 'Mr. Coco Red Grapes', category: 'Nata de Coco', image: mrCocoRedGrapes, description: 'Delicious Mr. Coco with red grapes taste' },
-  { id: '27', name: 'Nata de Coco Original', category: 'Nata de Coco', image: nataDeCoco1, description: 'Original nata de coco with classic taste' },
+  { id: '27', name: 'Blueberry', category: 'Nata de Coco', image: nataDeCoco1, description: 'Dwink glass bottle nata de coco with blueberry taste' },
+  { id: '12', name: 'Mango Special', category: 'Nata de Coco', image: cocoMango2, description: 'Premium nata de coco with rich mango flavor' },
+  { id: '16', name: 'Bubblegum', category: 'Nata de Coco', image: cocoBubblegum, description: 'Fun nata de coco with unique bubblegum flavor' },
+  { id: '17', name: 'Coconut', category: 'Nata de Coco', image: cocoCoconut, description: 'Pure nata de coco with natural coconut taste' },
+  { id: '18', name: 'Drink Mango', category: 'Nata de Coco', image: cocoDrinkMango, description: 'Smooth nata de coco drink with mango essence' },
+  { id: '19', name: 'Pineapple', category: 'Nata de Coco', image: cocoPineApple, description: 'Tropical nata de coco with tangy pineapple flavor' },
+  { id: '20', name: 'Fruit Punch', category: 'Nata de Coco', image: cocoFruitPunch, description: 'Mixed fruit nata de coco with punch flavor' },
+  { id: '21', name: 'Lemon Lime', category: 'Nata de Coco', image: cocoLemonLime, description: 'Zesty nata de coco with lemon lime twist' },
+  { id: '22', name: 'Lychee', category: 'Nata de Coco', image: cocoLychee, description: 'Exotic nata de coco with sweet lychee flavor' },
+  { id: '15', name: 'Blueberry', category: 'Nata de Coco', image: cocoBlueberry, description: 'Antioxidant nata de coco with sweet blueberry taste', brand: 'Mr. Coco' },
+  // Plastic Bottle Products (Mr. Coco Brand) - Show at end
+  { id: '24', name: 'Strawberry', category: 'Nata de Coco', image: cocoStrawberry, description: 'Mr. Coco plastic bottle with strawberry flavor', brand: 'Mr. Coco' },
+  { id: '13', name: 'Mango', category: 'Nata de Coco', image: cocoMango, description: 'Mr. Coco plastic bottle with tropical mango taste', brand: 'Mr. Coco' },
+  { id: '26', name: 'Red Grapes', category: 'Nata de Coco', image: mrCocoRedGrapes, description: 'Mr. Coco plastic bottle with red grapes taste', brand: 'Mr. Coco' },
+  { id: '14', name: 'Orange', category: 'Nata de Coco', image: cocoOrange, description: 'Mr. Coco plastic bottle with citrus orange flavor', brand: 'Mr. Coco' },
+  { id: '23', name: 'Pineapple Classic', category: 'Nata de Coco', image: cocoPineApple2, description: 'Mr. Coco plastic bottle with pineapple taste', brand: 'Mr. Coco' },
+  { id: '25', name: 'Mr. Coco Mango', category: 'Nata de Coco', image: mrCocoMango, description: 'Premium Mr. Coco brand with mango flavor', brand: 'Mr. Coco' },
 
   // Falooda Products - Coming Soon
 ];

@@ -20,14 +20,14 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
   const product = {
     ...currentProduct,
-    brand: "Dwink",
-    volume: "300ml",
+    brand: currentProduct.brand || "Dwink",
+    volume: "290ml",
     packing: "24 pieces per carton packing",
-    shelfLife: "12 months",
+    shelfLife: "15 months",
     moq: "Negotiable based on requirements",
     paymentTerm: "As per mutual agreement",
     deliveryTime: "Subject to order specifications",
-    certifications: ["ISO", "HACCP", "HALAL", "FDA", "GMP", "KOSHER", "BRC", "FSSC 22000"],
+    certifications: ["ISO", "HALAL"],
     gallery: [
       currentProduct.image,
       products[Math.min(parseInt(resolvedParams.id), products.length - 1)]?.image || currentProduct.image,
@@ -57,8 +57,8 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       </div>
 
       {/* Small Hero Banner Section */}
-      <section className="relative h-32 md:h-40 w-full bg-gradient-to-r from-slate-500 to-teal-500 flex items-center justify-center">
-        <div className="text-center text-white">
+      <section className="relative h-32 md:h-40 w-full flex items-center justify-center" style={{background: 'linear-gradient(135deg, #C2eaba 0%, rgba(194, 234, 186, 0.8) 100%)'}}>
+        <div className="text-center text-gray-800">
           <h1 className="text-2xl md:text-4xl font-bold mb-2">{product.name}</h1>
           <p className="text-lg md:text-xl">Premium Dwink Product</p>
         </div>
@@ -99,8 +99,13 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             {/* Product Information */}
             <div className="space-y-8">
               <div>
-                <h1 className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-900 mb-2">{product.name}</h1>
-                <p className="text-2xl text-teal-600 font-semibold mb-4">Vitamin E 1L</p>
+                <h1 className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-900 mb-2">
+                  {currentProduct.category === 'Basil Seed' 
+                    ? `${currentProduct.name} Flavour` 
+                    : currentProduct.category === 'Nata de Coco' 
+                    ? `Nata de Coco ${currentProduct.name.replace(/^(Coco |Mr\. Coco )/i, '')} Flavour`
+                    : currentProduct.name}
+                </h1>
               </div>
 
               {/* Product Specifications Table */}
@@ -109,7 +114,13 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 <div className="space-y-3">
                   <div className="flex justify-between border-b border-gray-200 pb-2">
                     <span className="font-medium text-gray-700">Product Name:</span>
-                    <span className="text-gray-900">{product.name}</span>
+                    <span className="text-gray-900">
+                      {currentProduct.category === 'Basil Seed' 
+                        ? `${currentProduct.name} Flavour` 
+                        : currentProduct.category === 'Nata de Coco' 
+                        ? `Nata de Coco ${currentProduct.name.replace(/^(Coco |Mr\. Coco )/i, '')} Flavour`
+                        : currentProduct.name}
+                    </span>
                   </div>
                   <div className="flex justify-between border-b border-gray-200 pb-2">
                     <span className="font-medium text-gray-700">Brand:</span>
@@ -127,18 +138,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     <span className="font-medium text-gray-700">Shelf Life:</span>
                     <span className="text-gray-900">{product.shelfLife}</span>
                   </div>
-                  <div className="flex justify-between border-b border-gray-200 pb-2">
-                    <span className="font-medium text-gray-700">MOQ:</span>
-                    <span className="text-gray-900">{product.moq}</span>
-                  </div>
-                  <div className="flex justify-between border-b border-gray-200 pb-2">
-                    <span className="font-medium text-gray-700">Payment Term:</span>
-                    <span className="text-gray-900">{product.paymentTerm}</span>
-                  </div>
-                  <div className="flex justify-between border-b border-gray-200 pb-2">
-                    <span className="font-medium text-gray-700">Delivery Time:</span>
-                    <span className="text-gray-900">{product.deliveryTime}</span>
-                  </div>
+
                 </div>
               </div>
 
@@ -147,7 +147,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Certifications</h3>
                 <div className="flex flex-wrap gap-2">
                   {product.certifications.map((cert, index) => (
-                    <span key={index} className="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-sm font-medium">
+                    <span key={index} className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
                       {cert}
                     </span>
                   ))}
@@ -157,7 +157,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               {/* Action Buttons */}
               <div className="flex justify-center">
                 <Link href="/contact">
-                  <button className="bg-teal-600 text-white px-12 py-4 rounded-lg font-semibold hover:bg-teal-700 transition-colors flex items-center space-x-2 text-lg">
+                  <button className="bg-green-600 text-white px-12 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center space-x-2 text-lg">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
@@ -248,7 +248,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
             <div className="text-center mb-8">
               <Link href="/contact">
-                <button className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-12 py-5 rounded-xl font-bold text-lg hover:from-teal-700 hover:to-teal-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto space-x-3">
+                <button className="bg-gradient-to-r from-green-600 to-green-700 text-white px-12 py-5 rounded-xl font-bold text-lg hover:from-green-700 hover:to-green-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto space-x-3">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
@@ -269,7 +269,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
       {/* Footer */}
       <footer className="bg-slate-100 text-gray-800 py-8">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container-wide text-center">
           <div className="flex flex-col items-center mb-4">
             <Image
               src={logo}
@@ -278,14 +278,12 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               height={75}
               className="h-16 w-auto mb-2"
             />
-            <h3 className="text-xl font-bold">DWINK FOOD AND DRINK CO.,LTD</h3>
+            <h3 className="text-xl font-bold">Dwink</h3>
           </div>
           
           <div className="text-sm mb-4">
-            <p className="mb-2">Add: No. 8, Thong Nhat Boulevard, Song Than 2 Industrial Park, Di An Ward, Ho Chi Minh City, Vietnam.</p>
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
-              <span>Website: https://dwink.com.vn</span>
             </div>
             <div className="flex justify-center">
               <span>PO Box: 13002</span>
@@ -293,15 +291,15 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           </div>
 
           <div className="border-t border-slate-300 pt-4 text-xs">
-            <p className="mb-2">DWINK Food & Drink Co.,Ltd. 2004 - 2023. All Rights Reserved Development by DWINK Beverage Company</p>
+            <p className="mb-2">Dwink 2004 - 2023. All Rights Reserved Development by Dwink Beverage Company</p>
             <div className="flex justify-center space-x-4">
-              <a href="#" className="hover:text-teal-600">About us</a>
+              <a href="#" className="hover:text-green-600">About us</a>
               <span>|</span>
-              <a href="#" className="hover:text-teal-600">Contact us</a>
+              <a href="#" className="hover:text-green-600">Contact us</a>
               <span>|</span>
-              <a href="#" className="hover:text-teal-600">Privacy Policy</a>
+              <a href="#" className="hover:text-green-600">Privacy Policy</a>
               <span>|</span>
-              <a href="#" className="hover:text-teal-600">Terms of Service Us</a>
+              <a href="#" className="hover:text-green-600">Terms of Service Us</a>
             </div>
           </div>
         </div>
