@@ -79,21 +79,6 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   className="w-full h-full object-cover"
                 />
               </div>
-              
-              {/* Image Gallery */}
-              <div className="grid grid-cols-3 gap-4">
-                {product.gallery.map((image, index) => (
-                  <div key={index} className="aspect-square rounded-lg overflow-hidden shadow-md">
-                    <Image 
-                      src={image}
-                      alt={`${product.name} ${index + 1}`}
-                      width={200}
-                      height={200}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Product Information */}

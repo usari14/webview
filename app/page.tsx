@@ -32,15 +32,11 @@ export default function Home() {
       <Navigation currentPage="Home" />
 
       {/* Hero Section - Large Banner Image */}
-      <section className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center" style={{background: 'linear-gradient(135deg, #C2eaba 0%, #b8e5a8 50%, #C2eaba 100%)'}}>
+      <section className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center" style={{background: 'linear-gradient(135deg, #C2eaba 0%, white 100%)'}}>
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="text-center text-white z-10 max-w-6xl mx-auto px-4">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6" style={{ fontFamily: 'cursive' }}>Dwink</h1>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-6">Premium Tropical Beverages</h2>
-          <p className="text-xl md:text-2xl lg:text-3xl mb-8 font-semibold opacity-95">Good Taste - Good Health</p>
-          <p className="text-lg md:text-xl lg:text-2xl opacity-90 max-w-4xl mx-auto leading-relaxed mb-10">
-            Discover our premium collection of tropical beverages crafted with the finest ingredients for exceptional taste and health benefits.
-          </p>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-6">Fresh Sip</h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/products" className="bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
               Explore Products

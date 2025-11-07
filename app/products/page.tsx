@@ -57,13 +57,9 @@ function ProductsContent() {
       {/* Page Header */}
       <section className="py-16 bg-gradient-to-r from-green-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-teal-700 mb-4" style={{ fontFamily: 'cursive' }}>
+          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-green-700 mb-4" style={{ fontFamily: 'cursive' }}>
             Dwink Products
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover our wide range of premium beverages made with natural ingredients from Vietnam. 
-            From fresh fruit juices to energy drinks, we have something for everyone.
-          </p>
         </div>
       </section>
 
