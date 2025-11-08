@@ -35,7 +35,7 @@ export default function Home() {
       <section className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center" style={{background: 'linear-gradient(135deg, #C2eaba 0%, white 100%)'}}>
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="text-center text-white z-10 max-w-6xl mx-auto px-4">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6" style={{ fontFamily: 'cursive' }}>Dwink</h1>
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6">Dwink</h1>
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-6">Fresh Sip</h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/products" className="bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
@@ -100,13 +100,10 @@ export default function Home() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-gray-800 mb-2 md:mb-4 section-heading" style={{ fontFamily: 'cursive' }}>
+          <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-gray-800 mb-2 md:mb-4 section-heading">
             Dwink
           </h2>
           <h3 className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-800 mb-4 md:mb-6 section-heading">Good Taste - Good Health</h3>
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-            Always make the best tropical juice and drink
-          </p>
 
           {/* Floating Fruits */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -202,6 +199,9 @@ export default function Home() {
           <div className="text-sm mb-4">
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
+            </div>
+            <div className="flex justify-center space-x-6 mb-2">
+              <span>Parent Company: Info@freshmate.pk</span>
             </div>
             <div className="flex justify-center">
               <span>PO Box: 13002</span>

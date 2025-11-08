@@ -235,6 +235,9 @@ export default function AboutPage() {
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
             </div>
+            <div className="flex justify-center space-x-6 mb-2">
+              <span>Parent Company: Info@freshmate.pk</span>
+            </div>
             <div className="flex justify-center">
               <span>PO Box: 13002</span>
             </div>
