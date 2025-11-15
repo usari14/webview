@@ -20,32 +20,17 @@ export default function ContactPopup({ isOpen, onClose }: ContactPopupProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
-        setTimeout(() => {
-          onClose();
-          setSubmitStatus('idle');
-        }, 2500);
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Generate mailto link
+    const mailto = `mailto:info@dwink.pk?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'Not provided'}\nCompany: ${formData.company || 'Not provided'}\n\nMessage:\n${formData.message}`
+    )}`;
+    window.location.href = mailto;
+    // Optionally close popup after triggering mailto
+    setTimeout(() => {
+      onClose();
+    }, 1000);
   };
 
   if (!isOpen) return null;
