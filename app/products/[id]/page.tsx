@@ -76,7 +76,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   alt={product.name}
                   width={600}
                   height={600}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>
@@ -89,6 +89,10 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     ? `${currentProduct.name} Flavour` 
                     : currentProduct.category === 'Nata de Coco' 
                     ? `Nata de Coco ${currentProduct.name.replace(/^(Coco |Mr\. Coco )/i, '')} Flavour`
+                    : currentProduct.category === 'Aloe Vera'
+                    ? `${currentProduct.name} Flavour`
+                    : currentProduct.category === 'Chia Seed'
+                    ? `${currentProduct.name} Flavour`
                     : currentProduct.name}
                 </h1>
               </div>
@@ -104,6 +108,10 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                         ? `${currentProduct.name} Flavour` 
                         : currentProduct.category === 'Nata de Coco' 
                         ? `Nata de Coco ${currentProduct.name.replace(/^(Coco |Mr\. Coco )/i, '')} Flavour`
+                        : currentProduct.category === 'Aloe Vera'
+                        ? `${currentProduct.name} Flavour`
+                        : currentProduct.category === 'Chia Seed'
+                        ? `${currentProduct.name} Flavour`
                         : currentProduct.name}
                     </span>
                   </div>
@@ -210,7 +218,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     alt={product.name}
                     width={200}
                     height={200}
-                    className="w-full h-28 md:h-32 lg:h-48 object-cover mb-1 md:mb-3"
+                    className="w-full h-32 md:h-40 lg:h-56 object-contain mb-1 md:mb-3"
                   />
                   <h3 className="text-xs md:text-sm text-gray-700 leading-tight px-1">{product.name}</h3>
                 </div>

@@ -10,11 +10,31 @@ import basilSeedMango from './products/Basil Seed Mango.png';
 import basilSeedMixedFruit from './products/Basil Seed Mixed fruit.png';
 import basilSeedOrange from './products/Basil Seed Orange.png';
 import basilSeedPeach from './products/Basil Seed Peach Flavour.png';
-import basilSeedPineApple from './products/basil seed Pine Apple.png';
+import basilSeedPineApple from './products/Basil Seed PineApple.png';
 import basilSeedSharbat from './products/Basil Seed Sharbat.png';
 import basilSeedStrawberry from './products/Basil Seed strawberry.png';
 import basilSeedPineGuava from './products/Basil Seel Pine Gauva.png';
 import basilSeedPomegranate from './products/Bssil Seed pomegranate flavour.png';
+
+// Aloe Vera Products
+import aloeVeraOriginal from './products/Aloe Vera Original.png';
+import aloeVeraOriginalGlass from './products/Aloe Vera original Glass.png';
+import aloeVeraPeach from './products/Aloe Vera  Peach Flavour.png';
+import aloeVeraPeachGlass from './products/Aloe Vera Peach Flavour Glass.png';
+import aloeVeraLychee from './products/Aloe vVera Lychee flavour.png';
+import aloeVeraLycheeGlass from './products/Aloe vera Lychee Flavour Glass.png';
+
+// Chia Seed Products
+import chiaAloeVera from './products/aloevera chia seed drink.png';
+import chiaApple from './products/apple chia seed drink.png';
+import chiaMango from './products/mango chia seed drink.png';
+
+// Falooda Products
+import faloodaBadamZafrani from './products/Falooda badam zafrani.png';
+import faloodaKulfa from './products/Falooda kulfa.png';
+import faloodaPista from './products/Falooda Pista.png';
+import faloodaRose from './products/Falooda Rose.png';
+import faloodaMango from './products/mango Falooda.png';
 
 // Nata de Coco Products
 import cocoMango2 from './products/coc mango (2).png';
@@ -43,7 +63,7 @@ import sindhCert from './certificates/sindh food authority.png';
 export interface Product {
   id: string;
   name: string;
-  category: 'Basil Seed' | 'Nata de Coco' | 'Falooda';
+  category: 'Basil Seed' | 'Nata de Coco' | 'Falooda' | 'Aloe Vera' | 'Chia Seed';
   image: string | StaticImageData;
   description: string;
   brand?: string;
@@ -82,7 +102,25 @@ export const products: Product[] = [
   { id: '23', name: 'Pineapple Classic', category: 'Nata de Coco', image: cocoPineApple2, description: 'Mr. Coco plastic bottle with pineapple taste', brand: 'Mr. Coco' },
   { id: '25', name: 'Mr. Coco Mango', category: 'Nata de Coco', image: mrCocoMango, description: 'Premium Mr. Coco brand with mango flavor', brand: 'Mr. Coco' },
 
-  // Falooda Products - Coming Soon
+  // Aloe Vera Products
+  { id: '28', name: 'Aloe Vera Original', category: 'Aloe Vera', image: aloeVeraOriginal, description: 'Pure aloe vera drink with natural benefits' },
+  { id: '29', name: 'Aloe Vera Original Glass', category: 'Aloe Vera', image: aloeVeraOriginalGlass, description: 'Premium glass bottle aloe vera original flavor' },
+  { id: '30', name: 'Aloe Vera Peach', category: 'Aloe Vera', image: aloeVeraPeach, description: 'Refreshing aloe vera drink with sweet peach flavor' },
+  { id: '31', name: 'Aloe Vera Peach Glass', category: 'Aloe Vera', image: aloeVeraPeachGlass, description: 'Premium glass bottle aloe vera with peach flavor' },
+  { id: '32', name: 'Aloe Vera Lychee', category: 'Aloe Vera', image: aloeVeraLychee, description: 'Exotic aloe vera drink with lychee taste' },
+  { id: '33', name: 'Aloe Vera Lychee Glass', category: 'Aloe Vera', image: aloeVeraLycheeGlass, description: 'Premium glass bottle aloe vera with lychee flavor' },
+
+  // Chia Seed Products
+  { id: '34', name: 'Chia Seed Aloe Vera', category: 'Chia Seed', image: chiaAloeVera, description: 'Nutritious chia seed drink with aloe vera benefits' },
+  { id: '35', name: 'Chia Seed Apple', category: 'Chia Seed', image: chiaApple, description: 'Healthy chia seed drink with crisp apple flavor' },
+  { id: '36', name: 'Chia Seed Mango', category: 'Chia Seed', image: chiaMango, description: 'Tropical chia seed drink with rich mango taste' },
+
+  // Falooda Products
+  { id: '37', name: 'Falooda Badam Zafrani', category: 'Falooda', image: faloodaBadamZafrani, description: 'Traditional falooda with almond and saffron flavor' },
+  { id: '38', name: 'Falooda Kulfa', category: 'Falooda', image: faloodaKulfa, description: 'Classic kulfa flavored falooda dessert drink' },
+  { id: '39', name: 'Falooda Pista', category: 'Falooda', image: faloodaPista, description: 'Rich pistachio flavored falooda drink' },
+  { id: '40', name: 'Falooda Rose', category: 'Falooda', image: faloodaRose, description: 'Aromatic rose flavored traditional falooda' },
+  { id: '41', name: 'Falooda Mango', category: 'Falooda', image: faloodaMango, description: 'Tropical mango flavored falooda dessert drink' },
 ];
 
 export const certificates = {

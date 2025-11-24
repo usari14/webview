@@ -22,7 +22,7 @@ function ProductsContent() {
   }, [searchParams]);
 
   const filters = [
-    "Show All", "Basil Seed", "Nata de Coco", "Falooda"
+    "Show All", "Basil Seed", "Nata de Coco", "Falooda", "Aloe Vera", "Chia Seed"
   ];
 
   // Filter products based on active filter
@@ -102,13 +102,13 @@ function ProductsContent() {
             {currentProducts.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`} className="group">
                 <div className="card-hover overflow-hidden">
-                  <div className="w-full h-28 md:h-32 lg:h-48 overflow-hidden">
+                  <div className="w-full h-32 md:h-40 lg:h-56 overflow-hidden">
                     <Image 
                       src={product.image}
                       alt={product.name}
                       width={200}
                       height={200}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                   <div className="p-1 md:p-2 lg:p-4">
@@ -117,6 +117,10 @@ function ProductsContent() {
                         ? `${product.name} Flavour` 
                         : product.category === 'Nata de Coco' 
                         ? `Nata de Coco ${product.name.replace(/^(Coco |Mr\. Coco )/i, '')} Flavour`
+                        : product.category === 'Aloe Vera'
+                        ? `${product.name} Flavour`
+                        : product.category === 'Chia Seed'
+                        ? `${product.name} Flavour`
                         : product.name}
                     </h3>
                     <p className="text-xs md:text-sm text-gray-600 mb-1 md:mb-2 font-body hidden md:block">{product.category}</p>
