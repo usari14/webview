@@ -1,11 +1,65 @@
-// This API route is now deprecated. Please use the static contact form with mailto link on the frontend.
+import { NextRequest, NextResponse } from 'next/server';
 
-// Example implementation for static site:
-// On your contact form page/component, after validating input, generate a mailto link like:
-//
-// const mailto = `mailto:info@dwink.pk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-//   `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nCompany: ${company || 'Not provided'}\n\nMessage:\n${message}`
-// )}`;
-// window.location.href = mailto;
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { name, email, phone, company, subject, message } = body;
 
-// Remove all server-side logic from this API route.
+    // Validate required fields
+    if (!name || !email || !subject || !message) {
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
+    // Import nodemailer dynamically to avoid build issues
+    const { createTransport } = await import('nodemailer');
+    
+    // Create transporter
+    const transporter = createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    // Email content
+    const emailContent = `
+New Contact Form Submission from Dwink Website
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Company: ${company || 'Not provided'}
+Subject: ${subject}
+
+Message:
+${message}
+
+Submitted at: ${new Date().toLocaleString()}
+    `;
+
+    // Send email
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: 'urdogar583@gmail.com',
+      subject: `Dwink Contact Form: ${subject}`,
+      text: emailContent,
+      replyTo: email
+    });
+
+    return NextResponse.json(
+      { message: 'Thank you for your message. We will get back to you soon!' },
+      { status: 200 }
+    );
+
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return NextResponse.json(
+      { error: 'Failed to send message. Please try again.' },
+      { status: 500 }
+    );
+  }
+}
