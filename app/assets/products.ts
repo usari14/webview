@@ -15,6 +15,9 @@ import basilSeedSharbat from './products/Basil Seed Sharbat.png';
 import basilSeedStrawberry from './products/Basil Seed strawberry.png';
 import basilSeedPineGuava from './products/Basil Seel Pine Gauva.png';
 import basilSeedPomegranate from './products/Bssil Seed pomegranate flavour.png';
+import basilSeedPineAppleGlass from './products/Basil Seed PineApple glass.png';
+import basilSeedMixedFruitGlass from './products/Basil Seed Mixed fruit glass.png';
+import basilSeedPomegranateGlass from './products/Basil Seed Pomegranate Flavour glass .png';
 
 // Aloe Vera Products
 import aloeVeraOriginal from './products/Aloe Vera Original.png';
@@ -82,6 +85,9 @@ export const products: Product[] = [
   { id: '9', name: 'Basil Seed Strawberry', category: 'Basil Seed', image: basilSeedStrawberry, description: 'Sweet basil seed drink with fresh strawberry taste' },
   { id: '10', name: 'Basil Seed Pine Guava', category: 'Basil Seed', image: basilSeedPineGuava, description: 'Unique basil seed drink with pine guava flavor' },
   { id: '11', name: 'Basil Seed Pomegranate', category: 'Basil Seed', image: basilSeedPomegranate, description: 'Antioxidant-rich basil seed drink with pomegranate' },
+  { id: '42', name: 'Basil Seed Pineapple', category: 'Basil Seed', image: basilSeedPineAppleGlass, description: 'Premium glass bottle basil seed with pineapple flavor' },
+  { id: '43', name: 'Basil Seed Mixed Fruit', category: 'Basil Seed', image: basilSeedMixedFruitGlass, description: 'Premium glass bottle basil seed with mixed fruit blend' },
+  { id: '44', name: 'Basil Seed Pomegranate', category: 'Basil Seed', image: basilSeedPomegranateGlass, description: 'Premium glass bottle basil seed with pomegranate flavor' },
 
   // Nata de Coco Products
   { id: '27', name: 'Blueberry', category: 'Nata de Coco', image: nataDeCoco1, description: 'Dwink glass bottle nata de coco with blueberry taste' },
